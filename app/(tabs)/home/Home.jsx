@@ -32,27 +32,32 @@ export default function Home() {
         <View style={{ flex: 10, justifyContent: "flex-end" }}>
           <Title title="Theory4Musicians" />
         </View>
-        <View style={{ flex: 20 }} />
+        <View style={{ flex: 10 }} />
         <HomePageButtonSection
           disabled={true}
           text={`Daily Streak: ${dailyStreak}`}
         />
-        <View style={{height: 40}}/>
+        <View style={{height: 30}}/>
         <HomePageButtonSection
           onPress={() => router.push("/../Onboarding")}
           text="How To Use This App"
         />
-        <View style={{ height: 40 }} />
+        <View style={{ height: 30 }} />
         <HomePageButtonSection
           onPress={() => router.navigate("/home/LearnToReadMusic")}
           text="Learn To Read Music"
         />
-        <View style={{ height: 40 }} />
+        <View style={{ height: 30 }} />
         <HomePageButtonSection
           onPress={() => router.navigate("/home/ResetScores")}
           text="Reset Scores"
         />
-        <View style={{ height: 40 }} />
+        <View style={{ height: 30 }} />
+        <HomePageButtonSection
+          onPress={() => router.navigate("/home/Shop")}
+          text="Shop"
+        />
+        <View style={{ height: 30 }} />
         <HomePageButtonSection
           onPress={() => {
             let otherClef;
