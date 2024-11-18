@@ -5,16 +5,18 @@ import {
   SafeAreaView,
   Dimensions,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
 import HomePageButtonSection from "../../../components/HomePageButtonSection";
 import Title from "../../../components/Title";
 import readDailyStreak from "../../../storageServices/readDailyStreak";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import getNotes from "../../../storageServices/getNotes";
 
 const height = Dimensions.get("window").height;
 
 export default function Home() {
+  const [notes, setNotes] = useState(0);
   const [clef, setClef] = useState();
   AsyncStorage.getItem('Clef').then((storageClef) => {
     setClef(storageClef)
@@ -23,6 +25,14 @@ export default function Home() {
   readDailyStreak().then((streak) => {
     setDailyStreak(streak)
   })
+
+  useEffect(()=>{
+    async function setNotesState(){
+      const notes = await getNotes()
+      setNotes(notes)
+    }
+    setNotesState();
+  }, [])
   return (
     <ImageBackground
       source={require("./../../../assets/images//BackgroundImages/Theory4MusiciansBackground.jpg")}
@@ -55,7 +65,7 @@ export default function Home() {
         <View style={{ height: 30 }} />
         <HomePageButtonSection
           onPress={() => router.navigate("/home/Shop")}
-          text="Shop"
+          text={"Shop\nCurrent Notes: " + notes}
         />
         <View style={{ height: 30 }} />
         <HomePageButtonSection
