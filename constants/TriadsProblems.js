@@ -1,24 +1,24 @@
 export const TriadsProblems = [
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/Cb/CbMajor.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/Cb/CbMajor.png"),
-    "answers": ['Cb Major', 'cb minor', 'cb diminished', 'Cb Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/Cb/CbMinor.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/Cb/CbMinor.png"),
-    "answers": ['cb minor', 'Cb Major', 'cb diminished', 'Cb Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/Cb/CbDiminished.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/Cb/CbDiminished.png"),
-    "answers": ['cb diminished', 'Cb Major', 'cb minor', 'Cb Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/Cb/CbAugmented.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/Cb/CbAugmented.png"),
-    "answers": ['Cb Augmented', 'Cb Major', 'cb minor', 'cb diminished']
-  },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/Cb/CbMajor.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/Cb/CbMajor.png"),
+  //   "answers": ['Cb Major', 'cb minor', 'cb diminished', 'Cb Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/Cb/CbMinor.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/Cb/CbMinor.png"),
+  //   "answers": ['cb minor', 'Cb Major', 'cb diminished', 'Cb Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/Cb/CbDiminished.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/Cb/CbDiminished.png"),
+  //   "answers": ['cb diminished', 'Cb Major', 'cb minor', 'Cb Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/Cb/CbAugmented.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/Cb/CbAugmented.png"),
+  //   "answers": ['Cb Augmented', 'Cb Major', 'cb minor', 'cb diminished']
+  // },
   {
     "TrebleURI": require("../assets/images/TriadsImages/Treble/C/CMajor.png"),
     "BassURI": require("../assets/images/TriadsImages/Bass/C/CMajor.png"),
@@ -99,26 +99,26 @@ export const TriadsProblems = [
     "BassURI": require("../assets/images/TriadsImages/Bass/D/DAugmented.png"),
     "answers": ['D Augmented', 'D Major', 'd minor', 'd diminished']
   },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/D#/D#Major.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/D#/D#Major.png"),
-    "answers": ['D# Major', 'd# minor', 'd# diminished', 'D# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/D#/D#Minor.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/D#/D#Minor.png"),
-    "answers": ['d# minor', 'D# Major', 'd# diminished', 'D# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/D#/D#Diminished.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/D#/D#Diminished.png"),
-    "answers": ['d# diminished', 'D# Major', 'd# minor', 'D# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/D#/D#Augmented.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/D#/D#Augmented.png"),
-    "answers": ['D# Augmented', 'D# Major', 'd# minor', 'd# diminished']
-  },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/D#/D#Major.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/D#/D#Major.png"),
+  //   "answers": ['D# Major', 'd# minor', 'd# diminished', 'D# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/D#/D#Minor.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/D#/D#Minor.png"),
+  //   "answers": ['d# minor', 'D# Major', 'd# diminished', 'D# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/D#/D#Diminished.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/D#/D#Diminished.png"),
+  //   "answers": ['d# diminished', 'D# Major', 'd# minor', 'D# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/D#/D#Augmented.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/D#/D#Augmented.png"),
+  //   "answers": ['D# Augmented', 'D# Major', 'd# minor', 'd# diminished']
+  // },
   {
     "TrebleURI": require("../assets/images/TriadsImages/Treble/Eb/EbMajor.png"),
     "BassURI": require("../assets/images/TriadsImages/Bass/Eb/EbMajor.png"),
@@ -199,26 +199,26 @@ export const TriadsProblems = [
     "BassURI": require("../assets/images/TriadsImages/Bass/F#/F#Augmented.png"),
     "answers": ['F# Augmented', 'F# Major', 'f# minor', 'f# diminished']
   },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/Gb/GbMajor.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/Gb/GbMajor.png"),
-    "answers": ['Gb Major', 'gb minor', 'gb diminished', 'Gb Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/Gb/GbMinor.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/Gb/GbMinor.png"),
-    "answers": ['gb minor', 'Gb Major', 'gb diminished', 'Gb Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/Gb/GbDiminished.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/Gb/GbDiminished.png"),
-    "answers": ['gb diminished', 'Gb Major', 'gb minor', 'Gb Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/Gb/GbAugmented.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/Gb/GbAugmented.png"),
-    "answers": ['Gb Augmented', 'Gb Major', 'gb minor', 'gb diminished']
-  },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/Gb/GbMajor.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/Gb/GbMajor.png"),
+  //   "answers": ['Gb Major', 'gb minor', 'gb diminished', 'Gb Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/Gb/GbMinor.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/Gb/GbMinor.png"),
+  //   "answers": ['gb minor', 'Gb Major', 'gb diminished', 'Gb Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/Gb/GbDiminished.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/Gb/GbDiminished.png"),
+  //   "answers": ['gb diminished', 'Gb Major', 'gb minor', 'Gb Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/Gb/GbAugmented.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/Gb/GbAugmented.png"),
+  //   "answers": ['Gb Augmented', 'Gb Major', 'gb minor', 'gb diminished']
+  // },
   {
     "TrebleURI": require("../assets/images/TriadsImages/Treble/G/GMajor.png"),
     "BassURI": require("../assets/images/TriadsImages/Bass/G/GMajor.png"),
@@ -239,26 +239,26 @@ export const TriadsProblems = [
     "BassURI": require("../assets/images/TriadsImages/Bass/G/GAugmented.png"),
     "answers": ['G Augmented', 'G Major', 'g minor', 'g diminished']
   },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/G#/G#Major.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/G#/G#Major.png"),
-    "answers": ['G# Major', 'g# minor', 'g# diminished', 'G# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/G#/G#Minor.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/G#/G#Minor.png"),
-    "answers": ['g# minor', 'G# Major', 'g# diminished', 'G# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/G#/G#Diminished.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/G#/G#Diminished.png"),
-    "answers": ['g# diminished', 'G# Major', 'g# minor', 'G# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/G#/G#Augmented.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/G#/G#Augmented.png"),
-    "answers": ['G# Augmented', 'G# Major', 'g# minor', 'g# diminished']
-  },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/G#/G#Major.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/G#/G#Major.png"),
+  //   "answers": ['G# Major', 'g# minor', 'g# diminished', 'G# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/G#/G#Minor.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/G#/G#Minor.png"),
+  //   "answers": ['g# minor', 'G# Major', 'g# diminished', 'G# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/G#/G#Diminished.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/G#/G#Diminished.png"),
+  //   "answers": ['g# diminished', 'G# Major', 'g# minor', 'G# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/G#/G#Augmented.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/G#/G#Augmented.png"),
+  //   "answers": ['G# Augmented', 'G# Major', 'g# minor', 'g# diminished']
+  // },
   {
     "TrebleURI": require("../assets/images/TriadsImages/Treble/Ab/AbMajor.png"),
     "BassURI": require("../assets/images/TriadsImages/Bass/Ab/AbMajor.png"),
@@ -299,26 +299,26 @@ export const TriadsProblems = [
     "BassURI": require("../assets/images/TriadsImages/Bass/A/AAugmented.png"),
     "answers": ['A Augmented', 'A Major', 'a minor', 'a diminished']
   },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/A#/A#Major.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/A#/A#Major.png"),
-    "answers": ['A# Major', 'a# minor', 'a# diminished', 'A# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/A#/A#Minor.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/A#/A#Minor.png"),
-    "answers": ['a# minor', 'A# Major', 'a# diminished', 'A# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/A#/A#Diminished.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/A#/A#Diminished.png"),
-    "answers": ['a# diminished', 'A# Major', 'a# minor', 'A# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/A#/A#Augmented.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/A#/A#Augmented.png"),
-    "answers": ['A# Augmented', 'A# Major', 'a# minor', 'a# diminished']
-  },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/A#/A#Major.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/A#/A#Major.png"),
+  //   "answers": ['A# Major', 'a# minor', 'a# diminished', 'A# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/A#/A#Minor.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/A#/A#Minor.png"),
+  //   "answers": ['a# minor', 'A# Major', 'a# diminished', 'A# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/A#/A#Diminished.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/A#/A#Diminished.png"),
+  //   "answers": ['a# diminished', 'A# Major', 'a# minor', 'A# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/A#/A#Augmented.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/A#/A#Augmented.png"),
+  //   "answers": ['A# Augmented', 'A# Major', 'a# minor', 'a# diminished']
+  // },
   {
     "TrebleURI": require("../assets/images/TriadsImages/Treble/Bb/BbMajor.png"),
     "BassURI": require("../assets/images/TriadsImages/Bass/Bb/BbMajor.png"),
@@ -359,26 +359,26 @@ export const TriadsProblems = [
     "BassURI": require("../assets/images/TriadsImages/Bass/B/BAugmented.png"),
     "answers": ['B Augmented', 'B Major', 'b minor', 'b diminished']
   },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/B#/B#Major.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/B#/B#Major.png"),
-    "answers": ['B# Major', 'b# minor', 'b# diminished', 'B# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/B#/B#Minor.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/B#/B#Minor.png"),
-    "answers": ['b# minor', 'B# Major', 'b# diminished', 'B# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/B#/B#Diminished.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/B#/B#Diminished.png"),
-    "answers": ['b# diminished', 'B# Major', 'b# minor', 'B# Augmented']
-  },
-  {
-    "TrebleURI": require("../assets/images/TriadsImages/Treble/B#/B#Augmented.png"),
-    "BassURI": require("../assets/images/TriadsImages/Bass/B#/B#Augmented.png"),
-    "answers": ['B# Augmented', 'B# Major', 'b# minor', 'b# diminished']
-  }
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/B#/B#Major.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/B#/B#Major.png"),
+  //   "answers": ['B# Major', 'b# minor', 'b# diminished', 'B# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/B#/B#Minor.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/B#/B#Minor.png"),
+  //   "answers": ['b# minor', 'B# Major', 'b# diminished', 'B# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/B#/B#Diminished.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/B#/B#Diminished.png"),
+  //   "answers": ['b# diminished', 'B# Major', 'b# minor', 'B# Augmented']
+  // },
+  // {
+  //   "TrebleURI": require("../assets/images/TriadsImages/Treble/B#/B#Augmented.png"),
+  //   "BassURI": require("../assets/images/TriadsImages/Bass/B#/B#Augmented.png"),
+  //   "answers": ['B# Augmented', 'B# Major', 'b# minor', 'b# diminished']
+  // }
 ];
 
 Object.freeze(TriadsProblems);
