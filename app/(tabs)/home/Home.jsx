@@ -5,8 +5,8 @@ import {
   SafeAreaView,
   Dimensions,
 } from "react-native";
-import React, { useState } from "react";
-import { router } from "expo-router";
+import React, { useCallback, useEffect, useState } from "react";
+import { router, useFocusEffect } from "expo-router";
 import HomePageButtonSection from "../../../components/HomePageButtonSection";
 import Title from "../../../components/Title";
 import readDailyStreak from "../../../storageServices/readDailyStreak";
@@ -20,9 +20,15 @@ export default function Home() {
     setClef(storageClef)
   })
   const [dailyStreak, setDailyStreak] = useState();
-  readDailyStreak().then((streak) => {
-    setDailyStreak(streak)
-  })
+  useFocusEffect(
+    useCallback(() => {
+      async function manageDailyStreak() {
+        const dailyStreak = await readDailyStreak()
+        setDailyStreak(dailyStreak)
+      }
+      manageDailyStreak()
+    })
+  )
   return (
     <ImageBackground
       source={require("./../../../assets/images//BackgroundImages/Theory4MusiciansBackground.jpg")}
@@ -66,6 +72,7 @@ export default function Home() {
           }}
           text={"Toggle Clef\nCurrent Clef: " + clef}
         />
+
         <View style={{ height: height * 0.1 }} />
       </SafeAreaView>
     </ImageBackground>
