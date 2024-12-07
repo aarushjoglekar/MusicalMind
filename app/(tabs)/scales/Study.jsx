@@ -79,7 +79,6 @@ export default function ScalesStudy() {
             disabled={!isAnswerEnabled}
             style={styles.Button}
             onPress={() => {
-              console.log('clef: ', clef)
               if (correctAnswerSpot == 0) {
                 SetScalesStudyScore(ScalesStudyScore + 1);
               }
