@@ -3,9 +3,9 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Loading" />
-      <Stack.Screen name="Onboarding" />
-      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="Loading" options={{ gestureEnabled: false }} />
+      <Stack.Screen name="Onboarding" options={{ gestureEnabled: false }} />
+      <Stack.Screen name="(tabs)" options={{ gestureEnabled: false }} />
     </Stack>
   );
 }
