@@ -21,6 +21,6 @@ export default [
     id: '4',
     image:require('../assets/images/OnboardingImages/Overall.png'),
     title:"Explore",
-    'description':"Dive into four unique musical topics"
+    description:"Dive into four unique musical topics (use the tabs at the bottom)"
   },
 ]
