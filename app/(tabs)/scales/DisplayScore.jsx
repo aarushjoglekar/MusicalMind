@@ -13,7 +13,7 @@ import arraysEqual from "../../../constants/ArraysEqual";
 export default function ScalesDisplayScore() {
   const { ScalesSprintScore } = useLocalSearchParams();
   readScore("scales").then( (highScore)=>{
-    if (JSON.parese(ScalesSprintScore) > highScore){
+    if (JSON.parse(ScalesSprintScore) > highScore){
        updateScore("scales", ScalesSprintScore)
     }
   });
