@@ -11,10 +11,11 @@ import updateDailyStreak from "../../../storageServices/updateDailyStreak"
 import arraysEqual from "../../../constants/ArraysEqual";
 
 export default function ScalesDisplayScore() {
-  const { ScalesSprintScore } = useLocalSearchParams();
-  readScore("scales").then( (highScore)=>{
+  const { ScalesSprintScore, levelDeterminer } = useLocalSearchParams();
+  const scoreKey = "scales" + levelDeterminer
+  readScore(scoreKey).then( (highScore)=>{
     if (JSON.parse(ScalesSprintScore) > highScore){
-       updateScore("scales", ScalesSprintScore)
+       updateScore(scoreKey, ScalesSprintScore)
     }
   });
   readDailyStreak().then((streak) => {

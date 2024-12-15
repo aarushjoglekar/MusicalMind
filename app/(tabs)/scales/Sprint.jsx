@@ -11,9 +11,10 @@ import {
 } from "react-native";
 import ScalesProblemFunction from "./../../../constants/ScalesProblemFunction";
 import { ScalesProblems } from "./../../../constants/ScalesProblems";
+import { ScalesProblemsBasic } from "../../../constants/ScalesProblemBasic";
 import shuffle from "../../../constants/Shuffle";
 import Title from "../../../components/Title";
-import { router, useFocusEffect } from "expo-router";
+import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -21,8 +22,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-function setProblem(ScalesProblems, currentClef) {
-  let ScalesProblem = ScalesProblemFunction(ScalesProblems,currentClef);
+function setProblem(ScalesProblems, currentClef, levelDeterminer) {
+  if (levelDeterminer == 0) {
+    var ScalesProblem = ScalesProblemFunction(ScalesProblemsBasic, currentClef);
+  } else {
+    var ScalesProblem = ScalesProblemFunction(ScalesProblems, currentClef);
+  }
   return ScalesProblem;
 }
 
@@ -31,6 +36,8 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function ScalesSprint() {
+  const { levelDeterminer } = useLocalSearchParams()
+
   const LatestScalesSprintScoreRef = useRef()
   let clef = useRef()
   const [isAnswerEnabled, setIsAnswerEnabled] = useState(true)
@@ -43,7 +50,7 @@ export default function ScalesSprint() {
     const fetchClefAndSetProblem = async () => {
       clefVar = await AsyncStorage.getItem('Clef');
       clef.current = clefVar;
-      const problem = setProblem(ScalesProblems, clef.current);
+      const problem = setProblem(ScalesProblems, clef.current, levelDeterminer);
       ResetScalesProblem(problem);
     };
 
@@ -99,7 +106,7 @@ export default function ScalesSprint() {
               if (correctAnswerSpot == 0) {
                 SetScalesSprintScore(ScalesSprintScore + 1);
               }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current));
+              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -116,7 +123,7 @@ export default function ScalesSprint() {
               if (correctAnswerSpot == 1) {
                 SetScalesSprintScore(ScalesSprintScore + 1);
               }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current));
+              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -133,7 +140,7 @@ export default function ScalesSprint() {
               if (correctAnswerSpot == 2) {
                 SetScalesSprintScore(ScalesSprintScore + 1);
               }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current));
+              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -150,7 +157,7 @@ export default function ScalesSprint() {
               if (correctAnswerSpot == 3) {
                 SetScalesSprintScore(ScalesSprintScore + 1);
               }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current));
+              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -165,7 +172,7 @@ export default function ScalesSprint() {
             onPress={() => {
               router.navigate({
                 pathname: "/scales/DisplayScore",
-                params: { ScalesSprintScore },
+                params: { ScalesSprintScore, levelDeterminer },
               });
             }}
           >

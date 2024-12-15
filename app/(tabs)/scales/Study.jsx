@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import {
   Dimensions,
   Image,
@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import Title from "../../../components/Title";
 import { ScalesProblems } from "../../../constants/ScalesProblems";
+import { ScalesProblemsBasic } from "../../../constants/ScalesProblemBasic";
 import shuffle from "../../../constants/Shuffle";
 import ScalesProblemFunction from "../../../constants/ScalesProblemFunction";
 import { RFPercentage } from "react-native-responsive-fontsize";
@@ -21,8 +22,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-function setProblem(ScalesProblems, currentClef) {
-  let ScalesProblem = ScalesProblemFunction(ScalesProblems, currentClef);
+function setProblem(ScalesProblems, currentClef, levelDeterminer) {
+  if (levelDeterminer == 0) {
+    var ScalesProblem = ScalesProblemFunction(ScalesProblemsBasic, currentClef);
+  } else {
+    var ScalesProblem = ScalesProblemFunction(ScalesProblems, currentClef);
+  }
   return ScalesProblem;
 }
 
@@ -31,29 +36,31 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function ScalesStudy() {
+  const { levelDeterminer } = useLocalSearchParams()
+
   let clef = useRef();
   const [isAnswerEnabled, setIsAnswerEnabled] = useState(true)
   const [ScalesStudyScore, SetScalesStudyScore] = useState(0);
   const [ScalesProblem, ResetScalesProblem] = useState(
-    [,,,,]
+    [, , , ,]
   );
   const [imageSource, setImageSource] = useState(null);
   useEffect(() => {
     const fetchClefAndSetProblem = async () => {
       clefVar = await AsyncStorage.getItem('Clef');
       clef.current = clefVar;
-      const problem = setProblem(ScalesProblems, clef.current);
+      const problem = setProblem(ScalesProblems, clef.current, levelDeterminer);
       ResetScalesProblem(problem);
     };
 
     fetchClefAndSetProblem();
   }, []);
   useEffect(() => {
-    if (ScalesProblem){
+    if (ScalesProblem) {
       setImageSource(ScalesProblem[0]);
     }
   }, [ScalesProblem]);
-  function disableAnswerBriefly(){
+  function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
@@ -82,7 +89,7 @@ export default function ScalesStudy() {
               if (correctAnswerSpot == 0) {
                 SetScalesStudyScore(ScalesStudyScore + 1);
               }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current));
+              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -99,7 +106,7 @@ export default function ScalesStudy() {
               if (correctAnswerSpot == 1) {
                 SetScalesStudyScore(ScalesStudyScore + 1);
               }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current));
+              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -116,7 +123,7 @@ export default function ScalesStudy() {
               if (correctAnswerSpot == 2) {
                 SetScalesStudyScore(ScalesStudyScore + 1);
               }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current));
+              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -133,7 +140,7 @@ export default function ScalesStudy() {
               if (correctAnswerSpot == 3) {
                 SetScalesStudyScore(ScalesStudyScore + 1);
               }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current));
+              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()

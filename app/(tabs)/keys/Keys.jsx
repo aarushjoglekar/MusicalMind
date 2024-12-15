@@ -18,7 +18,7 @@ export default function KeysHome() {
     async function checkCurrentLevel() {
       const currentKeysLevel = await AsyncStorage.getItem("KeysLevel")
       if (!currentKeysLevel) {
-        AsyncStorage.setItem("KeysLevel", "Major Only")
+        AsyncStorage.setItem("KeysLevel", levels[0])
       } else {
         setCurrentLevel(currentKeysLevel)
         setCurrentLevelIndex(levels.indexOf(currentKeysLevel))
