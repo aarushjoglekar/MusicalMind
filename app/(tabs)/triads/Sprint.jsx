@@ -11,9 +11,10 @@ import {
 } from "react-native";
 import TriadsProblemFunction from "./../../../constants/TriadsProblemFunction";
 import { TriadsProblems } from "./../../../constants/TriadsProblems";
+import { TriadsProblemsBasic } from "../../../constants/TriadsProblemsBasic";
 import shuffle from "../../../constants/Shuffle";
 import Title from "../../../components/Title";
-import { router, useFocusEffect } from "expo-router";
+import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -21,8 +22,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-function setProblem(TriadsProblems, currentClef) {
-  let TriadsProblem = TriadsProblemFunction(TriadsProblems, currentClef);
+function setProblem(TriadsProblems, currentClef, levelDeterminer) {
+  if (levelDeterminer == 0) {
+    var TriadsProblem = TriadsProblemFunction(TriadsProblemsBasic, currentClef);
+  } else {
+    var TriadsProblem = TriadsProblemFunction(TriadsProblems, currentClef);
+  }
   return TriadsProblem;
 }
 
@@ -32,6 +37,8 @@ let correctAnswerSpot = answerOrder.indexOf(1);
 
 
 export default function TriadsSprint() {
+  const { levelDeterminer } = useLocalSearchParams()
+
   const LatestTriadsSprintScoreRef = useRef()
   let clef = useRef();
   const [isAnswerEnabled, setIsAnswerEnabled] = useState(true)
@@ -44,7 +51,7 @@ export default function TriadsSprint() {
     const fetchClefAndSetProblem = async () => {
       clefVar = await AsyncStorage.getItem('Clef');
       clef.current = clefVar;
-      const problem = setProblem(TriadsProblems, clef.current);
+      const problem = setProblem(TriadsProblems, clef.current, levelDeterminer);
       ResetTriadsProblem(problem);
     };
 
@@ -65,7 +72,7 @@ export default function TriadsSprint() {
       const id = setTimeout(() => {
         router.navigate({
           pathname: "/triads/DisplayScore",
-          params: { TriadsSprintScore: LatestTriadsSprintScoreRef.current },
+          params: { TriadsSprintScore: LatestTriadsSprintScoreRef.current, levelDeterminer: levelDeterminer },
         });
       }, 30000);
       return () => clearTimeout(id);
@@ -101,7 +108,7 @@ export default function TriadsSprint() {
               if (correctAnswerSpot == 0) {
                 SetTriadsSprintScore(TriadsSprintScore + 1);
               }
-              ResetTriadsProblem(setProblem(TriadsProblems, clef.current));
+              ResetTriadsProblem(setProblem(TriadsProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -118,7 +125,7 @@ export default function TriadsSprint() {
               if (correctAnswerSpot == 1) {
                 SetTriadsSprintScore(TriadsSprintScore + 1);
               }
-              ResetTriadsProblem(setProblem(TriadsProblems, clef.current));
+              ResetTriadsProblem(setProblem(TriadsProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -135,7 +142,7 @@ export default function TriadsSprint() {
               if (correctAnswerSpot == 2) {
                 SetTriadsSprintScore(TriadsSprintScore + 1);
               }
-              ResetTriadsProblem(setProblem(TriadsProblems, clef.current));
+              ResetTriadsProblem(setProblem(TriadsProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -152,7 +159,7 @@ export default function TriadsSprint() {
               if (correctAnswerSpot == 3) {
                 SetTriadsSprintScore(TriadsSprintScore + 1);
               }
-              ResetTriadsProblem(setProblem(TriadsProblems, clef.current));
+              ResetTriadsProblem(setProblem(TriadsProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -167,7 +174,7 @@ export default function TriadsSprint() {
             onPress={() => {
               router.navigate({
                 pathname: "/triads/DisplayScore",
-                params: { TriadsSprintScore },
+                params: { TriadsSprintScore, levelDeterminer },
               });
             }}
           >

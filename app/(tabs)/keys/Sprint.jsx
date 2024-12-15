@@ -53,7 +53,7 @@ export default function KeysSprint() {
       const id = setTimeout(() => {
         router.navigate({
           pathname: "/keys/DisplayScore",
-          params: { KeysSprintScore: LatestKeysSprintScoreRef.current },
+          params: { KeysSprintScore: LatestKeysSprintScoreRef.current, majorOrMinorDeterminer: majorOrMinorDeterminer },
         });
       }, 30000);
       return () => clearTimeout(id);

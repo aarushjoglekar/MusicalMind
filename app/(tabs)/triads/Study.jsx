@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import {
   Dimensions,
   Image,
@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import Title from "../../../components/Title";
 import { TriadsProblems } from "../../../constants/TriadsProblems";
+import { TriadsProblemsBasic } from "../../../constants/TriadsProblemsBasic";
 import shuffle from "../../../constants/Shuffle";
 import TriadsProblemFunction from "../../../constants/TriadsProblemFunction";
 import { RFPercentage } from "react-native-responsive-fontsize";
@@ -21,8 +22,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-function setProblem(TriadsProblems, currentClef) {
-  let TriadsProblem = TriadsProblemFunction(TriadsProblems, currentClef);
+function setProblem(TriadsProblems, currentClef, levelDeterminer) {
+  if (levelDeterminer == 0) {
+    var TriadsProblem = TriadsProblemFunction(TriadsProblemsBasic, currentClef);
+  } else {
+    var TriadsProblem = TriadsProblemFunction(TriadsProblems, currentClef);
+  }
   return TriadsProblem;
 }
 
@@ -31,29 +36,31 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function TriadsStudy() {
+  const { levelDeterminer } = useLocalSearchParams()
+
   let clef = useRef();
   const [isAnswerEnabled, setIsAnswerEnabled] = useState(true)
   const [TriadsStudyScore, SetTriadsStudyScore] = useState(0);
   const [TriadsProblem, ResetTriadsProblem] = useState(
-    [,,,,]
+    [, , , ,]
   );
   const [imageSource, setImageSource] = useState(null);
   useEffect(() => {
     const fetchClefAndSetProblem = async () => {
       clefVar = await AsyncStorage.getItem('Clef');
       clef.current = clefVar;
-      const problem = setProblem(TriadsProblems, clef.current);
+      const problem = setProblem(TriadsProblems, clef.current, levelDeterminer);
       ResetTriadsProblem(problem);
     };
 
     fetchClefAndSetProblem();
   }, []);
   useEffect(() => {
-    if (TriadsProblem){
+    if (TriadsProblem) {
       setImageSource(TriadsProblem[0]);
     }
   }, [TriadsProblem]);
-  function disableAnswerBriefly(){ 
+  function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
@@ -82,7 +89,7 @@ export default function TriadsStudy() {
               if (correctAnswerSpot == 0) {
                 SetTriadsStudyScore(TriadsStudyScore + 1);
               }
-              ResetTriadsProblem(setProblem(TriadsProblems, clef.current));
+              ResetTriadsProblem(setProblem(TriadsProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -99,7 +106,7 @@ export default function TriadsStudy() {
               if (correctAnswerSpot == 1) {
                 SetTriadsStudyScore(TriadsStudyScore + 1);
               }
-              ResetTriadsProblem(setProblem(TriadsProblems, clef.current));
+              ResetTriadsProblem(setProblem(TriadsProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -116,7 +123,7 @@ export default function TriadsStudy() {
               if (correctAnswerSpot == 2) {
                 SetTriadsStudyScore(TriadsStudyScore + 1);
               }
-              ResetTriadsProblem(setProblem(TriadsProblems, clef.current));
+              ResetTriadsProblem(setProblem(TriadsProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -133,7 +140,7 @@ export default function TriadsStudy() {
               if (correctAnswerSpot == 3) {
                 SetTriadsStudyScore(TriadsStudyScore + 1);
               }
-              ResetTriadsProblem(setProblem(TriadsProblems, clef.current));
+              ResetTriadsProblem(setProblem(TriadsProblems, clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()

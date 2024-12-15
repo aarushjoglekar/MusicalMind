@@ -84,7 +84,7 @@ export default function ScalesSprint() {
       const id = setTimeout(() => {
         router.navigate({
           pathname: "/scales/DisplayScore",
-          params: { ScalesSprintScore: LatestScalesSprintScoreRef.current },
+          params: { ScalesSprintScore: LatestScalesSprintScoreRef.current, levelDeterminer: levelDeterminer },
         });
       }, 30000);
       return () => clearTimeout(id);

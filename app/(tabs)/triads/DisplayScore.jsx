@@ -12,10 +12,11 @@ import arraysEqual from "../../../constants/ArraysEqual";
 
 
 export default function TriadsDisplayScore() {
-  const { TriadsSprintScore } = useLocalSearchParams();
-  readScore("triads").then( (highScore)=>{
+  const { TriadsSprintScore, levelDeterminer } = useLocalSearchParams();
+  const certainHighScoreKey = "triads" + levelDeterminer
+  readScore(certainHighScoreKey).then( (highScore)=>{
     if (JSON.parse(TriadsSprintScore) > highScore){
-       updateScore("triads", TriadsSprintScore)
+       updateScore(certainHighScoreKey, TriadsSprintScore)
     }
   });
   readDailyStreak().then((streak) => {
