@@ -38,12 +38,16 @@ let correctAnswerSpot = answerOrder.indexOf(1);
 export default function ScalesSprint() {
   const { levelDeterminer } = useLocalSearchParams()
 
+  const [text1, setText1] = useState()
+  const [text2, setText2] = useState()
+  const [basicCorrectLevelSpot, setBasicCorrectLevelSpot] = useState()
+
   const LatestScalesSprintScoreRef = useRef()
   let clef = useRef()
   const [isAnswerEnabled, setIsAnswerEnabled] = useState(true)
   const [ScalesSprintScore, SetScalesSprintScore] = useState(0);
   const [ScalesProblem, ResetScalesProblem] = useState(
-    [,,,,]
+    [, , , ,]
   );
   const [imageSource, setImageSource] = useState(null);
   useEffect(() => {
@@ -52,12 +56,21 @@ export default function ScalesSprint() {
       clef.current = clefVar;
       const problem = setProblem(ScalesProblems, clef.current, levelDeterminer);
       ResetScalesProblem(problem);
+      if (problem[1].includes("Major")){
+        setText1(problem[1])
+        setText2(problem[2])
+        setBasicCorrectLevelSpot(1)
+      } else {
+        setText1(problem[2])
+        setText2(problem[1])
+        setBasicCorrectLevelSpot(2)
+      }
     };
 
     fetchClefAndSetProblem();
   }, []);
   useEffect(() => {
-    if (ScalesProblem){
+    if (ScalesProblem) {
       setImageSource(ScalesProblem[0]);
     }
   }, [ScalesProblem]);
@@ -77,7 +90,7 @@ export default function ScalesSprint() {
       return () => clearTimeout(id);
     }, [])
   );
-  function disableAnswerBriefly(){
+  function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
@@ -98,74 +111,134 @@ export default function ScalesSprint() {
           />
         </View>
         <View style={{ flex: 5 }} />
-        <View style={styles.StudySection}>
-          <TouchableOpacity
-            disabled={!isAnswerEnabled}
-            style={styles.Button}
-            onPress={() => {
-              if (correctAnswerSpot == 0) {
-                SetScalesSprintScore(ScalesSprintScore + 1);
-              }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
-              answerOrder = shuffle(answerOrder);
-              correctAnswerSpot = answerOrder.indexOf(1);
-              disableAnswerBriefly()
-            }}
-          >
-            <Text style={styles.Text}>{ScalesProblem[answerOrder[0]]}</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.StudySection}>
-          <TouchableOpacity
-            disabled={!isAnswerEnabled}
-            style={styles.Button}
-            onPress={() => {
-              if (correctAnswerSpot == 1) {
-                SetScalesSprintScore(ScalesSprintScore + 1);
-              }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
-              answerOrder = shuffle(answerOrder);
-              correctAnswerSpot = answerOrder.indexOf(1);
-              disableAnswerBriefly()
-            }}
-          >
-            <Text style={styles.Text}>{ScalesProblem[answerOrder[1]]}</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.StudySection}>
-          <TouchableOpacity
-            disabled={!isAnswerEnabled}
-            style={styles.Button}
-            onPress={() => {
-              if (correctAnswerSpot == 2) {
-                SetScalesSprintScore(ScalesSprintScore + 1);
-              }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
-              answerOrder = shuffle(answerOrder);
-              correctAnswerSpot = answerOrder.indexOf(1);
-              disableAnswerBriefly()
-            }}
-          >
-            <Text style={styles.Text}>{ScalesProblem[answerOrder[2]]}</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.StudySection}>
-          <TouchableOpacity
-            disabled={!isAnswerEnabled}
-            style={styles.Button}
-            onPress={() => {
-              if (correctAnswerSpot == 3) {
-                SetScalesSprintScore(ScalesSprintScore + 1);
-              }
-              ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
-              answerOrder = shuffle(answerOrder);
-              correctAnswerSpot = answerOrder.indexOf(1);
-              disableAnswerBriefly()
-            }}
-          >
-            <Text style={styles.Text}>{ScalesProblem[answerOrder[3]]}</Text>
-          </TouchableOpacity>
-        </View>
+        {levelDeterminer == 0 ?
+          <>
+          <View style={{ flex: 12 }} />
+            <View style={styles.StudySection}>
+              <TouchableOpacity
+                disabled={!isAnswerEnabled}
+                style={styles.Button}
+                onPress={() => {
+                  if (basicCorrectLevelSpot == 1) {
+                    SetScalesSprintScore(ScalesSprintScore + 1);
+                  }
+                  const newProblem = setProblem(ScalesProblems, clef.current, levelDeterminer)
+                  ResetScalesProblem(newProblem);
+                  if (newProblem[1].includes("Major")){
+                    setText1(newProblem[1])
+                    setText2(newProblem[2])
+                    setBasicCorrectLevelSpot(1)
+                  } else {
+                    setText1(newProblem[2])
+                    setText2(newProblem[1])
+                    setBasicCorrectLevelSpot(2)
+                  }
+                  disableAnswerBriefly()
+                }}
+              >
+                <Text style={styles.Text}>{text1}</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.StudySection}>
+              <TouchableOpacity
+                disabled={!isAnswerEnabled}
+                style={styles.Button}
+                onPress={() => {
+                  if (basicCorrectLevelSpot == 2) {
+                    SetScalesSprintScore(ScalesSprintScore + 1);
+                  }
+                  const newProblem = setProblem(ScalesProblems, clef.current, levelDeterminer)
+                  ResetScalesProblem(newProblem);
+                  if (newProblem[1].includes("Major")){
+                    setText1(newProblem[1])
+                    setText2(newProblem[2])
+                    setBasicCorrectLevelSpot(1)
+                  } else {
+                    setText1(newProblem[2])
+                    setText2(newProblem[1])
+                    setBasicCorrectLevelSpot(2)
+                  }
+                  disableAnswerBriefly()
+                }}
+              >
+                <Text style={styles.Text}>{text2}</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{ flex: 12 }} />
+          </>
+          :
+          <>
+            <View style={styles.StudySection}>
+              <TouchableOpacity
+                disabled={!isAnswerEnabled}
+                style={styles.Button}
+                onPress={() => {
+                  if (correctAnswerSpot == 0) {
+                    SetScalesSprintScore(ScalesSprintScore + 1);
+                  }
+                  ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
+                  answerOrder = shuffle(answerOrder);
+                  correctAnswerSpot = answerOrder.indexOf(1);
+                  disableAnswerBriefly()
+                }}
+              >
+                <Text style={styles.Text}>{ScalesProblem[answerOrder[0]]}</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.StudySection}>
+              <TouchableOpacity
+                disabled={!isAnswerEnabled}
+                style={styles.Button}
+                onPress={() => {
+                  if (correctAnswerSpot == 1) {
+                    SetScalesSprintScore(ScalesSprintScore + 1);
+                  }
+                  ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
+                  answerOrder = shuffle(answerOrder);
+                  correctAnswerSpot = answerOrder.indexOf(1);
+                  disableAnswerBriefly()
+                }}
+              >
+                <Text style={styles.Text}>{ScalesProblem[answerOrder[1]]}</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.StudySection}>
+              <TouchableOpacity
+                disabled={!isAnswerEnabled}
+                style={styles.Button}
+                onPress={() => {
+                  if (correctAnswerSpot == 2) {
+                    SetScalesSprintScore(ScalesSprintScore + 1);
+                  }
+                  ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
+                  answerOrder = shuffle(answerOrder);
+                  correctAnswerSpot = answerOrder.indexOf(1);
+                  disableAnswerBriefly()
+                }}
+              >
+                <Text style={styles.Text}>{ScalesProblem[answerOrder[2]]}</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.StudySection}>
+              <TouchableOpacity
+                disabled={!isAnswerEnabled}
+                style={styles.Button}
+                onPress={() => {
+                  if (correctAnswerSpot == 3) {
+                    SetScalesSprintScore(ScalesSprintScore + 1);
+                  }
+                  ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
+                  answerOrder = shuffle(answerOrder);
+                  correctAnswerSpot = answerOrder.indexOf(1);
+                  disableAnswerBriefly()
+                }}
+              >
+                <Text style={styles.Text}>{ScalesProblem[answerOrder[3]]}</Text>
+              </TouchableOpacity>
+            </View>
+          </>
+        }
+
         <View style={{ flex: 10, justifyContent: "center" }}>
           <TouchableOpacity
             style={styles.BackButton}
