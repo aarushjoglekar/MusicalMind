@@ -13,15 +13,15 @@ import KeysProblemFunction from "./../../../constants/KeysProblemFunction";
 import { KeysProblems } from "../../../constants/KeysProblems";
 import shuffle from "../../../constants/Shuffle";
 import Title from "../../../components/Title";
-import { router, useFocusEffect } from "expo-router";
+import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-function setProblem(KeysProblems) {
-  let KeysProblem = KeysProblemFunction(KeysProblems);
+function setProblem(KeysProblems, majorOrMinorDeterminer) {
+  let KeysProblem = KeysProblemFunction(KeysProblems, majorOrMinorDeterminer);
   return KeysProblem;
 }
 
@@ -30,11 +30,13 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function KeysSprint() {
+  const { majorOrMinorDeterminer } = useLocalSearchParams()
+
   const LatestKeysSprintScoreRef = useRef()
   const [isAnswerEnabled, setIsAnswerEnabled] = useState(true);
   const [KeysSprintScore, SetKeysSprintScore] = useState(0);
   const [KeysProblem, ResetKeysProblem] = useState(
-    setProblem(KeysProblems)
+    setProblem(KeysProblems, majorOrMinorDeterminer)
   );
   const [imageSource, setImageSource] = useState(KeysProblem[0]);
 
@@ -84,7 +86,7 @@ export default function KeysSprint() {
               if (correctAnswerSpot == 0) {
                 SetKeysSprintScore(KeysSprintScore + 1);
               }
-              ResetKeysProblem(setProblem(KeysProblems));
+              ResetKeysProblem(setProblem(KeysProblems, majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly();
@@ -101,7 +103,7 @@ export default function KeysSprint() {
               if (correctAnswerSpot == 1) {
                 SetKeysSprintScore(KeysSprintScore + 1);
               }
-              ResetKeysProblem(setProblem(KeysProblems));
+              ResetKeysProblem(setProblem(KeysProblems, majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly();
@@ -118,7 +120,7 @@ export default function KeysSprint() {
               if (correctAnswerSpot == 2) {
                 SetKeysSprintScore(KeysSprintScore + 1);
               }
-              ResetKeysProblem(setProblem(KeysProblems));
+              ResetKeysProblem(setProblem(KeysProblems, majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly();
@@ -135,7 +137,7 @@ export default function KeysSprint() {
               if (correctAnswerSpot == 3) {
                 SetKeysSprintScore(KeysSprintScore + 1);
               }
-              ResetKeysProblem(setProblem(KeysProblems));
+              ResetKeysProblem(setProblem(KeysProblems, majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly();

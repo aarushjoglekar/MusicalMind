@@ -1,18 +1,41 @@
 import { View, ImageBackground, StyleSheet, SafeAreaView } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Title from "../../../components/Title";
 import HomeButton from "../../../components/HomeButton";
 import { router, useFocusEffect } from "expo-router";
 import readScore from "../../../storageServices/readScore";
-import updateScore from "../../../storageServices/updateScore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const levels = ["Major Only", "Minor Only", "Major + Minor"]
 
 export default function KeysHome() {
+  const [currentLevelIndex, setCurrentLevelIndex] = useState(0)
+  const [currentLevel, setCurrentLevel] = useState(levels[currentLevelIndex])
+
   const [KeysHighScore, setKeysHighScore] = useState(0)
-  useFocusEffect(useCallback(()=>{
+  useFocusEffect(useCallback(() => {
     readScore("keys").then(
       (highScore) => { setKeysHighScore(highScore) }
-  );
+    );
   }, [KeysHighScore]))
+
+  useEffect(() => {
+    async function checkCurrentLevel() {
+      const currentKeysLevel = await AsyncStorage.getItem("KeysLevel")
+      if (!currentKeysLevel) {
+        AsyncStorage.setItem("KeysLevel", "Major Only")
+      } else {
+        setCurrentLevel(currentKeysLevel)
+        setCurrentLevelIndex(levels.indexOf(currentKeysLevel))
+      }
+    }
+
+    checkCurrentLevel()
+  }, [])
+
+  useEffect(() => {
+    setCurrentLevel(levels[currentLevelIndex])
+  }, [currentLevelIndex])
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/KeysBackground.jpeg")}
@@ -31,17 +54,26 @@ export default function KeysHome() {
         </View>
         <View style={styles.KeysSection}>
           <HomeButton
-            onPress={() => router.navigate("/keys/Study")}
+            onPress={() => router.navigate({ pathname: "/keys/Study", params: { majorOrMinorDeterminer: currentLevelIndex } })}
             text="Study"
           />
         </View>
         <View style={styles.KeysSection}>
           <HomeButton
-            onPress={() => router.navigate("/keys/Sprint")}
+            onPress={() => router.navigate({ pathname: "/keys/Sprint", params: { majorOrMinorDeterminer: currentLevelIndex } })}
             text={"Sprint\nPersonal Best: " + KeysHighScore}
           />
         </View>
-        <View style={{ flex: 55 }} />
+        <View style={styles.KeysSection}>
+          <HomeButton
+            onPress={() => {
+              setCurrentLevelIndex((currentLevelIndex + 1) % 3)
+              AsyncStorage.setItem("KeysLevel", levels[(currentLevelIndex + 1) % 3])
+            }}
+            text={"Current Level:\n" + currentLevel}
+          />
+        </View>
+        <View style={{ flex: 39 }} />
       </SafeAreaView>
     </ImageBackground>
   );
