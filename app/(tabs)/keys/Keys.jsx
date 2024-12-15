@@ -13,11 +13,6 @@ export default function KeysHome() {
   const [currentLevel, setCurrentLevel] = useState(levels[currentLevelIndex])
 
   const [KeysHighScore, setKeysHighScore] = useState(0)
-  useFocusEffect(useCallback(() => {
-    readScore("keys").then(
-      (highScore) => { setKeysHighScore(highScore) }
-    );
-  }, [KeysHighScore]))
 
   useEffect(() => {
     async function checkCurrentLevel() {
@@ -35,7 +30,24 @@ export default function KeysHome() {
 
   useEffect(() => {
     setCurrentLevel(levels[currentLevelIndex])
+    if (currentLevelIndex == 0){
+      readScore("keys0").then(
+        (highScore) => { setKeysHighScore(highScore);}
+      );
+    } else if (currentLevelIndex == 1){
+      readScore("keys1").then(
+        (highScore) => { setKeysHighScore(highScore);}
+      );
+    } else {
+      readScore("keys2").then(
+        (highScore) => { setKeysHighScore(highScore);}
+      );
+    }
   }, [currentLevelIndex])
+
+  useFocusEffect(useCallback(() => {
+    setCurrentLevelIndex(currentLevelIndex)
+  }))
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/KeysBackground.jpeg")}

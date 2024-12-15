@@ -152,7 +152,7 @@ export default function KeysSprint() {
             onPress={() => {
               router.navigate({
                 pathname: "/keys/DisplayScore",
-                params: { KeysSprintScore },
+                params: { KeysSprintScore, majorOrMinorDeterminer },
               });
             }}
           >
