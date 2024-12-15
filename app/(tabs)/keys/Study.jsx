@@ -20,7 +20,7 @@ import ScoreButton from "../../../components/ScoreButton";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-function setProblem(KeysProblems, majorOrMinorDeterminer) {
+function setProblem(majorOrMinorDeterminer) {
   let KeysProblem = KeysProblemFunction(KeysProblems, majorOrMinorDeterminer);
   return KeysProblem;
 }
@@ -35,7 +35,7 @@ export default function KeysStudy() {
   const [isAnswerEnabled, setIsAnswerEnabled] = useState(true)
   const [KeysStudyScore, SetKeysStudyScore] = useState(0);
   const [KeysProblem, ResetKeysProblem] = useState(
-    setProblem(KeysProblems, majorOrMinorDeterminer)
+    setProblem(majorOrMinorDeterminer)
   );
   const [imageSource, setImageSource] = useState(KeysProblem[0]);
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function KeysStudy() {
               if (correctAnswerSpot == 0) {
                 SetKeysStudyScore(KeysStudyScore + 1);
               }
-              ResetKeysProblem(setProblem(KeysProblems, majorOrMinorDeterminer));
+              ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -84,7 +84,7 @@ export default function KeysStudy() {
               if (correctAnswerSpot == 1) {
                 SetKeysStudyScore(KeysStudyScore + 1);
               }
-              ResetKeysProblem(setProblem(KeysProblems, majorOrMinorDeterminer));
+              ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -101,7 +101,7 @@ export default function KeysStudy() {
               if (correctAnswerSpot == 2) {
                 SetKeysStudyScore(KeysStudyScore + 1);
               }
-              ResetKeysProblem(setProblem(KeysProblems, majorOrMinorDeterminer));
+              ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -118,7 +118,7 @@ export default function KeysStudy() {
               if (correctAnswerSpot == 3) {
                 SetKeysStudyScore(KeysStudyScore + 1);
               }
-              ResetKeysProblem(setProblem(KeysProblems, majorOrMinorDeterminer));
+              ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly();

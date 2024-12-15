@@ -22,7 +22,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-function setProblem(ScalesProblems, currentClef, levelDeterminer) {
+function setProblem(currentClef, levelDeterminer) {
   if (levelDeterminer == 0) {
     var ScalesProblem = ScalesProblemFunction(ScalesProblemsBasic, currentClef);
   } else {
@@ -54,7 +54,7 @@ export default function ScalesSprint() {
     const fetchClefAndSetProblem = async () => {
       clefVar = await AsyncStorage.getItem('Clef');
       clef.current = clefVar;
-      const problem = setProblem(ScalesProblems, clef.current, levelDeterminer);
+      const problem = setProblem(clef.current, levelDeterminer);
       ResetScalesProblem(problem);
       if (problem[1].includes("Major")){
         setText1(problem[1])
@@ -122,7 +122,7 @@ export default function ScalesSprint() {
                   if (basicCorrectLevelSpot == 1) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
                   }
-                  const newProblem = setProblem(ScalesProblems, clef.current, levelDeterminer)
+                  const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetScalesProblem(newProblem);
                   if (newProblem[1].includes("Major")){
                     setText1(newProblem[1])
@@ -147,7 +147,7 @@ export default function ScalesSprint() {
                   if (basicCorrectLevelSpot == 2) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
                   }
-                  const newProblem = setProblem(ScalesProblems, clef.current, levelDeterminer)
+                  const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetScalesProblem(newProblem);
                   if (newProblem[1].includes("Major")){
                     setText1(newProblem[1])
@@ -176,7 +176,7 @@ export default function ScalesSprint() {
                   if (correctAnswerSpot == 0) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
                   }
-                  ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
+                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
                   disableAnswerBriefly()
@@ -193,7 +193,7 @@ export default function ScalesSprint() {
                   if (correctAnswerSpot == 1) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
                   }
-                  ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
+                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
                   disableAnswerBriefly()
@@ -210,7 +210,7 @@ export default function ScalesSprint() {
                   if (correctAnswerSpot == 2) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
                   }
-                  ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
+                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
                   disableAnswerBriefly()
@@ -227,7 +227,7 @@ export default function ScalesSprint() {
                   if (correctAnswerSpot == 3) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
                   }
-                  ResetScalesProblem(setProblem(ScalesProblems, clef.current, levelDeterminer));
+                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
                   disableAnswerBriefly()

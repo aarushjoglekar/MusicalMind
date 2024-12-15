@@ -4,10 +4,10 @@ import {
   StyleSheet,
   SafeAreaView,
 } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../../components/Title";
 import HomeButton from "../../../components/HomeButton";
-import { router, useFocusEffect } from "expo-router";
+import { router } from "expo-router";
 import readScore from "../../../storageServices/readScore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -21,12 +21,12 @@ export default function TriadsHome() {
 
   useEffect(() => {
     async function checkCurrentLevel() {
-      const currentScalesLevel = await AsyncStorage.getItem("ScalesLevel")
-      if (!currentScalesLevel) {
-        AsyncStorage.setItem("ScalesLevel", levels[0])
+      const currentTriadsLevel = await AsyncStorage.getItem("TriadsLevel")
+      if (!currentTriadsLevel) {
+        AsyncStorage.setItem("TriadsLevel", levels[0])
       } else {
-        setCurrentLevel(currentScalesLevel)
-        setCurrentLevelIndex(levels.indexOf(currentScalesLevel))
+        setCurrentLevel(currentTriadsLevel)
+        setCurrentLevelIndex(levels.indexOf(currentTriadsLevel))
       }
     }
 
