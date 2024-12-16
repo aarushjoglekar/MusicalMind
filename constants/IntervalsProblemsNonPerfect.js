@@ -1,4 +1,4 @@
-export const IntervalsProblems = [
+export const IntervalsProblemsNonPerfect = [
   { 
     "TrebleURI": require("../assets/images/IntervalsImages/Treble/2nds/C/CMaj2.png"), 
     "BassURI": require("../assets/images/IntervalsImages/Bass/2nds/C/CMaj2.png"), 
@@ -1020,4 +1020,4 @@ export const IntervalsProblems = [
     "answers": ['A7', 'M7', 'm7', 'd7'] 
   },
 ];
-Object.freeze(IntervalsProblems);
+Object.freeze(IntervalsProblemsNonPerfect);

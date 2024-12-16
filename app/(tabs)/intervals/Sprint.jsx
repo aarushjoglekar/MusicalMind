@@ -10,10 +10,12 @@ import {
   View,
 } from "react-native";
 import IntervalsProblemFunction from "./../../../constants/IntervalsProblemFunction";
-import { IntervalsProblems } from "./../../../constants/IntervalsProblems";
+import { IntervalsProblems } from "../../../constants/IntervalsProblems"
+import { IntervalsProblemsNonPerfect } from "../../../constants/IntervalsProblemsNonPerfect";
+import { IntervalsProblemsPerfect } from "../../../constants/IntervalsProblemsPerfect";
 import shuffle from "../../../constants/Shuffle";
 import Title from "../../../components/Title";
-import { router, useFocusEffect } from "expo-router";
+import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -21,8 +23,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-function setProblem(IntervalsProblems, currentClef) {
-  let IntervalsProblem = IntervalsProblemFunction(IntervalsProblems, currentClef);
+function setProblem(currentClef, levelDeterminer) {
+  if (levelDeterminer == 0) {
+    var IntervalsProblem = IntervalsProblemFunction(IntervalsProblemsPerfect, currentClef);
+  } else if (levelDeterminer == 1) {
+    var IntervalsProblem = IntervalsProblemFunction(IntervalsProblemsNonPerfect, currentClef);
+  } else {
+    var IntervalsProblem = IntervalsProblemFunction(IntervalsProblems, currentClef);
+  }
   return IntervalsProblem;
 }
 
@@ -31,26 +39,28 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function IntervalsSprint() {
+  const { levelDeterminer } = useLocalSearchParams()
+
   const LatestIntervalsSprintScoreRef = useRef()
   let clef = useRef();
   const [isAnswerEnabled, setIsAnswerEnabled] = useState(true)
   const [IntervalsSprintScore, SetIntervalsSprintScore] = useState(0);
   const [IntervalsProblem, ResetIntervalsProblem] = useState(
-    [,,,,]
+    [, , , ,]
   );
   const [imageSource, setImageSource] = useState(null);
   useEffect(() => {
     const fetchClefAndSetProblem = async () => {
       clefVar = await AsyncStorage.getItem('Clef');
       clef.current = clefVar;
-      const problem = setProblem(IntervalsProblems, clef.current);
+      const problem = setProblem(clef.current, levelDeterminer);
       ResetIntervalsProblem(problem);
     };
 
     fetchClefAndSetProblem();
   }, []);
   useEffect(() => {
-    if (IntervalsProblem){
+    if (IntervalsProblem) {
       setImageSource(IntervalsProblem[0]);
     }
   }, [IntervalsProblem]);
@@ -64,14 +74,14 @@ export default function IntervalsSprint() {
       const id = setTimeout(() => {
         router.navigate({
           pathname: "/intervals/DisplayScore",
-          params: { IntervalsSprintScore: LatestIntervalsSprintScoreRef.current },
+          params: { IntervalsSprintScore: LatestIntervalsSprintScoreRef.current, levelDeterminer: levelDeterminer },
         });
       }, 30000);
       return () => clearTimeout(id);
     }, [])
   );
-  
-  function disableAnswerBriefly(){
+
+  function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
@@ -100,7 +110,7 @@ export default function IntervalsSprint() {
               if (correctAnswerSpot == 0) {
                 SetIntervalsSprintScore(IntervalsSprintScore + 1);
               }
-              ResetIntervalsProblem(setProblem(IntervalsProblems, clef.current));
+              ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -117,7 +127,7 @@ export default function IntervalsSprint() {
               if (correctAnswerSpot == 1) {
                 SetIntervalsSprintScore(IntervalsSprintScore + 1);
               }
-              ResetIntervalsProblem(setProblem(IntervalsProblems, clef.current));
+              ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -134,7 +144,7 @@ export default function IntervalsSprint() {
               if (correctAnswerSpot == 2) {
                 SetIntervalsSprintScore(IntervalsSprintScore + 1);
               }
-              ResetIntervalsProblem(setProblem(IntervalsProblems, clef.current));
+              ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -151,7 +161,7 @@ export default function IntervalsSprint() {
               if (correctAnswerSpot == 3) {
                 SetIntervalsSprintScore(IntervalsSprintScore + 1);
               }
-              ResetIntervalsProblem(setProblem(IntervalsProblems, clef.current));
+              ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
               disableAnswerBriefly()
@@ -166,7 +176,7 @@ export default function IntervalsSprint() {
             onPress={() => {
               router.navigate({
                 pathname: "/intervals/DisplayScore",
-                params: { IntervalsSprintScore },
+                params: { IntervalsSprintScore, levelDeterminer },
               });
             }}
           >

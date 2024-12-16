@@ -12,10 +12,11 @@ import arraysEqual from "../../../constants/ArraysEqual";
 
 
 export default function IntervalsDisplayScore() {
-  const { IntervalsSprintScore } = useLocalSearchParams();
-  readScore("intervals").then( (highScore)=>{
+  const { IntervalsSprintScore, levelDeterminer } = useLocalSearchParams();
+  const scoreKey = "intervals" + levelDeterminer
+  readScore(scoreKey).then( (highScore)=>{
     if (JSON.parse(IntervalsSprintScore) > highScore){
-       updateScore("intervals", IntervalsSprintScore)
+       updateScore(scoreKey, IntervalsSprintScore)
     }
   });
   readDailyStreak().then((streak) => {
