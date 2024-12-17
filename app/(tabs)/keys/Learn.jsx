@@ -248,5 +248,6 @@ const styles = StyleSheet.create({
     color: "#000",
     fontFamily: "Verdana",
     fontSize: RFPercentage(1.6),
+    lineHeight: RFPercentage(1.6) * 1.5,
   },
 });
