@@ -185,7 +185,7 @@ export default function KeysLearn() {
             sharps, you will have to go down a half step from the key name. This
             will be the last sharp. From here, add sharps by the order of sharps
             to the key signature until you reach the last sharp previously
-            deternmined.
+            determined.
           </Text>
           <Text style={styles.Subtitle}>
             {"\n"}Keys that Don't Have Key Signatures
@@ -197,7 +197,7 @@ export default function KeysLearn() {
             This is because in these cases, some of the notes in their key will
             contain double sharps which cannot be notated into a key signature.
             The same issue arises with Fb Major which cannot be notated due to
-            it's B-double flat.
+            its B-double flat.
           </Text>
         </ScrollView>
         <View style={{ flex: 0.1, justifyContent: "center" }}>
