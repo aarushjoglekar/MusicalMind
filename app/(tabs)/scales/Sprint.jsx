@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
 
   StudyScalesImage: {
     width: width,
-    height: width / 7.5,
+    height: width * 97 / 431,
     alignSelf: 'center',
     borderRadius: 5,
   },
