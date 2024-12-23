@@ -38,166 +38,77 @@ export default function KeysLearn() {
           <Title title="Keys" />
           <Text style={styles.Subtitle}>{"\n"}What Is A Key</Text>
           <Text style={styles.LearnText}>
-            {"\t"}The key of the music is the note or scale the composition is
-            based around. Being aware of the key is helpful as the musician is
-            aware of the chords they can expect in the piece. In addition, a
-            skilled musician will be able to improvise as they know what chords
-            would fit in the piece.
+            {"\t"}A key is identified by the key signature, or the set of sharps (#) or flats (b) used in the music. It is important to note that a key signature will not contain sharps AND flats, it will only contain one type of accidental. Each key signature represents two keys: a Major key, and a Minor key. Today, you’ll learn how to identify the keys that a key signature can represent.
           </Text>
           <Text style={styles.Subtitle}>{"\n"}How Keys Are Identified</Text>
           <Text style={styles.LearnText}>
-            {"\t"}A key is identified by the key signature, or the set of sharps
-            (#) or flats (b) that are used in the music. If a key signature has
-            sharps, it will only have sharps and no flats, and the same goes for
-            flats. Each key signature represents two keys: a major key, and a
-            minor key. In this explanation, you will learn how to identify the
-            keys that a key signature can represent.
+            {"\t"}A key is identified by the key signature, or the set of sharps (#) or flats (b) used in the music. It is important to note that a key signature will not contain sharps AND flats, it will only contain one type of accidental. Each key signature represents two keys: a Major key, and a Minor key. Today, you’ll learn how to identify the keys that a key signature can represent.
+          </Text>
+          <Text style={styles.Subtitle}>
+            {"\n"}Order of Sharps and Flats
+          </Text>
+          <Text style={styles.LearnText}>
+            {"\t"}Before we begin identifying key signatures, it is important to remember the order of sharps. This rule says that sharps in the key signature will always follow this order: F#, C#, G#, D#, A#, E#, B# (This can be remembered with the saying: Fat Cats Go Down Alleys Eating Bologna). This is helpful because if you are informed how many sharps are in the key signature, you can immediately conclude what is in the key signature. For example, if the key signature contains four sharps, they will be F#, C#, G#, and D# - the first four sharps in the order of sharps.
+            {"\n"}
+            {"\t"}A similar rule exists for flats. The order of flats is the reversed order of sharps: Bb, Eb, Ab, Db, Gb, Cb, Fb. This can also be remembered with the saying: BEAD Gum Candy Fruit.
           </Text>
           <Text style={styles.Subtitle}>
             {"\n"}Identifying Major Key Signatures With Sharps
           </Text>
           <Text style={styles.LearnText}>
-            {"\t"}The basic idea of identifying the major key of a key signature
-            with sharps is to raise the last sharp by a half step. A key
-            signature with sharps will always follow this order: F#, C#, G#, D#,
-            A#, E#, B#. (This can be remembered with Fat Cats Go Down Alleys
-            Eating Bologna).
+            {"\t"}To identify the Major key of a key signature that contains sharps, you need to raise the last sharp by a half step. Let’s take the example where there are three sharps. Using the order of sharps, the key signature will contain F#, C#, and G#. Using the strategy, we can identify the last sharp as G#. Going up one half step will bring us to A. Therefore the Major key represented by three sharps in the key signature is A Major.
             {"\n"}
-            {"\t"}Therefore, if a key signature has three sharps, it will have
-            the first three sharps in the order: F#, C#, and G#. According to
-            the strategy, to find the key you must take the last sharp and raise
-            it a half step. Since the last sharp in this scenario is G#, you
-            would raise it by one note on the piano to get A. To conclude, the
-            major key represented by a key signature of three sharps is A Major.
+            {"\t"}Let’s take another example. If a key signature has five sharps, they will be F#, C#, G#, D#, and A#. Since the last sharp is A#, to find the key we must raise A# by a half step getting the key of B Major. Thus, the Major key represented by five sharps is B Major.
             {"\n"}
-            {"\t"}Similarly, if a key signature has five sharps, they will be
-            F#, C#, G#, D#, and A#. Since the last sharp is A#, to find the key
-            we must raise A# by a half step getting the key of B Major. (If you
-            are unsure of how to raise a note a half step, raise the note by one
-            key on the piano).
-            {"\n"}
-            {"\t"}A third example is if a key signature has seven sharps. In
-            this case, the sharps will be F#, C#, G#, D#, A#, E#, and B#. Since
-            the last sharp is B#, raising it a half step gives the key of C#
-            Major. (B# is the same note as C so raising it a half step results
-            in C#).
+            {"\t"}Let’s take one last example. If a key signature has seven sharps, they will be all the sharps from the order of sharps. As a result, the last sharp will be B#. Raising this a half step results in C# concluding that the Major key from seven sharps is C# Major. (B# raised a half step results in C# because B# is technically the same pitch as C so going up a half step gives C#).
           </Text>
           <Text style={styles.Subtitle}>
             {"\n"}Identifying Major Key Signatures With Flats
           </Text>
           <Text style={styles.LearnText}>
-            {"\t"}The basic logic of identifying the major key of a key
-            signature with flats is to identify the second last flat. A key
-            signature with flats will always follow the opposite order as
-            sharps: Bb, Eb, Ab, Db, Gb, Cb, Fb. (This can be remembered as BEAD
-            Gum Candy Fruit).
+            {"\t"}To identify the Major key of a key signature consisting of flats, you need to identify the second last flat. Let’s take the example of three flats. Using the order of flats, the key signature will contain Bb, Eb, and Ab. Here, the second last flat is Eb. This means the Major key represented by three flats in the key signature is Eb Major. 
             {"\n"}
-            {"\t"}One example is if a key signature has three flats. Here, the
-            flats will be Bb, Eb and Ab. According to the strategy, to find the
-            key you must identify the second last flat. In this scenario, that
-            will be Eb. Therefore, the key represented by three flats is the key
-            of Eb Major.
-            {"\n"}
-            {"\t"}Another example is if a key signature has five flats. In this
-            case, they will be Bb, Eb, Ab, Db, and Gb. Since the second last
-            flat is Db, the key represented by five flats will be Db Major.
+            {"\t"}Let’s take another example. If a key signature has five flats, they will be Bb, Eb, Ab, Db, and Gb. Since the second last flat is Db, the Major key represented by five flats is Db Major.
           </Text>
           <Text style={styles.Subtitle}>
             {"\n"}Exceptions to Identifying Major Keys
           </Text>
           <Text style={styles.LearnText}>
-            {"\t"}There are two exceptions to identifying the major keys of key
-            signatures. The first one is when there are no sharps or flats. This
-            is a special scenario because none of the previous strategies will
-            work to find the key (as there are no sharps or flats to work with).
-            The fact is that you will just have to memorize that no sharps or
-            flats corresponds to C Major.
+            {"\t"}Now let’s look at the two exceptions to identifying Major keys. The first one exception occurs when there are no sharps or flats in the key signature; the key signature is empty. This is a special scenario because there is no last sharp to raise, or no second last flat to identify. Hence, you will need to remember that the Major key in correspondence to the empty key signature is C Major.
             {"\n"}
-            {"\t"}The second exception is when there is only one flat. Since
-            there is no second last flat to identify, the previous strategy will
-            not work. For this too, you will have to memorize the key signature
-            containing one flat as F Major.
+            {"\t"}The second exception occurs when there is only one flat in the key signature. Since there is no second last flat to identify, it is impossible to identify the Major key using the strategy above. Similarly, you will have to remember that the Major key of one flat is F Major.
           </Text>
           <Text style={styles.Subtitle}>{"\n"}Identifying Minor Keys</Text>
           <Text style={styles.LearnText}>
-            {"\t"}To identify a minor key, you must first know the major key.
-            Then, you take the major key and go down three half steps. (If you
-            don’t know how to go down three half steps, go down three notes on a
-            piano, and practice this until you can visualize it without actually
-            looking at the piano). The corresponding minor key is known as the
-            major key’s relative minor, because it is the minor key that has the
-            same key signature as the major key.
+            {"\t"}Now we know how to identify the Major keys that key signatures can represent. But these same key signatures also represent Minor keys. How do we identify those? Luckily the process is quite simple.
             {"\n"}
-            {"\t"}Let's take an example before. We have already found that a key
-            signature with five sharps will correspond to B Major. Now traveling
-            three half steps down will take us to A#, then A, and finally G#.
-            So, the relative minor of B Major is G# minor.
+            {"\t"}To identify a Minor key, you must first know the Major key the key signature represents. Then, you take the Major key and go down three half steps. The corresponding Minor key is known as the Major key’s relative Minor, because it is the Minor key that has the same key signature as the Major key. 
             {"\n"}
-            {"\t"}Another example is when a key of three flats is Eb Major.
-            Traveling down three half steps will go to D, Db, and finally C.
-            This means if you are asked to find the minor key of a key signature
-            with three flats, you would first recognize the major key of Eb
-            Major and then go down to C minor.
+            {"\t"}Let’s take a previous example. We have already identified that a key signature with five sharps corresponds to B Major. Now traveling three half steps down will take us to A#, A natural, and finally G#. So, the relative Minor of B Major is G# Minor. (If you thought it could be Ab Minor, we’ll address this in a second). This means that the key signature of five sharps corresponds to B Major but can also correspond to G# Minor.
             {"\n"}
-            {"\t"}However when working with this process, don't make this simple
-            mistake. Though you can argue that F# and Gb are the same note, you
-            cannot say their key signatures are the same. This is because the
-            key signature of F# (major or minor) will contain sharps while the
-            key signature of Gb (major or minor) will contain flats. Because of
-            this problem, you may find it hard to identify minor key signatures.
-            This is because going three half steps down from (take our previous
-            example) B Major gets either g# or ab, and you may not know which
-            one to use for the minor key.
+            {"\t"}Let’s take one more example. Let's consider a key signature with three flats. The Major key represented here is the second last flat or Eb Major. Going down three half steps takes us to D, Db, and finally C. This means the key signature of three flats not only represents Eb Major, but also C Minor.
             {"\n"}
-            {"\t"}The simple way around this is to before going down three half
-            steps, go down two notes (creating an interval of three notes)
-            removing all accidentals. Take the example of B Major. Going down
-            one note gets A, and then again gets G. Now we know that the minor
-            key of B Major must have G in it, so we go with G# minor rather than
-            Ab minor.
+            {"\t"}However, when converting Major keys to their relative Minor key, avoid this mistake. Though you can argue that F# and Gb are technically the same pitch, you cannot say their key signatures are the same. This is because the key signature of F# contains sharps while the key signature of Gb consists of flats. This becomes a problem when converting Major keys to their relative Minor. In our previous example where B Major becomes G# Minor, how can we say that the relative Minor of B Major is G# Minor and not Ab Major?
             {"\n"}
-            {"\t"}Let's take one more example. Say we have the key of F# Major.
-            Firstly, we create an interval distance of three notes by going down
-            two notes from F. This informs us the relative minor of this key
-            will have a D in it. Going down three half steps from F# gets us to
-            F, E, and then Eb. However since the key must have D in it, the
-            relative minor of F# Major is d# minor.
+            {"\t"}The logic behind this is a more advanced topic but to simplify, when the distance between the Major key and its relative Minor must be a third. In other words, the letters of the pitch (the notes without any accidentals) of the Major key and the relative Minor key must be two letters apart. Using our example of B Major, going down two letters gives us A and then G. Therefore the relative Minor of B Major must have a G in it. This helps us choose G# Minor or Ab Minor.
+            {"\n"}
+            {"\t"}Let’s take one more example using the key of F# Major. Firstly by going down two letters, we get E, and then D. Therefore the relative Minor of F# Major must have the letter D in it. Going down three half steps from F# gives us F, E, and then Eb. However since the Minor key must have the letter D in it, the relative Minor of F# Major is D# Minor.
           </Text>
           <Text style={styles.Subtitle}>{"\n"}Reversing the Process</Text>
           <Text style={styles.LearnText}>
-            {"\t"}Now you know how to identify the key given the key signature
-            but what if you are given the key and are asked to find the key
-            signature? This process is fairly simple as you just repeat the
-            previous strategies but in reverse order. First, you would want to
-            make sure the key is in major. This is simple as if it is in minor,
-            you can simply go up three half steps to make it major.
+            {"\t"}Now we know how to identify the Major and Minor keys a key signature can represent. But what if you are given the key name and are asked to find the corresponding key signature? This is a fairly simple two-step process. Firstly, convert the key to its relative Major if it is given in Minor. Keep in mind the relative Major will have the same key signature as the Minor key. Then, reverse the flats or sharps strategy to identify the key signature.
             {"\n"}
-            {"\t"}Then, you would recognize whether the key signature contains
-            flats or sharps. A major key will only contain flats (with the
-            exception of F Major) if and only if the key name contains a flat.
-            If you find your key signature contains flats, to reverse the
-            process, you need to ensure that the key name is the second last
-            flat. Keep adding flats to the key signature by the order of flats
-            until you get to the key name. Then add an additional flat to make
-            the key name the second last flat.
+            {"\t"}Before we take a few examples, we should know when to choose the sharps strategy versus when we should choose the flats strategy. In short, if the key name has a flat in it, the key signature will contain flats. This is because the key name must be an accidental in the scale. Keep in mind however that F Major, our exception from before, will also contain flats. Other than this, other key signatures representing Major keys will contain sharps.
             {"\n"}
-            {"\t"}However, on the other hand, if the key signature contains
-            sharps, you will have to go down a half step from the key name. This
-            will be the last sharp. From here, add sharps by the order of sharps
-            to the key signature until you reach the last sharp previously
-            determined.
+            {"\t"}Now let’s take the example of E Major. Since it is in the Major form, we don’t have to do anything for the first step. Then, we identify whether the key signature has sharps or flats. Since there is no flat in the key name and the key is not F Major, we can confirm E Major will contain sharps. Next, we reverse the sharps strategy. We know the last sharp raised by a half step provides the key name. Therefore the last sharp must be one half step lower than the key name. As a result, the last sharp of the key signature for E Major is D#. Now we can list the sharps in the order of sharps until we reach D#. This means the key of E Major will have F#, C#, G#, and D#.
+            {"\n"}
+            {"\t"}Let’s take a slightly more complicated example, this time with the key of F Minor. Since the key is in a Minor form, we first find the relative Major by this time going up three half steps instead of down. This brings us to F#, G, and finally Ab. Remember to use Ab and not G# because we need to maintain the two letter distance between the letter names of the Major and Minor key. Now we need to identify the key signature of Ab Major. Since the key name contains flats, the key signature will also contain flats. Remembering that the second last flat is the key name, we can say that Ab is also the second last flat of the key signature. We then use the order of flats and go one flat past Ab. This tells us the key signature of Ab Major consists of Bb, Eb, Ab, and Db. And since Ab Major and F Minor are relative keys, this same key signature applies to F Minor as well.
           </Text>
           <Text style={styles.Subtitle}>
             {"\n"}Keys that Don't Have Key Signatures
           </Text>
           <Text style={styles.LearnText}>
-            {"\t"}One interesting fact to note is that not all keys will have a
-            corresponding key signature. For example for D#, E#, G#, A#, and B#
-            Major, you cannot write a key signature that follows all the rules.
-            This is because in these cases, some of the notes in their key will
-            contain double sharps which cannot be notated into a key signature.
-            The same issue arises with Fb Major which cannot be notated due to
-            its B-double flat.
+            {"\t"}One interesting fact to note is that not all keys will have a corresponding key signature. For instance, the keys of D#, E#, G#, A#, and B Major, will not have a key signature that follows the rules above. This is because in these cases, some of the notes in their key will contain double sharps which cannot be notated into a key signature. The same issue arises with Fb Major which cannot be notated due to its B-double flat.
           </Text>
         </ScrollView>
         <View style={{ flex: 0.1, justifyContent: "center" }}>
