@@ -88,9 +88,9 @@ export default function KeysLearn() {
             {"\n"}
             {"\t"}Let’s take one more example. Let's consider a key signature with three flats. The Major key represented here is the second last flat or Eb Major. Going down three half steps takes us to D, Db, and finally C. This means the key signature of three flats not only represents Eb Major, but also C Minor.
             {"\n"}
-            {"\t"}However, when converting Major keys to their relative Minor key, avoid this mistake. Though you can argue that F# and Gb are technically the same pitch, you cannot say their key signatures are the same. This is because the key signature of F# contains sharps while the key signature of Gb consists of flats. This becomes a problem when converting Major keys to their relative Minor. In our previous example where B Major becomes G# Minor, how can we say that the relative Minor of B Major is G# Minor and not Ab Major?
+            {"\t"}However, when converting Major keys to their relative Minor key, avoid this mistake. Though you can argue that F# and Gb are technically the same pitch, you cannot say their key signatures are the same. This is because the key signature of F# contains sharps while the key signature of Gb consists of flats. This becomes a problem when converting Major keys to their relative Minor. In our previous example where B Major becomes G# Minor, how can we say that the relative Minor of B Major is G# Minor and not Ab Minor?
             {"\n"}
-            {"\t"}The logic behind this is a more advanced topic but to simplify, when the distance between the Major key and its relative Minor must be a third. In other words, the letters of the pitch (the notes without any accidentals) of the Major key and the relative Minor key must be two letters apart. Using our example of B Major, going down two letters gives us A and then G. Therefore the relative Minor of B Major must have a G in it. This helps us choose G# Minor or Ab Minor.
+            {"\t"}The logic behind this is a more advanced topic but to simplify, the distance between the Major key and its relative Minor must be a third. In other words, the letters of the pitch (the notes without any accidentals) of the Major key and the relative Minor key must be two letters apart. Using our example of B Major, going down two letters gives us A and then G. Therefore the relative Minor of B Major must have a G in it. This helps us choose G# Minor over Ab Minor.
             {"\n"}
             {"\t"}Let’s take one more example using the key of F# Major. Firstly by going down two letters, we get E, and then D. Therefore the relative Minor of F# Major must have the letter D in it. Going down three half steps from F# gives us F, E, and then Eb. However since the Minor key must have the letter D in it, the relative Minor of F# Major is D# Minor.
           </Text>
@@ -108,7 +108,7 @@ export default function KeysLearn() {
             {"\n"}Keys that Don't Have Key Signatures
           </Text>
           <Text style={styles.LearnText}>
-            {"\t"}One interesting fact to note is that not all keys will have a corresponding key signature. For instance, the keys of D#, E#, G#, A#, and B Major, will not have a key signature that follows the rules above. This is because in these cases, some of the notes in their key will contain double sharps which cannot be notated into a key signature. The same issue arises with Fb Major which cannot be notated due to its B-double flat.
+            {"\t"}One interesting fact to note is that not all keys will have a corresponding key signature. For instance, the keys of D#, E#, G#, A#, and B# Major, will not have a key signature that follows the rules above. This is because in these cases, some of the notes in their key will contain double sharps which cannot be notated into a key signature. The same issue arises with Fb Major which cannot be notated due to its B-double flat.
           </Text>
         </ScrollView>
         <View style={{ flex: 0.1, justifyContent: "center" }}>
