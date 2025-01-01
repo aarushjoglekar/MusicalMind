@@ -11,8 +11,9 @@ import Title from "../../../components/Title";
 import BackButton from "../../../components/BackButton";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useVideoPlayer, VideoView } from "expo-video";
+import YoutubeIframe from "react-native-youtube-iframe";
 
 const width = Dimensions.get("window").width;
 
@@ -29,9 +30,6 @@ export default function KeysLearn() {
     }
   };
 
-  const videoPlayer = useVideoPlayer({uri: "https://youtube.com"}, player => {
-    player.loop = false;
-  });
   return (
     <ImageBackground
       source={require("../../../assets/images/BackgroundImages/TextBackground.jpeg")}
@@ -44,14 +42,14 @@ export default function KeysLearn() {
           onScroll={handleScroll}
         >
           <Title title="Keys" />
-          <VideoView
-            style={styles.Video}
-            player={videoPlayer}
-            allowsFullscreen
+          <View style={{height: 30}}/>
+          <YoutubeIframe
+            height={width * 9 / 16}
+            videoId={"_fPeQawIhC8"}
           />
           <Text style={styles.Subtitle}>{"\n"}What Is A Key</Text>
           <Text style={styles.LearnText}>
-            {"\t"}A key is identified by the key signature, or the set of sharps (#) or flats (b) used in the music. It is important to note that a key signature will not contain sharps AND flats, it will only contain one type of accidental. Each key signature represents two keys: a Major key, and a Minor key. Today, you’ll learn how to identify the keys that a key signature can represent.
+            {"\t"}The key of the music is the pitch or scale the composition is based on. Being aware of the key is helpful as the musician is aware of the chords they can expect in the piece. Additionally, a skilled musician could improvise as they know what chords fit in the piece.
           </Text>
           <Text style={styles.Subtitle}>{"\n"}How Keys Are Identified</Text>
           <Text style={styles.LearnText}>
@@ -143,11 +141,6 @@ export default function KeysLearn() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-
-  Video: {
-    width: "100%",
-    aspectRatio: 16 / 9,
   },
 
   Text: {
