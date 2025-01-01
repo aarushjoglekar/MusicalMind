@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   ImageBackground,
   SafeAreaView,
   ScrollView,
@@ -11,6 +12,9 @@ import BackButton from "../../../components/BackButton";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useState } from "react";
+import { useVideoPlayer, VideoView } from "expo-video";
+
+const width = Dimensions.get("window").width;
 
 export default function KeysLearn() {
   const [isNearBottom, setIsNearBottom] = useState(100);
@@ -24,6 +28,10 @@ export default function KeysLearn() {
       setIsNearBottom(100);
     }
   };
+
+  const videoPlayer = useVideoPlayer({uri: "https://youtube.com"}, player => {
+    player.loop = false;
+  });
   return (
     <ImageBackground
       source={require("../../../assets/images/BackgroundImages/TextBackground.jpeg")}
@@ -36,6 +44,11 @@ export default function KeysLearn() {
           onScroll={handleScroll}
         >
           <Title title="Keys" />
+          <VideoView
+            style={styles.Video}
+            player={videoPlayer}
+            allowsFullscreen
+          />
           <Text style={styles.Subtitle}>{"\n"}What Is A Key</Text>
           <Text style={styles.LearnText}>
             {"\t"}A key is identified by the key signature, or the set of sharps (#) or flats (b) used in the music. It is important to note that a key signature will not contain sharps AND flats, it will only contain one type of accidental. Each key signature represents two keys: a Major key, and a Minor key. Today, you’ll learn how to identify the keys that a key signature can represent.
@@ -66,7 +79,7 @@ export default function KeysLearn() {
             {"\n"}Identifying Major Key Signatures With Flats
           </Text>
           <Text style={styles.LearnText}>
-            {"\t"}To identify the Major key of a key signature consisting of flats, you need to identify the second last flat. Let’s take the example of three flats. Using the order of flats, the key signature will contain Bb, Eb, and Ab. Here, the second last flat is Eb. This means the Major key represented by three flats in the key signature is Eb Major. 
+            {"\t"}To identify the Major key of a key signature consisting of flats, you need to identify the second last flat. Let’s take the example of three flats. Using the order of flats, the key signature will contain Bb, Eb, and Ab. Here, the second last flat is Eb. This means the Major key represented by three flats in the key signature is Eb Major.
             {"\n"}
             {"\t"}Let’s take another example. If a key signature has five flats, they will be Bb, Eb, Ab, Db, and Gb. Since the second last flat is Db, the Major key represented by five flats is Db Major.
           </Text>
@@ -82,15 +95,15 @@ export default function KeysLearn() {
           <Text style={styles.LearnText}>
             {"\t"}Now we know how to identify the Major keys that key signatures can represent. But these same key signatures also represent Minor keys. How do we identify those? Luckily the process is quite simple.
             {"\n"}
-            {"\t"}To identify a Minor key, you must first know the Major key the key signature represents. Then, you take the Major key and go down three half steps. The corresponding Minor key is known as the Major key’s relative Minor, because it is the Minor key that has the same key signature as the Major key. 
+            {"\t"}To identify a Minor key, you must first know the Major key the key signature represents. Then, you take the Major key and go down three half steps. The corresponding Minor key is known as the Major key’s relative Minor, because it is the Minor key that has the same key signature as the Major key.
             {"\n"}
             {"\t"}Let’s take a previous example. We have already identified that a key signature with five sharps corresponds to B Major. Now traveling three half steps down will take us to A#, A natural, and finally G#. So, the relative Minor of B Major is G# Minor. (If you thought it could be Ab Minor, we’ll address this in a second). This means that the key signature of five sharps corresponds to B Major but can also correspond to G# Minor.
             {"\n"}
             {"\t"}Let’s take one more example. Let's consider a key signature with three flats. The Major key represented here is the second last flat or Eb Major. Going down three half steps takes us to D, Db, and finally C. This means the key signature of three flats not only represents Eb Major, but also C Minor.
             {"\n"}
-            {"\t"}However, when converting Major keys to their relative Minor key, avoid this mistake. Though you can argue that F# and Gb are technically the same pitch, you cannot say their key signatures are the same. This is because the key signature of F# contains sharps while the key signature of Gb consists of flats. This becomes a problem when converting Major keys to their relative Minor. In our previous example where B Major becomes G# Minor, how can we say that the relative Minor of B Major is G# Minor and not Ab Minor?
+            {"\t"}However, when converting Major keys to their relative Minor key, avoid this mistake. Though you can argue that F# and Gb are technically the same pitch, you cannot say their key signatures are the same. This is because the key signature of F# contains sharps while the key signature of Gb consists of flats. This becomes a problem when converting Major keys to their relative Minor. In our previous example where B Major becomes G# Minor, how can we say that the relative Minor of B Major is G# Minor and not Ab Major?
             {"\n"}
-            {"\t"}The logic behind this is a more advanced topic but to simplify, the distance between the Major key and its relative Minor must be a third. In other words, the letters of the pitch (the notes without any accidentals) of the Major key and the relative Minor key must be two letters apart. Using our example of B Major, going down two letters gives us A and then G. Therefore the relative Minor of B Major must have a G in it. This helps us choose G# Minor over Ab Minor.
+            {"\t"}The logic behind this is a more advanced topic but to simplify, when the distance between the Major key and its relative Minor must be a third. In other words, the letters of the pitch (the notes without any accidentals) of the Major key and the relative Minor key must be two letters apart. Using our example of B Major, going down two letters gives us A and then G. Therefore the relative Minor of B Major must have a G in it. This helps us choose G# Minor or Ab Minor.
             {"\n"}
             {"\t"}Let’s take one more example using the key of F# Major. Firstly by going down two letters, we get E, and then D. Therefore the relative Minor of F# Major must have the letter D in it. Going down three half steps from F# gives us F, E, and then Eb. However since the Minor key must have the letter D in it, the relative Minor of F# Major is D# Minor.
           </Text>
@@ -108,7 +121,7 @@ export default function KeysLearn() {
             {"\n"}Keys that Don't Have Key Signatures
           </Text>
           <Text style={styles.LearnText}>
-            {"\t"}One interesting fact to note is that not all keys will have a corresponding key signature. For instance, the keys of D#, E#, G#, A#, and B# Major, will not have a key signature that follows the rules above. This is because in these cases, some of the notes in their key will contain double sharps which cannot be notated into a key signature. The same issue arises with Fb Major which cannot be notated due to its B-double flat.
+            {"\t"}One interesting fact to note is that not all keys will have a corresponding key signature. For instance, the keys of D#, E#, G#, A#, and B Major, will not have a key signature that follows the rules above. This is because in these cases, some of the notes in their key will contain double sharps which cannot be notated into a key signature. The same issue arises with Fb Major which cannot be notated due to its B-double flat.
           </Text>
         </ScrollView>
         <View style={{ flex: 0.1, justifyContent: "center" }}>
@@ -130,6 +143,11 @@ export default function KeysLearn() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  Video: {
+    width: "100%",
+    aspectRatio: 16 / 9,
   },
 
   Text: {

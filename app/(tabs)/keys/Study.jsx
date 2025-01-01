@@ -4,6 +4,7 @@ import {
   Dimensions,
   Image,
   ImageBackground,
+  Modal,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -16,6 +17,7 @@ import shuffle from "../../../constants/Shuffle";
 import KeysProblemFunction from "./../../../constants/KeysProblemFunction";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
+import { BlurView } from "expo-blur";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -41,16 +43,53 @@ export default function KeysStudy() {
   useEffect(() => {
     setImageSource(KeysProblem[0]);
   }, [KeysProblem]);
-  function disableAnswerBriefly(){
+  function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
+
+  const [modalVisible, setModalVisible] = useState(false)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
       style={{ flex: 1 }}
     >
       <SafeAreaView style={styles.container}>
+        <Modal
+          visible={modalVisible}
+          animationType="slide"
+        >
+          <ImageBackground style={{flex:1}} source={require("../../../assets/images/BackgroundImages/CheatSheatBackground.jpg")}>
+          <BlurView style={{flex:1, width: "100%", height: "100%", position: "absolute"}} intensity={90}>
+          <SafeAreaView style={{ justifyContent: 'space-between', flex: 1 }}>
+              <View>
+                <Title title="Cheat Sheat" />
+                <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                  <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Sharps:"}</Text>
+                  <Text> Raise the last Sharp by a Half Step</Text>
+                </Text>
+                <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                  <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Flats:"}</Text>
+                  <Text> Identify the Second Last Flat</Text>
+                </Text>
+                <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                  <Text style={{ fontStyle: 'italic' }}>{"\u2022 Find the Relative Minor Key from the Major Key: "}</Text>
+                  <Text>
+                    Go Down Three Half Steps while Maintaining the Two Letter Distance (to keep the interval a third)
+                  </Text>
+                </Text>
+              </View>
+              <View>
+                <TouchableOpacity onPressIn={() => setModalVisible(false)} style={[styles.BackButton, { color: "grey", marginBottom: 20 }]}>
+                  <Text style={styles.Text}>
+                    Hide
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </SafeAreaView>
+          </BlurView>
+          </ImageBackground>
+        </Modal>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>
           <Title title="Study" />
         </View>
@@ -138,7 +177,7 @@ export default function KeysStudy() {
           >
             <Text style={styles.BackText}>Back</Text>
           </TouchableOpacity>
-          <View style={{ flex: 0.03 }} />
+          {/* <View style={{ flex: 0.03 }} /> */}
           <TouchableOpacity
             style={styles.BackButton}
             onPress={() => {
@@ -146,6 +185,14 @@ export default function KeysStudy() {
             }}
           >
             <Text style={styles.BackText}>Learn</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.BackButton}
+            onPress={() => {
+              setModalVisible(true);
+            }}
+          >
+            <Text style={styles.BackText}>Cheat Sheat</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
@@ -200,7 +247,9 @@ const styles = StyleSheet.create({
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    width: width * 0.18,
+    minWidth: width * 0.18,
+    padding: 10,
+    margin: 5,
     height: height * 0.053,
     borderRadius: 20,
     borderWidth: 0.5,
