@@ -6,14 +6,14 @@ import {
   SafeAreaView,
   ImageBackground,
   Dimensions,
+  useWindowDimensions,
 } from "react-native";
 import React from "react";
 import Title from "./Title";
 
-const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
-
 export default function DisplayScore({ scoreValue, onPress }) {
+  const {width, height} = useWindowDimensions();
+
   return (
     <ImageBackground
       source={require("./../assets/images/BackgroundImages/DisplayScoreBackground.jpeg")}
@@ -30,7 +30,10 @@ export default function DisplayScore({ scoreValue, onPress }) {
         <View style={{ flex: 6 }} />
         <View style={{ flex: 1 }}>
           <TouchableOpacity
-            style={styles.BackButton}
+            style={[styles.BackButton, {
+              width: width * 0.18,
+              height: height * 0.053
+            }]}
             onPress={onPress}
           >
             <Text style={styles.Text}>Back</Text>
@@ -57,8 +60,6 @@ const styles = StyleSheet.create({
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    width: width * 0.18,
-    height: height * 0.053,
     borderRadius: 20,
     borderWidth: 0.5,
     alignSelf: "center",

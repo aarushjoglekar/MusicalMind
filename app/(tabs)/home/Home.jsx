@@ -3,7 +3,7 @@ import {
   ImageBackground,
   StyleSheet,
   SafeAreaView,
-  Dimensions,
+  useWindowDimensions,
 } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { router, useFocusEffect } from "expo-router";
@@ -12,9 +12,9 @@ import Title from "../../../components/Title";
 import readDailyStreak from "../../../storageServices/readDailyStreak";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const height = Dimensions.get("window").height;
-
 export default function Home() {
+  const {width, height} = useWindowDimensions();
+
   const [clef, setClef] = useState();
   AsyncStorage.getItem('Clef').then((storageClef) => {
     setClef(storageClef)

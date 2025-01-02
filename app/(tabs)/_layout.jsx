@@ -1,14 +1,14 @@
 import React from 'react'
 import { Tabs } from 'expo-router'
-import { Dimensions, StyleSheet } from 'react-native'
-
-const height = Dimensions.get('window').height;
+import { StyleSheet, useWindowDimensions } from 'react-native'
 
 export default function AppLayout() {
+  const {width, height} = useWindowDimensions();
+
   var color = "#383d3d"
   return (
     <Tabs screenOptions={{
-      headerShown: false, tabBarStyle: styles.tabBar
+      headerShown: false, tabBarStyle: [styles.tabBar, {height: height * 0.09}]
     }}>
       <Tabs.Screen name="keys" options={{ title: 'Keys', tabBarActiveTintColor: color }} />
       <Tabs.Screen name="scales" options={{ title: 'Scales', tabBarInactiveTintColor: color }} />
@@ -21,7 +21,7 @@ export default function AppLayout() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    height: height * 0.09,
+    // height: height * 0.09,
     backgroundColor: '#ffffff',
     elevation: 10,
     shadowOpacity: 0.7,

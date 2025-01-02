@@ -1,15 +1,14 @@
-import { Text, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Dimensions, useWindowDimensions } from "react-native";
 import React from "react";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
-
 export default function HomePageButtonSection({onPress = null, disabled = false, text}) {
+  const {width, height} = useWindowDimensions();
+
   return (
     <TouchableOpacity
       disabled={disabled}
-      style={styles.HomePageButton}
+      style={[styles.HomePageButton, {width: width * 0.53, height: height * 0.07,}]}
       onPress={onPress}
     >
       <Text style={styles.Text}>{text}</Text>
@@ -22,8 +21,6 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignSelf: 'center',
       backgroundColor: "#edebeb",
-      width: width * 0.53,
-      height: height * 0.07,
       borderRadius: 20,
       borderWidth: 0.5,
     },

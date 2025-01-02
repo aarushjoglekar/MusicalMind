@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import Title from "../../../components/Title";
@@ -19,9 +20,6 @@ import IntervalsProblemFunction from "../../../constants/IntervalsProblemFunctio
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
 
 function setProblem(currentClef, levelDeterminer) {
   if (levelDeterminer == 0) {
@@ -39,6 +37,8 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function IntervalsStudy() {
+  const {width, height} = useWindowDimensions();
+
   const { levelDeterminer } = useLocalSearchParams()
 
   let clef = useRef()
@@ -79,7 +79,7 @@ export default function IntervalsStudy() {
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
           <Image
-            style={styles.StudyIntervalsImage}
+            style={[styles.StudyIntervalsImage, {width: width * 0.875, height: width * 0.55}]}
             source={imageSource}
           />
         </View>
@@ -87,7 +87,7 @@ export default function IntervalsStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {height: height * 0.064}]}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -104,7 +104,7 @@ export default function IntervalsStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {height: height * 0.064}]}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -121,7 +121,7 @@ export default function IntervalsStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {height: height * 0.064}]}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -138,7 +138,7 @@ export default function IntervalsStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {height: height * 0.064}]}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -156,7 +156,7 @@ export default function IntervalsStudy() {
           style={{ flex: 10, justifyContent: "center", flexDirection: "row" }}
         >
           <TouchableOpacity
-            style={styles.BackButton}
+            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
             onPress={() => {
               router.back();
             }}
@@ -165,7 +165,7 @@ export default function IntervalsStudy() {
           </TouchableOpacity>
           <View style={{ flex: 0.03 }} />
           <TouchableOpacity
-            style={styles.BackButton}
+            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
             onPress={() => {
               router.navigate("/intervals/Learn");
             }}
@@ -190,7 +190,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#edebeb",
     width: 240,
-    height: height * 0.064,
     borderRadius: 20,
     borderWidth: 0.5,
   },
@@ -216,8 +215,6 @@ const styles = StyleSheet.create({
   },
 
   StudyIntervalsImage: {
-    width: width * 0.875,
-    height: width * 0.55,
     alignSelf: 'center',
     borderRadius: 5,
   },
@@ -225,8 +222,6 @@ const styles = StyleSheet.create({
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    width: width * 0.18,
-    height: height * 0.053,
     borderRadius: 20,
     borderWidth: 0.5,
     alignSelf: "center",

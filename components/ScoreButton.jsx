@@ -1,11 +1,15 @@
-import { Text, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
+import { Text, TouchableOpacity, StyleSheet, Dimensions, useWindowDimensions } from "react-native";
 import React from "react";
 
-const width = Dimensions.get("window").width;
-
 export default function ScoreButton({ Score }) {
+  const {width, height} = useWindowDimensions();
+
   return (
-    <TouchableOpacity disabled={true} style={styles.ScoreButton}>
+    <TouchableOpacity disabled={true} style={[styles.ScoreButton, {
+      width: width * 0.23,
+      height: width * 0.07,
+      marginRight: width * 0.01,
+    }]}>
       <Text style={{ alignSelf: "center", fontFamily: "Verdana" }}>
         Score: {Score}
       </Text>
@@ -16,12 +20,9 @@ export default function ScoreButton({ Score }) {
 const styles = StyleSheet.create({
   ScoreButton: {
     backgroundColor: "white",
-    width: width * 0.23,
-    height: width * 0.07,
     borderRadius: 8,
     borderWidth: 0.5,
     justifyContent: "center",
     alignSelf: "flex-end",
-    marginRight: width * 0.01,
   },
 });

@@ -3,8 +3,8 @@ import {
   ImageBackground,
   StyleSheet,
   SafeAreaView,
-  Dimensions,
   Alert,
+  useWindowDimensions,
 } from "react-native";
 import React from "react";
 import BackButton from "../../../components/BackButton";
@@ -12,9 +12,9 @@ import HomePageButtonSection from "../../../components/HomePageButtonSection";
 import Title from "../../../components/Title";
 import updateScore from "../../../storageServices/updateScore";
 
-const height = Dimensions.get("window").height;
-
 export default function ResetScores() {
+  const {width, height} = useWindowDimensions();
+  
   return (
     <ImageBackground
       source={require("./../../../assets/images//BackgroundImages/ResetScoresBackground.jpg")}

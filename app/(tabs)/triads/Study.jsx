@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import Title from "../../../components/Title";
@@ -18,9 +19,6 @@ import TriadsProblemFunction from "../../../constants/TriadsProblemFunction";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
 
 function setProblem(currentClef, levelDeterminer) {
   if (levelDeterminer == 0) {
@@ -36,6 +34,8 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function TriadsStudy() {
+  const {width, height} = useWindowDimensions();
+
   const { levelDeterminer } = useLocalSearchParams()
 
   const [text1, setText1] = useState()
@@ -89,7 +89,7 @@ export default function TriadsStudy() {
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
           <Image
-            style={styles.StudyTriadsImage}
+            style={[styles.StudyTriadsImage, {width: width * 0.875, height: width * 0.54}]}
             source={imageSource}
           />
         </View>
@@ -100,7 +100,7 @@ export default function TriadsStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={styles.Button}
+                style={[styles.Button, {height: height * 0.064}]}
                 onPress={() => {
                   if (basicCorrectLevelSpot == 1) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
@@ -125,7 +125,7 @@ export default function TriadsStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={styles.Button}
+                style={[styles.Button, {height: height * 0.064}]}
                 onPress={() => {
                   if (basicCorrectLevelSpot == 2) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
@@ -154,7 +154,7 @@ export default function TriadsStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={styles.Button}
+                style={[styles.Button, {height: height * 0.064}]}
                 onPress={() => {
                   if (correctAnswerSpot == 0) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
@@ -171,7 +171,7 @@ export default function TriadsStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={styles.Button}
+                style={[styles.Button, {height: height * 0.064}]}
                 onPress={() => {
                   if (correctAnswerSpot == 1) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
@@ -188,7 +188,7 @@ export default function TriadsStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={styles.Button}
+                style={[styles.Button, {height: height * 0.064}]}
                 onPress={() => {
                   if (correctAnswerSpot == 2) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
@@ -205,7 +205,7 @@ export default function TriadsStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={styles.Button}
+                style={[styles.Button, {height: height * 0.064}]}
                 onPress={() => {
                   if (correctAnswerSpot == 3) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
@@ -225,7 +225,7 @@ export default function TriadsStudy() {
           style={{ flex: 10, justifyContent: "center", flexDirection: "row" }}
         >
           <TouchableOpacity
-            style={styles.BackButton}
+            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
             onPress={() => {
               router.back();
             }}
@@ -234,7 +234,7 @@ export default function TriadsStudy() {
           </TouchableOpacity>
           <View style={{ flex: 0.03 }} />
           <TouchableOpacity
-            style={styles.BackButton}
+            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
             onPress={() => {
               router.navigate("/triads/Learn");
             }}
@@ -259,7 +259,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#edebeb",
     width: 240,
-    height: height * 0.064,
     borderRadius: 20,
     borderWidth: 0.5,
   },
@@ -285,8 +284,6 @@ const styles = StyleSheet.create({
   },
 
   StudyTriadsImage: {
-    width: width * 0.875,
-    height: width * 0.55,
     alignSelf: 'center',
     borderRadius: 5,
   },
@@ -294,8 +291,6 @@ const styles = StyleSheet.create({
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    width: width * 0.18,
-    height: height * 0.053,
     borderRadius: 20,
     borderWidth: 0.5,
     alignSelf: "center",

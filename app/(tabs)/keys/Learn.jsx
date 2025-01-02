@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from "react-native";
 import Title from "../../../components/Title";
@@ -15,9 +16,9 @@ import { useCallback, useState } from "react";
 import { useVideoPlayer, VideoView } from "expo-video";
 import YoutubeIframe from "react-native-youtube-iframe";
 
-const width = Dimensions.get("window").width;
-
 export default function KeysLearn() {
+  const {width, height} = useWindowDimensions();
+
   const [isNearBottom, setIsNearBottom] = useState(100);
   const handleScroll = (event) => {
     const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;

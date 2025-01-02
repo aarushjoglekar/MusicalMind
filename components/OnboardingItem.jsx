@@ -1,14 +1,13 @@
-import { View, StyleSheet, Dimensions, Image, Text } from "react-native";
+import { View, StyleSheet, Dimensions, Image, Text, useWindowDimensions } from "react-native";
 import React, { useState } from "react";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
-const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
-
 export default OnboardingItem = ({ item }) => {
+  const {width, height} = useWindowDimensions();
+
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
+      <View style={[styles.imageContainer, {height: width}]}>
         <Image
           source={item.image}
           style={{
@@ -18,7 +17,7 @@ export default OnboardingItem = ({ item }) => {
           }}
         />
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
+        <Text style={[styles.description, {maxWidth: width * 0.9}]}>{item.description}</Text>
       </View>
     </View>
   );
@@ -33,7 +32,6 @@ const styles = StyleSheet.create({
   },
 
   imageContainer: {
-    height: width,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
@@ -53,6 +51,5 @@ const styles = StyleSheet.create({
     color: "#62656b",
     textAlign: "center",
     paddingHorizontal: 64,
-    maxWidth: width * 0.9
   },
 });

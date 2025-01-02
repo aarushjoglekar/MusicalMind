@@ -19,13 +19,7 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font",
-      [
-        "expo-screen-orientation",
-        {
-          "initialOrientation": "PORTRAIT"
-        }
-      ]
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
