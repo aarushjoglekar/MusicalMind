@@ -80,7 +80,7 @@ export default function KeysStudy() {
                 </Text>
               </View>
               <View>
-                <TouchableOpacity onPressIn={() => setModalVisible(false)} style={[styles.BackButton, { color: "grey", marginBottom: 20 }]}>
+                <TouchableOpacity onPressIn={() => setModalVisible(false)} style={[styles.BackButton, { color: "grey", marginBottom: 20, minWidth: width * 0.18, height: height * 0.053 }]}>
                   <Text style={styles.Text}>
                     Hide
                   </Text>
@@ -95,13 +95,13 @@ export default function KeysStudy() {
         </View>
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
-          <Image style={[styles.StudyKeysImage, {height: height * 0.25, width: height * 0.25}]} source={imageSource} />
+          <Image style={[styles.StudyKeysImage, {height: height * 0.25, width: height * 0.25, resizeMode: "contain"}]} source={imageSource} />
         </View>
         <View style={{ flex: 5 }} />
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064}]}
+            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -118,7 +118,7 @@ export default function KeysStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064}]}
+            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -135,7 +135,7 @@ export default function KeysStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064}]}
+            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -152,7 +152,7 @@ export default function KeysStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064}]}
+            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -211,7 +211,6 @@ const styles = StyleSheet.create({
   Button: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    width: 240,
     borderRadius: 20,
     borderWidth: 0.5,
   },
@@ -246,7 +245,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#edebeb",
     padding: 10,
     margin: 5,
-    borderRadius: 20,
+    borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
   },

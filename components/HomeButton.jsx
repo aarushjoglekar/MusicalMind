@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   Button: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    borderRadius: 20,
+    borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
   },
 

@@ -106,7 +106,7 @@ export default function ScalesSprint() {
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
           <Image
-            style={[styles.StudyScalesImage, {width: width, height: width * 97 / 431,}]}
+            style={[styles.StudyScalesImage, {width: width, height: width * 97 / 431, resizeMode: "contain"}]}
             source={imageSource}
           />
         </View>
@@ -117,7 +117,7 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064}]}
+                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
                 onPress={() => {
                   if (basicCorrectLevelSpot == 1) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
@@ -142,7 +142,7 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064}]}
+                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
                 onPress={() => {
                   if (basicCorrectLevelSpot == 2) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
@@ -171,7 +171,7 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064}]}
+                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
                 onPress={() => {
                   if (correctAnswerSpot == 0) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
@@ -188,7 +188,7 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064}]}
+                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
                 onPress={() => {
                   if (correctAnswerSpot == 1) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
@@ -205,7 +205,7 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064}]}
+                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
                 onPress={() => {
                   if (correctAnswerSpot == 2) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
@@ -222,7 +222,7 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064}]}
+                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
                 onPress={() => {
                   if (correctAnswerSpot == 3) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
@@ -268,7 +268,6 @@ const styles = StyleSheet.create({
   Button: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    width: 240,
     borderRadius: 20,
     borderWidth: 0.5,
   },
@@ -301,7 +300,7 @@ const styles = StyleSheet.create({
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    borderRadius: 20,
+    borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
   },

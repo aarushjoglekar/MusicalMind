@@ -75,13 +75,13 @@ export default function KeysSprint() {
         </View>
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
-          <Image style={[styles.StudyKeysImage, {height: height * 0.25, width: height * 0.25}]} source={imageSource} />
+          <Image style={[styles.StudyKeysImage, {height: height * 0.25, width: height * 0.25, resizeMode: "contain"}]} source={imageSource} />
         </View>
         <View style={{ flex: 5 }} />
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064}]}
+            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -98,7 +98,7 @@ export default function KeysSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064}]}
+            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -115,7 +115,7 @@ export default function KeysSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064}]}
+            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -132,7 +132,7 @@ export default function KeysSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064}]}
+            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -175,7 +175,6 @@ const styles = StyleSheet.create({
   Button: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    width: 240,
     borderRadius: 20,
     borderWidth: 0.5,
   },
@@ -208,7 +207,7 @@ const styles = StyleSheet.create({
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    borderRadius: 20,
+    borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
   },

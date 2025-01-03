@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import React from "react";
 import Title from "./Title";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 export default function DisplayScore({ scoreValue, onPress }) {
   const {width, height} = useWindowDimensions();
@@ -54,13 +55,13 @@ const styles = StyleSheet.create({
     color: "#000",
     textAlign: "center",
     fontFamily: "Verdana",
-    fontSize: 17,
+    fontSize: RFPercentage(2),
   },
 
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    borderRadius: 20,
+    borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
   },

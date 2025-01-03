@@ -1,5 +1,6 @@
 import { Text, TouchableOpacity, StyleSheet, Dimensions, useWindowDimensions } from "react-native";
 import React from "react";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 export default function ScoreButton({ Score }) {
   const {width, height} = useWindowDimensions();
@@ -10,7 +11,7 @@ export default function ScoreButton({ Score }) {
       height: width * 0.07,
       marginRight: width * 0.01,
     }]}>
-      <Text style={{ alignSelf: "center", fontFamily: "Verdana" }}>
+      <Text style={{ alignSelf: "center", fontFamily: "Verdana", fontSize: RFPercentage(1.7) }}>
         Score: {Score}
       </Text>
     </TouchableOpacity>
