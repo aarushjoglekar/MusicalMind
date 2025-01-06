@@ -108,7 +108,7 @@ export default function ScalesStudy() {
           <ImageBackground style={{ flex: 1 }} source={require("../../../assets/images/BackgroundImages/CheatSheatBackground.jpg")}>
             <BlurView style={{ flex: 1, width: "100%", height: "100%", position: "absolute" }} intensity={90}>
               <SafeAreaView style={{ justifyContent: 'space-between', flex: 1 }}>
-                <Title title="Cheat Sheat" />
+                <Title title="Cheat Sheet" />
                 <ScrollView style={{ flex: 1 }} onScroll={handleScroll}>
                   <View style={{ backgroundColor: "#edebeb", borderRadius: 30, margin: 30, padding: 10 }}>
                     <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40 }]}>
@@ -317,7 +317,7 @@ export default function ScalesStudy() {
               setModalVisible(true);
             }}
           >
-            <Text style={styles.BackText}>Cheat Sheat</Text>
+            <Text style={styles.BackText}>Cheat Sheet</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
