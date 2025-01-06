@@ -110,27 +110,29 @@ export default function ScalesStudy() {
               <SafeAreaView style={{ justifyContent: 'space-between', flex: 1 }}>
                 <Title title="Cheat Sheat" />
                 <ScrollView style={{ flex: 1 }} onScroll={handleScroll}>
-                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Major Scale:"}</Text>
-                    <Text>{'\n'}{'\t'}Check if the key signature of the tonic note matches the accidentals in the scale</Text>
-                    <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) matches WWHWWWH</Text>
-                  </Text>
-                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Natural Minor Scale:"}</Text>
-                    <Text>{'\n'}{'\t'}Check if the key signature of the tonic note's relative major matches the accidentals in the scale</Text>
-                    <Text>{'\n'}{'\t'}Identify what the tonic note's major scale should look like and lower the third, sixth, and seventh note a half step</Text>
-                    <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) matches WHWWHWW</Text>
-                  </Text>
-                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Harmonic Minor Scale: "}</Text>
-                    <Text>{'\n'}{'\t'}Identify the major scale and lower the third and sixth note a half step (raise the seventh note a half step in the natural minor scale)</Text>
-                    <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) is WHWWH(3 Half Steps)H</Text>
-                  </Text>
-                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Melodic Minor Scale: "}</Text>
-                    <Text>{'\n'}{'\t'}Identify the major scale and lower the third note a half step</Text>
-                    <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) is WHWWWWH</Text>
-                  </Text>
+                  <View style={{ backgroundColor: "#edebeb", borderRadius: 30, margin: 30, padding: 10 }}>
+                    <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40 }]}>
+                      <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Major Scale:"}</Text>
+                      <Text>{'\n'}{'\t'}Check if the key signature of the tonic note matches the accidentals in the scale</Text>
+                      <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) matches WWHWWWH</Text>
+                    </Text>
+                    <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                      <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Natural Minor Scale:"}</Text>
+                      <Text>{'\n'}{'\t'}Check if the key signature of the tonic note's relative major matches the accidentals in the scale</Text>
+                      <Text>{'\n'}{'\t'}Identify what the tonic note's major scale should look like and lower the third, sixth, and seventh note a half step</Text>
+                      <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) matches WHWWHWW</Text>
+                    </Text>
+                    <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                      <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Harmonic Minor Scale: "}</Text>
+                      <Text>{'\n'}{'\t'}Identify the major scale and lower the third and sixth note a half step (raise the seventh note a half step in the natural minor scale)</Text>
+                      <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) is WHWWH(3 Half Steps)H</Text>
+                    </Text>
+                    <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                      <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Melodic Minor Scale: "}</Text>
+                      <Text>{'\n'}{'\t'}Identify the major scale and lower the third note a half step</Text>
+                      <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) is WHWWWWH</Text>
+                    </Text>
+                  </View>
                 </ScrollView>
                 <View style={{ flex: 0.1, justifyContent: "center" }}>
                   <AntDesign

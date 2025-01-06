@@ -77,20 +77,22 @@ export default function KeysStudy() {
               <SafeAreaView style={{ justifyContent: 'space-between', flex: 1 }}>
                 <Title title="Cheat Sheat" />
                 <ScrollView style={{ flex: 1 }} onScroll={handleScroll}>
-                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Sharps:"}</Text>
-                    <Text> Raise the last Sharp by a Half Step</Text>
-                  </Text>
-                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Flats:"}</Text>
-                    <Text> Identify the Second Last Flat</Text>
-                  </Text>
-                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Find the Relative Minor Key from the Major Key: "}</Text>
-                    <Text>
-                      Go Down Three Half Steps while Maintaining the Two Letter Distance (to keep the interval a third)
+                  <View style={{backgroundColor: "#edebeb", borderRadius: 30, margin: 30, padding: 10}}>
+                    <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40}]}>
+                      <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Sharps:"}</Text>
+                      <Text> Raise the last Sharp by a Half Step</Text>
                     </Text>
-                  </Text>
+                    <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                      <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Flats:"}</Text>
+                      <Text> Identify the Second Last Flat</Text>
+                    </Text>
+                    <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                      <Text style={{ fontStyle: 'italic' }}>{"\u2022 Find the Relative Minor Key from the Major Key: "}</Text>
+                      <Text>
+                        Go Down Three Half Steps while Maintaining the Two Letter Distance (to keep the interval a third)
+                      </Text>
+                    </Text>
+                  </View>
                 </ScrollView>
                 <View style={{ flex: 0.1, justifyContent: "center" }}>
                   <AntDesign
