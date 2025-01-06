@@ -10,6 +10,8 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   View,
+  Modal,
+  ScrollView
 } from "react-native";
 import Title from "../../../components/Title";
 import { ScalesProblems } from "../../../constants/ScalesProblems";
@@ -19,6 +21,8 @@ import ScalesProblemFunction from "../../../constants/ScalesProblemFunction";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BlurView } from "expo-blur";
+import { AntDesign } from "@expo/vector-icons";
 
 function setProblem(currentClef, levelDeterminer) {
   if (levelDeterminer == 0) {
@@ -34,7 +38,7 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function ScalesStudy() {
-  const {width, height} = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   const { levelDeterminer } = useLocalSearchParams()
 
@@ -55,7 +59,7 @@ export default function ScalesStudy() {
       clef.current = clefVar;
       const problem = setProblem(clef.current, levelDeterminer);
       ResetScalesProblem(problem);
-      if (problem[1].includes("Major")){
+      if (problem[1].includes("Major")) {
         setText1(problem[1])
         setText2(problem[2])
         setBasicCorrectLevelSpot(1)
@@ -77,19 +81,83 @@ export default function ScalesStudy() {
     setIsAnswerEnabled(false)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
+
+
+  const [isNearBottom, setIsNearBottom] = useState(100);
+  const handleScroll = (event) => {
+    const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
+    const isCloseToBottom =
+      layoutMeasurement.height + contentOffset.y >= contentSize.height - 20;
+    if (isCloseToBottom) {
+      setIsNearBottom(0);
+    } else {
+      setIsNearBottom(100);
+    }
+  };
+  const [modalVisible, setModalVisible] = useState(false)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
       style={{ flex: 1 }}
     >
       <SafeAreaView style={styles.container}>
+        <Modal
+          visible={modalVisible}
+          animationType="fade"
+        >
+          <ImageBackground style={{ flex: 1 }} source={require("../../../assets/images/BackgroundImages/CheatSheatBackground.jpg")}>
+            <BlurView style={{ flex: 1, width: "100%", height: "100%", position: "absolute" }} intensity={90}>
+              <SafeAreaView style={{ justifyContent: 'space-between', flex: 1 }}>
+                <Title title="Cheat Sheat" />
+                <ScrollView style={{ flex: 1 }} onScroll={handleScroll}>
+                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Major Scale:"}</Text>
+                    <Text>{'\n'}{'\t'}Check if the key signature of the tonic note matches the accidentals in the scale</Text>
+                    <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) matches WWHWWWH</Text>
+                  </Text>
+                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Natural Minor Scale:"}</Text>
+                    <Text>{'\n'}{'\t'}Check if the key signature of the tonic note's relative major matches the accidentals in the scale</Text>
+                    <Text>{'\n'}{'\t'}Identify what the tonic note's major scale should look like and lower the third, sixth, and seventh note a half step</Text>
+                    <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) matches WHWWHWW</Text>
+                  </Text>
+                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Harmonic Minor Scale: "}</Text>
+                    <Text>{'\n'}{'\t'}Identify the major scale and lower the third and sixth note a half step (raise the seventh note a half step in the natural minor scale)</Text>
+                    <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) is WHWWH(3 Half Steps)H</Text>
+                  </Text>
+                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Identifying a Melodic Minor Scale: "}</Text>
+                    <Text>{'\n'}{'\t'}Identify the major scale and lower the third note a half step</Text>
+                    <Text>{'\n'}{'\t'}Check if the distances between notes (half steps/whole steps) is WHWWWWH</Text>
+                  </Text>
+                </ScrollView>
+                <View style={{ flex: 0.1, justifyContent: "center" }}>
+                  <AntDesign
+                    name="caretdown"
+                    size={30}
+                    color="#4d4d4d"
+                    style={{ alignSelf: "center", opacity: isNearBottom }}
+                  />
+                </View>
+                <View>
+                  <TouchableOpacity onPressIn={() => setModalVisible(false)} style={[styles.BackButton, { color: "grey", marginBottom: 20, minWidth: width * 0.18, height: height * 0.053 }]}>
+                    <Text style={styles.Text}>
+                      Hide
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </SafeAreaView>
+            </BlurView>
+          </ImageBackground>
+        </Modal>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>
           <Title title="Study" />
         </View>
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
           <Image
-            style={[styles.StudyScalesImage, {width: width, height: width * 97 / 431, resizeMode: "contain"}]}
+            style={[styles.StudyScalesImage, { width: width, height: width * 97 / 431, resizeMode: "contain" }]}
             source={imageSource}
           />
         </View>
@@ -99,14 +167,14 @@ export default function ScalesStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (basicCorrectLevelSpot == 1) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
                   }
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetScalesProblem(newProblem);
-                  if (newProblem[1].includes("Major")){
+                  if (newProblem[1].includes("Major")) {
                     setText1(newProblem[1])
                     setText2(newProblem[2])
                     setBasicCorrectLevelSpot(1)
@@ -124,14 +192,14 @@ export default function ScalesStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (basicCorrectLevelSpot == 2) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
                   }
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetScalesProblem(newProblem);
-                  if (newProblem[1].includes("Major")){
+                  if (newProblem[1].includes("Major")) {
                     setText1(newProblem[1])
                     setText2(newProblem[2])
                     setBasicCorrectLevelSpot(1)
@@ -154,7 +222,7 @@ export default function ScalesStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (correctAnswerSpot == 0) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
@@ -171,7 +239,7 @@ export default function ScalesStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (correctAnswerSpot == 1) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
@@ -188,7 +256,7 @@ export default function ScalesStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (correctAnswerSpot == 2) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
@@ -205,7 +273,7 @@ export default function ScalesStudy() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (correctAnswerSpot == 3) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
@@ -225,7 +293,7 @@ export default function ScalesStudy() {
           style={{ flex: 10, justifyContent: "center", flexDirection: "row" }}
         >
           <TouchableOpacity
-            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
+            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
             onPress={() => {
               router.back();
             }}
@@ -234,12 +302,20 @@ export default function ScalesStudy() {
           </TouchableOpacity>
           <View style={{ flex: 0.03 }} />
           <TouchableOpacity
-            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
+            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
             onPress={() => {
               router.navigate("/scales/Learn");
             }}
           >
             <Text style={styles.BackText}>Learn</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
+            onPress={() => {
+              setModalVisible(true);
+            }}
+          >
+            <Text style={styles.BackText}>Cheat Sheat</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
@@ -290,6 +366,8 @@ const styles = StyleSheet.create({
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
+    padding: 10,
+    margin: 5,
     borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",

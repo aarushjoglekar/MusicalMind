@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Modal,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -19,6 +20,7 @@ import KeysProblemFunction from "./../../../constants/KeysProblemFunction";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import { BlurView } from "expo-blur";
+import { AntDesign } from "@expo/vector-icons";
 
 function setProblem(majorOrMinorDeterminer) {
   let KeysProblem = KeysProblemFunction(KeysProblems, majorOrMinorDeterminer);
@@ -30,7 +32,7 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function KeysStudy() {
-  const {width, height} = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   const { majorOrMinorDeterminer } = useLocalSearchParams()
 
@@ -48,6 +50,17 @@ export default function KeysStudy() {
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
 
+  const [isNearBottom, setIsNearBottom] = useState(100);
+  const handleScroll = (event) => {
+    const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
+    const isCloseToBottom =
+      layoutMeasurement.height + contentOffset.y >= contentSize.height - 20;
+    if (isCloseToBottom) {
+      setIsNearBottom(0);
+    } else {
+      setIsNearBottom(100);
+    }
+  };
   const [modalVisible, setModalVisible] = useState(false)
   return (
     <ImageBackground
@@ -57,37 +70,45 @@ export default function KeysStudy() {
       <SafeAreaView style={styles.container}>
         <Modal
           visible={modalVisible}
-          animationType="slide"
+          animationType="fade"
         >
-          <ImageBackground style={{flex:1}} source={require("../../../assets/images/BackgroundImages/CheatSheatBackground.jpg")}>
-          <BlurView style={{flex:1, width: "100%", height: "100%", position: "absolute"}} intensity={90}>
-          <SafeAreaView style={{ justifyContent: 'space-between', flex: 1 }}>
-              <View>
+          <ImageBackground style={{ flex: 1 }} source={require("../../../assets/images/BackgroundImages/CheatSheatBackground.jpg")}>
+            <BlurView style={{ flex: 1, width: "100%", height: "100%", position: "absolute" }} intensity={90}>
+              <SafeAreaView style={{ justifyContent: 'space-between', flex: 1 }}>
                 <Title title="Cheat Sheat" />
-                <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                  <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Sharps:"}</Text>
-                  <Text> Raise the last Sharp by a Half Step</Text>
-                </Text>
-                <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                  <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Flats:"}</Text>
-                  <Text> Identify the Second Last Flat</Text>
-                </Text>
-                <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
-                  <Text style={{ fontStyle: 'italic' }}>{"\u2022 Find the Relative Minor Key from the Major Key: "}</Text>
-                  <Text>
-                    Go Down Three Half Steps while Maintaining the Two Letter Distance (to keep the interval a third)
+                <ScrollView style={{ flex: 1 }} onScroll={handleScroll}>
+                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Sharps:"}</Text>
+                    <Text> Raise the last Sharp by a Half Step</Text>
                   </Text>
-                </Text>
-              </View>
-              <View>
-                <TouchableOpacity onPressIn={() => setModalVisible(false)} style={[styles.BackButton, { color: "grey", marginBottom: 20, minWidth: width * 0.18, height: height * 0.053 }]}>
-                  <Text style={styles.Text}>
-                    Hide
+                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Major Key from a Key Signature With Flats:"}</Text>
+                    <Text> Identify the Second Last Flat</Text>
                   </Text>
-                </TouchableOpacity>
-              </View>
-            </SafeAreaView>
-          </BlurView>
+                  <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40, marginTop: 20 }]}>
+                    <Text style={{ fontStyle: 'italic' }}>{"\u2022 Find the Relative Minor Key from the Major Key: "}</Text>
+                    <Text>
+                      Go Down Three Half Steps while Maintaining the Two Letter Distance (to keep the interval a third)
+                    </Text>
+                  </Text>
+                </ScrollView>
+                <View style={{ flex: 0.1, justifyContent: "center" }}>
+                  <AntDesign
+                    name="caretdown"
+                    size={30}
+                    color="#4d4d4d"
+                    style={{ alignSelf: "center", opacity: isNearBottom }}
+                  />
+                </View>
+                <View>
+                  <TouchableOpacity onPressIn={() => setModalVisible(false)} style={[styles.BackButton, { color: "grey", marginBottom: 20, minWidth: width * 0.18, height: height * 0.053 }]}>
+                    <Text style={styles.Text}>
+                      Hide
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </SafeAreaView>
+            </BlurView>
           </ImageBackground>
         </Modal>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>
@@ -95,13 +116,13 @@ export default function KeysStudy() {
         </View>
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
-          <Image style={[styles.StudyKeysImage, {height: height * 0.25, width: height * 0.25, resizeMode: "contain"}]} source={imageSource} />
+          <Image style={[styles.StudyKeysImage, { height: height * 0.25, width: height * 0.25, resizeMode: "contain" }]} source={imageSource} />
         </View>
         <View style={{ flex: 5 }} />
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -118,7 +139,7 @@ export default function KeysStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -135,7 +156,7 @@ export default function KeysStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -152,7 +173,7 @@ export default function KeysStudy() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -170,7 +191,7 @@ export default function KeysStudy() {
           style={{ flex: 10, justifyContent: "center", flexDirection: "row" }}
         >
           <TouchableOpacity
-            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
+            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
             onPress={() => {
               router.back();
             }}
@@ -179,7 +200,7 @@ export default function KeysStudy() {
           </TouchableOpacity>
           {/* <View style={{ flex: 0.03 }} /> */}
           <TouchableOpacity
-            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
+            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
             onPress={() => {
               router.navigate("/keys/Learn");
             }}
@@ -187,7 +208,7 @@ export default function KeysStudy() {
             <Text style={styles.BackText}>Learn</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
+            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
             onPress={() => {
               setModalVisible(true);
             }}
