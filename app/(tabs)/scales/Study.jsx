@@ -295,7 +295,7 @@ export default function ScalesStudy() {
           style={{ flex: 10, justifyContent: "center", flexDirection: "row" }}
         >
           <TouchableOpacity
-            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
+            style={styles.BackButton}
             onPress={() => {
               router.back();
             }}
@@ -304,15 +304,16 @@ export default function ScalesStudy() {
           </TouchableOpacity>
           <View style={{ flex: 0.03 }} />
           <TouchableOpacity
-            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
+            style={styles.BackButton}
             onPress={() => {
               router.navigate("/scales/Learn");
             }}
           >
             <Text style={styles.BackText}>Learn</Text>
           </TouchableOpacity>
+          <View style={{ flex: 0.03 }} />
           <TouchableOpacity
-            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
+            style={styles.BackButton}
             onPress={() => {
               setModalVisible(true);
             }}
@@ -368,10 +369,9 @@ const styles = StyleSheet.create({
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    padding: 10,
-    margin: 5,
     borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
+    padding: 12
   },
 });

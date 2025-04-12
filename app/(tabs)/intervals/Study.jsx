@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import {
-  Dimensions,
   Image,
   ImageBackground,
+  Modal,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -20,6 +21,8 @@ import IntervalsProblemFunction from "../../../constants/IntervalsProblemFunctio
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BlurView } from "expo-blur";
+import { AntDesign } from "@expo/vector-icons";
 
 function setProblem(currentClef, levelDeterminer) {
   if (levelDeterminer == 0) {
@@ -67,12 +70,72 @@ export default function IntervalsStudy() {
     setIsAnswerEnabled(false)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
+
+  const [modalVisible, setModalVisible] = useState(false)
+  const [isNearBottom, setIsNearBottom] = useState(false)
+
+  const handleScroll = (event) => {
+    const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
+    const isCloseToBottom =
+      layoutMeasurement.height + contentOffset.y >= contentSize.height - 20;
+    if (isCloseToBottom) {
+      setIsNearBottom(0);
+    } else {
+      setIsNearBottom(100);
+    }
+  };
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
       style={{ flex: 1 }}
     >
       <SafeAreaView style={styles.container}>
+      <Modal
+          visible={modalVisible}
+          animationType="fade"
+        >
+          <ImageBackground style={{ flex: 1 }} source={require("../../../assets/images/BackgroundImages/CheatSheatBackground.jpg")}>
+            <BlurView style={{ flex: 1, width: "100%", height: "100%", position: "absolute" }} intensity={90}>
+              <SafeAreaView style={{ justifyContent: 'space-between', flex: 1 }}>
+                <Title title="Cheat Sheet" />
+                <ScrollView style={{ flex: 1 }} onScroll={handleScroll}>
+                  <View style={{ backgroundColor: "#edebeb", borderRadius: 30, margin: 30, padding: 10 }}>
+                    <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40 }]}>
+                      <Text style={{ fontStyle: 'italic' }}>{"Perfect Intervals:"}</Text>
+                      <Text>{"\n\u2022"} 4ths, 5ths, and 8ths are Perfect Intervals</Text>
+                      <Text>{"\n\u2022"} If the quality is perfect, the top note will be a part of the root note's Major scale</Text>
+                      <Text>{"\n\u2022"} If the quality is diminished, the top note will be one half step lower than the note in the root note's Major scale</Text>
+                      <Text>{"\n\u2022"} If the quality is augmented, the top note will be one half step higher than the note in the root note's Major scale</Text>
+                    </Text>
+                    <Text style={[styles.Text, { textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: 40 }]}>
+                      <Text style={{ fontStyle: 'italic' }}>{"\nNon-Perfect Intervals:"}</Text>
+                      <Text>{"\n\u2022"} 2nds, 3rds, 6ths, and 7ths are Non-Perfect Intervals</Text>
+                      <Text>{"\n\u2022"} If the quality is major, the top note will be a part of the root note's Major scale</Text>
+                      <Text>{"\n\u2022"} If the quality is minor, the top note will be one half step lower than the note in the root note's Major scale</Text>
+                      <Text>{"\n\u2022"} If the quality is diminished, the top note will be two half steps (or one whole step) lower than the note in the root note's Major scale</Text>
+                      <Text>{"\n\u2022"} If the quality is augmented, the top note will be one half steps higher than the note in the root note's Major scale</Text>
+                    </Text>
+                  </View>
+                </ScrollView>
+                <View style={{ flex: 0.1, justifyContent: "center" }}>
+                  <AntDesign
+                    name="caretdown"
+                    size={30}
+                    color="#4d4d4d"
+                    style={{ alignSelf: "center", opacity: isNearBottom }}
+                  />
+                </View>
+                <View>
+                  <TouchableOpacity onPressIn={() => setModalVisible(false)} style={[styles.BackButton, { color: "grey", marginBottom: 20, minWidth: width * 0.18, height: height * 0.053 }]}>
+                    <Text style={styles.Text}>
+                      Hide
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </SafeAreaView>
+            </BlurView>
+          </ImageBackground>
+        </Modal>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>
           <Title title="Study" />
         </View>
@@ -156,7 +219,7 @@ export default function IntervalsStudy() {
           style={{ flex: 10, justifyContent: "center", flexDirection: "row" }}
         >
           <TouchableOpacity
-            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
+            style={styles.BackButton}
             onPress={() => {
               router.back();
             }}
@@ -165,12 +228,21 @@ export default function IntervalsStudy() {
           </TouchableOpacity>
           <View style={{ flex: 0.03 }} />
           <TouchableOpacity
-            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
+            style={styles.BackButton}
             onPress={() => {
               router.navigate("/intervals/Learn");
             }}
           >
             <Text style={styles.BackText}>Learn</Text>
+          </TouchableOpacity>
+          <View style={{ flex: 0.03 }} />
+          <TouchableOpacity
+            style={styles.BackButton}
+            onPress={() => {
+              setModalVisible(true);
+            }}
+          >
+            <Text style={styles.BackText}>Cheat Sheet</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
@@ -224,5 +296,6 @@ const styles = StyleSheet.create({
     borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
+    padding: 12
   },
 });
