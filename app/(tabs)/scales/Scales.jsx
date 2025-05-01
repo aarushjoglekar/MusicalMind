@@ -16,7 +16,7 @@ const levels = ["Major + Nat Minor", "All Four"]
 export default function ScalesHome() {
   const [currentLevelIndex, setCurrentLevelIndex] = useState(0)
   const [currentLevel, setCurrentLevel] = useState(levels[currentLevelIndex])
-  
+
   const [ScalesHighScore, setScalesHighScore] = useState(0)
 
   useEffect(() => {
@@ -33,23 +33,27 @@ export default function ScalesHome() {
     checkCurrentLevel()
   }, [])
 
-  useEffect(() => {
+  function manageLevels() {
     setCurrentLevel(levels[currentLevelIndex])
-    if (currentLevelIndex == 0){
+    if (currentLevelIndex == 0) {
       readScore("scales0").then(
-        (highScore) => { 
+        (highScore) => {
           setScalesHighScore(highScore);
         }
       );
     } else {
       readScore("scales1").then(
-        (highScore) => { setScalesHighScore(highScore);}
+        (highScore) => { setScalesHighScore(highScore); }
       );
     }
+  }
+
+  useEffect(() => {
+    manageLevels()
   }, [currentLevelIndex])
 
   useFocusEffect(useCallback(() => {
-    setCurrentLevelIndex(currentLevelIndex)
+    manageLevels()
   }))
   return (
     <ImageBackground
@@ -65,10 +69,10 @@ export default function ScalesHome() {
           <HomeButton onPress={() => router.navigate('/scales/Learn')} text="Learn" />
         </View>
         <View style={styles.Section}>
-          <HomeButton onPress={() => router.navigate({pathname: '/scales/Study', params: {levelDeterminer: currentLevelIndex}})} text="Study" />
+          <HomeButton onPress={() => router.navigate({ pathname: '/scales/Study', params: { levelDeterminer: currentLevelIndex } })} text="Study" />
         </View>
         <View style={styles.Section}>
-          <HomeButton onPress={() => router.navigate({pathname: '/scales/Sprint', params: {levelDeterminer: currentLevelIndex}})} text={"Sprint\nPersonal Best: " + ScalesHighScore} />
+          <HomeButton onPress={() => router.navigate({ pathname: '/scales/Sprint', params: { levelDeterminer: currentLevelIndex } })} text={"Sprint\nPersonal Best: " + ScalesHighScore} />
         </View>
         <View style={styles.Section}>
           <HomeButton onPress={() => {

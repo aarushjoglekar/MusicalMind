@@ -33,7 +33,7 @@ export default function IntervalsHome() {
     checkCurrentLevel()
   }, [])
 
-  useEffect(() => {
+  function manageLevels() {
     setCurrentLevel(levels[currentLevelIndex])
     if (currentLevelIndex == 0){
       readScore("intervals0").then(
@@ -50,7 +50,17 @@ export default function IntervalsHome() {
         (highScore) => { setIntervalsHighScore(highScore);}
       );
     }
+  }
+
+  useEffect(() => {
+    manageLevels()
   }, [currentLevelIndex])
+
+  useFocusEffect(
+    useCallback(() => {
+      manageLevels()
+    }, [])
+  )
 
   useFocusEffect(useCallback(() => {
     setCurrentLevelIndex(currentLevelIndex)

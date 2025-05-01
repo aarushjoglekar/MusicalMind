@@ -4,10 +4,10 @@ import {
   StyleSheet,
   SafeAreaView,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Title from "../../../components/Title";
 import HomeButton from "../../../components/HomeButton";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import readScore from "../../../storageServices/readScore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -33,20 +33,31 @@ export default function TriadsHome() {
     checkCurrentLevel()
   }, [])
 
-  useEffect(() => {
+  function manageLevels() {
     setCurrentLevel(levels[currentLevelIndex])
-    if (currentLevelIndex == 0){
+    if (currentLevelIndex == 0) {
       readScore("triads0").then(
-        (highScore) => { 
+        (highScore) => {
           setTriadsHighScore(highScore);
         }
       );
     } else {
       readScore("triads1").then(
-        (highScore) => { setTriadsHighScore(highScore);}
+        (highScore) => { setTriadsHighScore(highScore); }
       );
     }
+  }
+
+  useEffect(() => {
+    manageLevels()
   }, [currentLevelIndex])
+
+  useFocusEffect(
+    useCallback(() => {
+      manageLevels()
+    }, [])
+  )
+
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/TriadsBackground.jpeg")}
@@ -58,13 +69,13 @@ export default function TriadsHome() {
         </View>
         <View style={{ flex: 5 }} />
         <View style={styles.Section}>
-          <HomeButton onPress={()=>router.navigate('/triads/Learn')} text="Learn"/>
+          <HomeButton onPress={() => router.navigate('/triads/Learn')} text="Learn" />
         </View>
         <View style={styles.Section}>
-          <HomeButton onPress={()=>router.navigate({pathname: '/triads/Study', params: {levelDeterminer: currentLevelIndex}})} text="Study"/>
+          <HomeButton onPress={() => router.navigate({ pathname: '/triads/Study', params: { levelDeterminer: currentLevelIndex } })} text="Study" />
         </View>
         <View style={styles.Section}>
-          <HomeButton onPress={()=>router.navigate({pathname: '/triads/Sprint', params: {levelDeterminer: currentLevelIndex}})} text={"Sprint\nPersonal Best: " + TriadsHighScore}/>
+          <HomeButton onPress={() => router.navigate({ pathname: '/triads/Sprint', params: { levelDeterminer: currentLevelIndex } })} text={"Sprint\nPersonal Best: " + TriadsHighScore} />
         </View>
         <View style={styles.Section}>
           <HomeButton onPress={() => {

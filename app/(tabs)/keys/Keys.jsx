@@ -28,7 +28,7 @@ export default function KeysHome() {
     checkCurrentLevel()
   }, [])
 
-  useEffect(() => {
+  function manageLevels() {
     setCurrentLevel(levels[currentLevelIndex])
     if (currentLevelIndex == 0){
       readScore("keys0").then(
@@ -43,10 +43,14 @@ export default function KeysHome() {
         (highScore) => { setKeysHighScore(highScore);}
       );
     }
+  }
+
+  useEffect(() => {
+    manageLevels()
   }, [currentLevelIndex])
 
   useFocusEffect(useCallback(() => {
-    setCurrentLevelIndex(currentLevelIndex)
+    manageLevels()
   }))
   return (
     <ImageBackground

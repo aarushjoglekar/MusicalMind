@@ -33,7 +33,11 @@ export default function ResetScores() {
               "Are you sure you want to reset your personal best?",
               [
                 { text: "Cancel", style: "cancel" },
-                { text: "Yes", onPress: () => updateScore("keys", 0) },
+                { text: "Yes", onPress: () => {
+                  updateScore("keys0", 0)
+                  updateScore("keys1", 0)
+                  updateScore("keys2", 0)
+                } },
               ]
             )
           }
@@ -47,7 +51,10 @@ export default function ResetScores() {
               "Are you sure you want to reset your personal best?",
               [
                 { text: "Cancel", style: "cancel" },
-                { text: "Yes", onPress: () => updateScore("scales", 0) },
+                { text: "Yes", onPress: () => {
+                  updateScore("scales0", 0)
+                  updateScore("scales1", 0)
+                } },
               ]
             )
           }
@@ -61,7 +68,11 @@ export default function ResetScores() {
               "Are you sure you want to reset your personal best?",
               [
                 { text: "Cancel", style: "cancel" },
-                { text: "Yes", onPress: () => updateScore("intervals", 0) },
+                { text: "Yes", onPress: () => {
+                  updateScore("intervals0", 0)
+                  updateScore("intervals1", 0)
+                  updateScore("intervals2", 0)
+                } },
               ]
             )
           }
@@ -75,7 +86,10 @@ export default function ResetScores() {
               "Are you sure you want to reset your personal best?",
               [
                 { text: "Cancel", style: "cancel" },
-                { text: "Yes", onPress: () => updateScore("triads", 0) },
+                { text: "Yes", onPress: () => {
+                  updateScore("triads0", 0)
+                  updateScore("triads1", 0)
+                } },
               ]
             )
           }
@@ -90,12 +104,17 @@ export default function ResetScores() {
               [
                 { text: "Cancel", style: "cancel" },
                 { text: "Yes", onPress: () => {
-                  updateScore("keys", 0) 
-                  updateScore("scales", 0) 
-                  updateScore("intervals", 0) 
-                  updateScore("triads", 0) 
-                  }
-                },
+                  updateScore("keys0", 0)
+                  updateScore("keys1", 0)
+                  updateScore("keys2", 0)
+                  updateScore("scales0", 0)
+                  updateScore("scales1", 0)
+                  updateScore("intervals0", 0)
+                  updateScore("intervals1", 0)
+                  updateScore("intervals2", 0)
+                  updateScore("triads0", 0)
+                  updateScore("triads1", 0)
+                } },
               ]
             )
           }
