@@ -56,6 +56,7 @@ export default function KeysHome() {
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/KeysBackground.jpeg")}
       style={styles.container}
+      blurRadius={4}
     >
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>

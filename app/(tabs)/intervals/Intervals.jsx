@@ -69,6 +69,7 @@ export default function IntervalsHome() {
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/IntervalsBackground.jpeg")}
       style={styles.container}
+      blurRadius={4}
     >
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>

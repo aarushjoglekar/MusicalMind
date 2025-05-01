@@ -100,6 +100,7 @@ export default function TriadsSprint() {
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/SprintBackground.jpeg")}
       style={styles.container}
+      blurRadius={5}
     >
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>

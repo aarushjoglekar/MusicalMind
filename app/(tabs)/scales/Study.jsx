@@ -99,6 +99,7 @@ export default function ScalesStudy() {
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
       style={{ flex: 1 }}
+      blurRadius={9}
     >
       <SafeAreaView style={styles.container}>
         <Modal

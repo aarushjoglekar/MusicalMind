@@ -59,6 +59,7 @@ export default function ScalesHome() {
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/ScalesBackground.jpeg")}
       style={styles.container}
+      blurRadius={8}
     >
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>

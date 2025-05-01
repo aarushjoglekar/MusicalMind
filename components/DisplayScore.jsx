@@ -19,6 +19,7 @@ export default function DisplayScore({ scoreValue, onPress }) {
     <ImageBackground
       source={require("./../assets/images/BackgroundImages/DisplayScoreBackground.jpeg")}
       style={styles.container}
+      blurRadius={6}
     >
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 3 }} />

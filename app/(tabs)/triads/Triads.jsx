@@ -62,6 +62,7 @@ export default function TriadsHome() {
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/TriadsBackground.jpeg")}
       style={styles.container}
+      blurRadius={10}
     >
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>

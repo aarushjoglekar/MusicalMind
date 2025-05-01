@@ -33,6 +33,7 @@ export default function Home() {
     <ImageBackground
       source={require("./../../../assets/images//BackgroundImages/Theory4MusiciansBackground.jpg")}
       style={styles.container}
+      blurRadius={6}
     >
       <SafeAreaView style={styles.container}>
         <View style={{ flex: 10, justifyContent: "flex-end" }}>
