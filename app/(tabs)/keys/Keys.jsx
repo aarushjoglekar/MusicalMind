@@ -30,17 +30,17 @@ export default function KeysHome() {
 
   function manageLevels() {
     setCurrentLevel(levels[currentLevelIndex])
-    if (currentLevelIndex == 0){
+    if (currentLevelIndex == 0) {
       readScore("keys0").then(
-        (highScore) => { setKeysHighScore(highScore);}
+        (highScore) => { setKeysHighScore(highScore); }
       );
-    } else if (currentLevelIndex == 1){
+    } else if (currentLevelIndex == 1) {
       readScore("keys1").then(
-        (highScore) => { setKeysHighScore(highScore);}
+        (highScore) => { setKeysHighScore(highScore); }
       );
     } else {
       readScore("keys2").then(
-        (highScore) => { setKeysHighScore(highScore);}
+        (highScore) => { setKeysHighScore(highScore); }
       );
     }
   }

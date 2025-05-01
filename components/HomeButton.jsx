@@ -2,11 +2,11 @@ import { TouchableOpacity, Text, StyleSheet, Dimensions, useWindowDimensions } f
 import React from "react";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
-export default function HomeButton({ onPress, text }) {
+export default function HomeButton({ onPress, text, disabled = false }) {
   const { width, height} = useWindowDimensions();
 
   return (
-    <TouchableOpacity style={[styles.Button, {width: width * 0.5, height: height * 0.065,}]} onPress={onPress}>
+    <TouchableOpacity disabled={disabled} style={[styles.Button, {width: width * 0.5, height: height * 0.065,}]} onPress={onPress}>
       <Text style={styles.Text}>{text}</Text>
     </TouchableOpacity>
   );

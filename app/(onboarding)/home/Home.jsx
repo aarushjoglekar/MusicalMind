@@ -4,6 +4,7 @@ import {
   StyleSheet,
   SafeAreaView,
   useWindowDimensions,
+  Text,
 } from "react-native";
 import React, { useCallback, useState } from "react";
 import { router, useFocusEffect } from "expo-router";
@@ -11,24 +12,10 @@ import HomePageButtonSection from "../../../components/HomePageButtonSection";
 import Title from "../../../components/Title";
 import readDailyStreak from "../../../storageServices/readDailyStreak";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 export default function Home() {
   const { width, height } = useWindowDimensions();
-
-  const [clef, setClef] = useState();
-  AsyncStorage.getItem('Clef').then((storageClef) => {
-    setClef(storageClef)
-  })
-  const [dailyStreak, setDailyStreak] = useState();
-  useFocusEffect(
-    useCallback(() => {
-      async function manageDailyStreak() {
-        const dailyStreak = await readDailyStreak()
-        setDailyStreak(dailyStreak)
-      }
-      manageDailyStreak()
-    })
-  )
   return (
     <ImageBackground
       source={require("./../../../assets/images//BackgroundImages/Theory4MusiciansBackground.jpg")}
@@ -42,38 +29,35 @@ export default function Home() {
         <View style={{ flex: 20 }} />
         <HomePageButtonSection
           disabled={true}
-          text={`Daily Streak: ${dailyStreak}`}
+          text={`Daily Streak: 0`}
         />
         <View style={{ height: 40 }} />
         <HomePageButtonSection
-          onPress={() => router.push("../../(onboarding)/home")}
+          disabled
           text="Tutorial"
         />
         <View style={{ height: 40 }} />
         <HomePageButtonSection
-          onPress={() => router.navigate("/home/LearnToReadMusic")}
           text="Reading Music"
+          disabled
         />
         <View style={{ height: 40 }} />
         <HomePageButtonSection
-          onPress={() => router.navigate("/home/ResetScores")}
           text="Reset Scores"
+          disabled
         />
         <View style={{ height: 40 }} />
         <HomePageButtonSection
-          onPress={() => {
-            let otherClef;
-            if (clef == "Treble") {
-              otherClef = "Bass"
-            } else {
-              otherClef = "Treble"
-            }
-            AsyncStorage.setItem("Clef", otherClef)
-            setClef(otherClef)
-          }}
-          text={"Toggle Clef\nCurrent Clef: " + clef}
+          disabled
+          text={"Toggle Clef\nCurrent Clef: Treble"}
         />
-        <View style={{ height: height * 0.1 }} />
+        <View style={{ height: height * 0.1, justifyContent: 'flex-end', paddingBottom: 10 }} >
+          <View style={styles.instruction}>
+            <Text style={styles.text}>
+              Use the tab bar to try a new topic. Let's try Keys!
+            </Text>
+          </View>
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -82,5 +66,18 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  instruction: {
+    backgroundColor: "#eef0ff",
+    padding: 15,
+    borderWidth: 1.4
+  },
+
+  text: {
+    color: "#000",
+    textAlign: "center",
+    fontFamily: "Verdana",
+    fontSize: RFPercentage(2),
   },
 });

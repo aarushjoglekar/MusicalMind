@@ -19,7 +19,7 @@ export default function Loading() {
     if (loaded || error) {
       AsyncStorage.getItem("ViewedOnboarding").then((ViewedOnboarding) => {
         if (ViewedOnboarding == "true") {
-          router.navigate("/home");
+          router.navigate("/(tabs)/home");
           const today = new Date();
           const todayArray = [
             today.getUTCMonth() + 1,
@@ -35,7 +35,8 @@ export default function Loading() {
           });
         } else {
           updateDailyStreak(0).then(() => {
-            router.navigate('/Onboarding');
+            router.navigate('/(onboarding)/home');
+            AsyncStorage.setItem("ViewedOnboarding", "true")
           })
         }
       })
