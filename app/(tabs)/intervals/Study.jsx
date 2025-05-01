@@ -84,6 +84,8 @@ export default function IntervalsStudy() {
       setIsNearBottom(100);
     }
   };
+
+  const [total, setTotal] = useState(0)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
@@ -156,6 +158,7 @@ export default function IntervalsStudy() {
               if (correctAnswerSpot == 0) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
               }
+              setTotal(prev => prev + 1)
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -173,6 +176,7 @@ export default function IntervalsStudy() {
               if (correctAnswerSpot == 1) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
               }
+              setTotal(prev => prev + 1)
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -190,6 +194,7 @@ export default function IntervalsStudy() {
               if (correctAnswerSpot == 2) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
               }
+              setTotal(prev => prev + 1)
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -207,6 +212,7 @@ export default function IntervalsStudy() {
               if (correctAnswerSpot == 3) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
               }
+              setTotal(prev => prev + 1)
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -247,7 +253,7 @@ export default function IntervalsStudy() {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
-          <ScoreButton Score={IntervalsStudyScore} />
+          <ScoreButton Score={IntervalsStudyScore} Total={total}/>
         </View>
       </SafeAreaView>
     </ImageBackground>

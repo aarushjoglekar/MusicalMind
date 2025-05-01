@@ -62,6 +62,8 @@ export default function KeysStudy() {
     }
   };
   const [modalVisible, setModalVisible] = useState(false)
+
+  const [total, setTotal] = useState(0)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
@@ -130,6 +132,7 @@ export default function KeysStudy() {
               if (correctAnswerSpot == 0) {
                 SetKeysStudyScore(KeysStudyScore + 1);
               }
+              setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -147,6 +150,7 @@ export default function KeysStudy() {
               if (correctAnswerSpot == 1) {
                 SetKeysStudyScore(KeysStudyScore + 1);
               }
+              setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -164,6 +168,7 @@ export default function KeysStudy() {
               if (correctAnswerSpot == 2) {
                 SetKeysStudyScore(KeysStudyScore + 1);
               }
+              setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -181,6 +186,7 @@ export default function KeysStudy() {
               if (correctAnswerSpot == 3) {
                 SetKeysStudyScore(KeysStudyScore + 1);
               }
+              setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -221,7 +227,7 @@ export default function KeysStudy() {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
-          <ScoreButton Score={KeysStudyScore} />
+          <ScoreButton Score={KeysStudyScore} Total={total}/>
         </View>
       </SafeAreaView>
     </ImageBackground>

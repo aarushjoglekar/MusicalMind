@@ -94,7 +94,8 @@ export default function TriadsStudy() {
       setIsNearBottom(100);
     }
   };
-
+  
+  const [total, setTotal] = useState(0)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
@@ -171,6 +172,7 @@ export default function TriadsStudy() {
                   if (basicCorrectLevelSpot == 1) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetTriadsProblem(newProblem);
                   if (newProblem[1].includes("Major")) {
@@ -196,6 +198,7 @@ export default function TriadsStudy() {
                   if (basicCorrectLevelSpot == 2) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetTriadsProblem(newProblem);
                   if (newProblem[1].includes("Major")) {
@@ -225,6 +228,7 @@ export default function TriadsStudy() {
                   if (correctAnswerSpot == 0) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -242,6 +246,7 @@ export default function TriadsStudy() {
                   if (correctAnswerSpot == 1) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -259,6 +264,7 @@ export default function TriadsStudy() {
                   if (correctAnswerSpot == 2) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -276,6 +282,7 @@ export default function TriadsStudy() {
                   if (correctAnswerSpot == 3) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -318,7 +325,7 @@ export default function TriadsStudy() {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
-          <ScoreButton Score={TriadsStudyScore} />
+          <ScoreButton Score={TriadsStudyScore} Total={total}/>
         </View>
       </SafeAreaView>
     </ImageBackground>

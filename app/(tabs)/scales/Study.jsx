@@ -95,6 +95,8 @@ export default function ScalesStudy() {
     }
   };
   const [modalVisible, setModalVisible] = useState(false)
+
+  const [total, setTotal] = useState(0)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
@@ -175,6 +177,7 @@ export default function ScalesStudy() {
                   if (basicCorrectLevelSpot == 1) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetScalesProblem(newProblem);
                   if (newProblem[1].includes("Major")) {
@@ -200,6 +203,7 @@ export default function ScalesStudy() {
                   if (basicCorrectLevelSpot == 2) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetScalesProblem(newProblem);
                   if (newProblem[1].includes("Major")) {
@@ -230,6 +234,7 @@ export default function ScalesStudy() {
                   if (correctAnswerSpot == 0) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -247,6 +252,7 @@ export default function ScalesStudy() {
                   if (correctAnswerSpot == 1) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -264,6 +270,7 @@ export default function ScalesStudy() {
                   if (correctAnswerSpot == 2) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -281,6 +288,7 @@ export default function ScalesStudy() {
                   if (correctAnswerSpot == 3) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
                   }
+                  setTotal(prev => prev + 1)
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -323,7 +331,7 @@ export default function ScalesStudy() {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
-          <ScoreButton Score={ScalesStudyScore} />
+          <ScoreButton Score={ScalesStudyScore} Total={total}/>
         </View>
       </SafeAreaView>
     </ImageBackground>
