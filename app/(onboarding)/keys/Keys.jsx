@@ -46,12 +46,12 @@ export default function KeysHome() {
         <View style={{ flex: 39, justifyContent: 'flex-end' }}>
           <View style={styles.instruction}>
             <Text style={styles.text}>
-              Click to grasp the new concept{'\n'}
+              Click learn to grasp the new concept{'\n'}
               Click study to practice with flashcards{'\n'}
               Click sprint to take fun timed quizzes{'\n'}
               Toggle difficulty to practice specific skills
             </Text>
-            <TouchableOpacity onPress={() => router.replace("../../(tabs)/home")} style={{ backgroundColor: "#EFEEEE", padding: 10, borderWidth: 1, borderRadius: 10, marginTop: 10 }}>
+            <TouchableOpacity onPress={() => router.replace("../../(tabs)/home")} style={{ backgroundColor: "#EFEEEE", padding: 10, borderWidth: 1, borderRadius: 6, marginTop: 10 }}>
               <Text style={[styles.text, { fontSize: RFPercentage(1.7) }]}>I'm ready to go!</Text>
             </TouchableOpacity>
           </View>
