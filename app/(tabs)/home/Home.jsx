@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   useWindowDimensions,
 } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { router, useFocusEffect } from "expo-router";
 import HomePageButtonSection from "../../../components/HomePageButtonSection";
 import Title from "../../../components/Title";
@@ -47,12 +47,12 @@ export default function Home() {
         <View style={{height: 40}}/>
         <HomePageButtonSection
           onPress={() => router.push("/../Onboarding")}
-          text="How To Use This App"
+          text="Tutorial"
         />
         <View style={{ height: 40 }} />
         <HomePageButtonSection
           onPress={() => router.navigate("/home/LearnToReadMusic")}
-          text="Learn To Read Music"
+          text="Reading Music"
         />
         <View style={{ height: 40 }} />
         <HomePageButtonSection
