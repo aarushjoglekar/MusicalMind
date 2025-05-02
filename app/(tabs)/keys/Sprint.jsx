@@ -17,6 +17,7 @@ import Title from "../../../components/Title";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
+import CorrectOrWrong from "../../../components/CorrectOrWrong";
 
 function setProblem(majorOrMinorDeterminer) {
   let KeysProblem = KeysProblemFunction(KeysProblems, majorOrMinorDeterminer);
@@ -28,7 +29,7 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function KeysSprint() {
-  const {width, height} = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   const { majorOrMinorDeterminer } = useLocalSearchParams()
 
@@ -62,8 +63,13 @@ export default function KeysSprint() {
 
   function disableAnswerBriefly() {
     setIsAnswerEnabled(false);
+    setIsVisible(true)
+    setTimeout(() => { setIsVisible(false) }, 600)
     setTimeout(() => setIsAnswerEnabled(true), 700);
   }
+
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/SprintBackground.jpeg")}
@@ -71,21 +77,25 @@ export default function KeysSprint() {
       blurRadius={5}
     >
       <SafeAreaView style={styles.container}>
+        <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible} />
         <View style={{ flex: 10, justifyContent: "flex-end" }}>
           <Title title="Sprint" />
         </View>
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
-          <Image style={[styles.StudyKeysImage, {height: height * 0.25, width: height * 0.25, resizeMode: "contain"}]} source={imageSource} />
+          <Image style={[styles.StudyKeysImage, { height: height * 0.25, width: height * 0.25, resizeMode: "contain" }]} source={imageSource} />
         </View>
         <View style={{ flex: 5 }} />
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetKeysSprintScore(KeysSprintScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
@@ -99,10 +109,13 @@ export default function KeysSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetKeysSprintScore(KeysSprintScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
@@ -116,10 +129,13 @@ export default function KeysSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetKeysSprintScore(KeysSprintScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
@@ -133,10 +149,13 @@ export default function KeysSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetKeysSprintScore(KeysSprintScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
@@ -149,7 +168,7 @@ export default function KeysSprint() {
         </View>
         <View style={{ flex: 10, justifyContent: "center" }}>
           <TouchableOpacity
-            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
+            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
             onPress={() => {
               router.navigate({
                 pathname: "/keys/DisplayScore",

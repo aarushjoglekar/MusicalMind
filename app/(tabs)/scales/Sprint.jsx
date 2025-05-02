@@ -19,6 +19,7 @@ import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CorrectOrWrong from "../../../components/CorrectOrWrong";
 
 function setProblem(currentClef, levelDeterminer) {
   if (levelDeterminer == 0) {
@@ -34,7 +35,7 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function ScalesSprint() {
-  const {width, height} = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   const { levelDeterminer } = useLocalSearchParams()
 
@@ -56,7 +57,7 @@ export default function ScalesSprint() {
       clef.current = clefVar;
       const problem = setProblem(clef.current, levelDeterminer);
       ResetScalesProblem(problem);
-      if (problem[1].includes("Major")){
+      if (problem[1].includes("Major")) {
         setText1(problem[1])
         setText2(problem[2])
         setBasicCorrectLevelSpot(1)
@@ -92,8 +93,13 @@ export default function ScalesSprint() {
   );
   function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
+    setIsVisible(true)
+    setTimeout(() => { setIsVisible(false) }, 600)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
+
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/SprintBackground.jpeg")}
@@ -101,31 +107,35 @@ export default function ScalesSprint() {
       blurRadius={5}
     >
       <SafeAreaView style={styles.container}>
+        <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible} />
         <View style={{ flex: 10, justifyContent: "flex-end" }}>
           <Title title="Sprint" />
         </View>
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
           <Image
-            style={[styles.StudyScalesImage, {width: width, height: width * 97 / 431, resizeMode: "contain"}]}
+            style={[styles.StudyScalesImage, { width: width, height: width * 97 / 431, resizeMode: "contain" }]}
             source={imageSource}
           />
         </View>
         <View style={{ flex: 5 }} />
         {levelDeterminer == 0 ?
           <>
-          <View style={{ flex: 12 }} />
+            <View style={{ flex: 12 }} />
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (basicCorrectLevelSpot == 1) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetScalesProblem(newProblem);
-                  if (newProblem[1].includes("Major")){
+                  if (newProblem[1].includes("Major")) {
                     setText1(newProblem[1])
                     setText2(newProblem[2])
                     setBasicCorrectLevelSpot(1)
@@ -143,14 +153,17 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (basicCorrectLevelSpot == 2) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetScalesProblem(newProblem);
-                  if (newProblem[1].includes("Major")){
+                  if (newProblem[1].includes("Major")) {
                     setText1(newProblem[1])
                     setText2(newProblem[2])
                     setBasicCorrectLevelSpot(1)
@@ -172,10 +185,13 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (correctAnswerSpot == 0) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
@@ -189,10 +205,13 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (correctAnswerSpot == 1) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
@@ -206,10 +225,13 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (correctAnswerSpot == 2) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
@@ -223,10 +245,13 @@ export default function ScalesSprint() {
             <View style={styles.StudySection}>
               <TouchableOpacity
                 disabled={!isAnswerEnabled}
-                style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
                 onPress={() => {
                   if (correctAnswerSpot == 3) {
                     SetScalesSprintScore(ScalesSprintScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
@@ -242,7 +267,7 @@ export default function ScalesSprint() {
 
         <View style={{ flex: 10, justifyContent: "center" }}>
           <TouchableOpacity
-            style={[styles.BackButton, {minWidth: width * 0.18, height: height * 0.053}]}
+            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
             onPress={() => {
               router.navigate({
                 pathname: "/scales/DisplayScore",

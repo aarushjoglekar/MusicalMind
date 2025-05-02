@@ -20,6 +20,7 @@ import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CorrectOrWrong from "../../../components/CorrectOrWrong";
 
 function setProblem(currentClef, levelDeterminer) {
   if (levelDeterminer == 0) {
@@ -37,7 +38,7 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function IntervalsSprint() {
-  const {width, height} = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   const { levelDeterminer } = useLocalSearchParams()
 
@@ -83,8 +84,13 @@ export default function IntervalsSprint() {
 
   function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
+    setIsVisible(true)
+    setTimeout(() => { setIsVisible(false) }, 600)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
+
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/SprintBackground.jpeg")}
@@ -92,13 +98,14 @@ export default function IntervalsSprint() {
       blurRadius={5}
     >
       <SafeAreaView style={styles.container}>
+        <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible} />
         <View style={{ flex: 10, justifyContent: "flex-end" }}>
           <Title title="Sprint" />
         </View>
         <View style={{ flex: 5 }} />
         <View style={{ flex: 35, justifyContent: "center" }}>
           <Image
-            style={[styles.StudyIntervalsImage, {width: width * 0.875, height: width * 0.55, resizeMode: 'contain'}]}
+            style={[styles.StudyIntervalsImage, { width: width * 0.875, height: width * 0.55, resizeMode: 'contain' }]}
             source={imageSource}
           />
         </View>
@@ -106,10 +113,13 @@ export default function IntervalsSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height* 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetIntervalsSprintScore(IntervalsSprintScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
@@ -123,10 +133,13 @@ export default function IntervalsSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height* 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetIntervalsSprintScore(IntervalsSprintScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
@@ -140,10 +153,13 @@ export default function IntervalsSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height* 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetIntervalsSprintScore(IntervalsSprintScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
@@ -157,10 +173,13 @@ export default function IntervalsSprint() {
         <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height* 0.064, width: width * 3 / 5}]}
+            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetIntervalsSprintScore(IntervalsSprintScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
@@ -173,7 +192,7 @@ export default function IntervalsSprint() {
         </View>
         <View style={{ flex: 10, justifyContent: "center" }}>
           <TouchableOpacity
-            style={[styles.BackButton, {width: width * 0.18, height: height * 0.053,}]}
+            style={[styles.BackButton, { width: width * 0.18, height: height * 0.053, }]}
             onPress={() => {
               router.navigate({
                 pathname: "/intervals/DisplayScore",

@@ -23,6 +23,7 @@ import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BlurView } from "expo-blur";
 import { AntDesign } from "@expo/vector-icons";
+import CorrectOrWrong from "../../../components/CorrectOrWrong";
 
 function setProblem(currentClef, levelDeterminer) {
   if (levelDeterminer == 0) {
@@ -79,6 +80,8 @@ export default function ScalesStudy() {
   }, [ScalesProblem]);
   function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
+    setIsVisible(true)
+    setTimeout(() => {setIsVisible(false)}, 600)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
 
@@ -97,6 +100,9 @@ export default function ScalesStudy() {
   const [modalVisible, setModalVisible] = useState(false)
 
   const [total, setTotal] = useState(0)
+
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
@@ -104,6 +110,7 @@ export default function ScalesStudy() {
       blurRadius={9}
     >
       <SafeAreaView style={styles.container}>
+      <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible}/>
         <Modal
           visible={modalVisible}
           animationType="fade"
@@ -176,6 +183,9 @@ export default function ScalesStudy() {
                 onPress={() => {
                   if (basicCorrectLevelSpot == 1) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
@@ -202,6 +212,9 @@ export default function ScalesStudy() {
                 onPress={() => {
                   if (basicCorrectLevelSpot == 2) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
@@ -233,6 +246,9 @@ export default function ScalesStudy() {
                 onPress={() => {
                   if (correctAnswerSpot == 0) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
@@ -251,6 +267,9 @@ export default function ScalesStudy() {
                 onPress={() => {
                   if (correctAnswerSpot == 1) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
@@ -269,6 +288,9 @@ export default function ScalesStudy() {
                 onPress={() => {
                   if (correctAnswerSpot == 2) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));
@@ -287,6 +309,9 @@ export default function ScalesStudy() {
                 onPress={() => {
                   if (correctAnswerSpot == 3) {
                     SetScalesStudyScore(ScalesStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   ResetScalesProblem(setProblem(clef.current, levelDeterminer));

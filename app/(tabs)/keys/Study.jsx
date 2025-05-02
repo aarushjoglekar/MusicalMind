@@ -21,6 +21,7 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 import ScoreButton from "../../../components/ScoreButton";
 import { BlurView } from "expo-blur";
 import { AntDesign } from "@expo/vector-icons";
+import CorrectOrWrong from "../../../components/CorrectOrWrong"
 
 function setProblem(majorOrMinorDeterminer) {
   let KeysProblem = KeysProblemFunction(KeysProblems, majorOrMinorDeterminer);
@@ -47,6 +48,8 @@ export default function KeysStudy() {
   }, [KeysProblem]);
   function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
+    setIsVisible(true)
+    setTimeout(() => {setIsVisible(false)}, 600)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
 
@@ -64,6 +67,9 @@ export default function KeysStudy() {
   const [modalVisible, setModalVisible] = useState(false)
 
   const [total, setTotal] = useState(0)
+
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
@@ -71,6 +77,7 @@ export default function KeysStudy() {
       blurRadius={9}
     >
       <SafeAreaView style={styles.container}>
+        <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible}/>
         <Modal
           visible={modalVisible}
           animationType="fade"
@@ -131,6 +138,9 @@ export default function KeysStudy() {
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetKeysStudyScore(KeysStudyScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
@@ -149,6 +159,9 @@ export default function KeysStudy() {
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetKeysStudyScore(KeysStudyScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
@@ -167,6 +180,9 @@ export default function KeysStudy() {
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetKeysStudyScore(KeysStudyScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
@@ -185,6 +201,9 @@ export default function KeysStudy() {
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetKeysStudyScore(KeysStudyScore + 1);
+                setIsCorrect(true)
+              } else {
+                setIsCorrect(false)
               }
               setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));

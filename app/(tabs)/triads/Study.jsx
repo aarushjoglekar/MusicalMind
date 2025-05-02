@@ -22,6 +22,7 @@ import ScoreButton from "../../../components/ScoreButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BlurView } from "expo-blur";
 import { AntDesign } from "@expo/vector-icons";
+import CorrectOrWrong from "../../../components/CorrectOrWrong";
 
 function setProblem(currentClef, levelDeterminer) {
   if (levelDeterminer == 0) {
@@ -78,6 +79,8 @@ export default function TriadsStudy() {
   }, [TriadsProblem]);
   function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
+    setIsVisible(true)
+    setTimeout(() => {setIsVisible(false)}, 600)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
 
@@ -96,6 +99,9 @@ export default function TriadsStudy() {
   };
   
   const [total, setTotal] = useState(0)
+
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
@@ -103,6 +109,7 @@ export default function TriadsStudy() {
       blurRadius={9}
     >
       <SafeAreaView style={styles.container}>
+      <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible}/>
         <Modal
           visible={modalVisible}
           animationType="fade"
@@ -171,6 +178,9 @@ export default function TriadsStudy() {
                 onPress={() => {
                   if (basicCorrectLevelSpot == 1) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
@@ -197,6 +207,9 @@ export default function TriadsStudy() {
                 onPress={() => {
                   if (basicCorrectLevelSpot == 2) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
@@ -227,6 +240,9 @@ export default function TriadsStudy() {
                 onPress={() => {
                   if (correctAnswerSpot == 0) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
@@ -245,6 +261,9 @@ export default function TriadsStudy() {
                 onPress={() => {
                   if (correctAnswerSpot == 1) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
@@ -263,6 +282,9 @@ export default function TriadsStudy() {
                 onPress={() => {
                   if (correctAnswerSpot == 2) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
@@ -281,6 +303,9 @@ export default function TriadsStudy() {
                 onPress={() => {
                   if (correctAnswerSpot == 3) {
                     SetTriadsStudyScore(TriadsStudyScore + 1);
+                    setIsCorrect(true)
+                  } else {
+                    setIsCorrect(false)
                   }
                   setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
