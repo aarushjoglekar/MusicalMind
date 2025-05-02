@@ -1,19 +1,19 @@
-import { Text, TouchableOpacity, StyleSheet, Dimensions, useWindowDimensions } from "react-native";
+import { Text, View, StyleSheet, useWindowDimensions } from "react-native";
 import React from "react";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
-export default function ScoreButton({ Score, Total = null }) {
-  const {width, height} = useWindowDimensions();
+export default function ScoreButton({ Score, Total }) {
+  const { width, height } = useWindowDimensions();
 
   return (
-    <TouchableOpacity disabled={true} style={[styles.ScoreButton, {
+    <View style={[styles.ScoreButton, {
       marginBottom: 2,
       marginRight: 2
     }]}>
       <Text style={{ alignSelf: "center", fontFamily: "Verdana", fontSize: RFPercentage(1.7) }}>
-        Score: {Score}{Total == null ? null : " / " + Total}
+        Score: {Score + " / " + Total}
       </Text>
-    </TouchableOpacity>
+    </View>
   );
 }
 

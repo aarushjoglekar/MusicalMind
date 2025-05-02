@@ -91,6 +91,8 @@ export default function IntervalsSprint() {
 
   const [isCorrect, setIsCorrect] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+
+  const [total, setTotal] = useState(0)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/SprintBackground.jpeg")}
@@ -121,6 +123,7 @@ export default function IntervalsSprint() {
               } else {
                 setIsCorrect(false)
               }
+              setTotal(prev => prev + 1)
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -141,6 +144,7 @@ export default function IntervalsSprint() {
               } else {
                 setIsCorrect(false)
               }
+              setTotal(prev => prev + 1)
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -161,6 +165,7 @@ export default function IntervalsSprint() {
               } else {
                 setIsCorrect(false)
               }
+              setTotal(prev => prev + 1)
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -181,6 +186,7 @@ export default function IntervalsSprint() {
               } else {
                 setIsCorrect(false)
               }
+              setTotal(prev => prev + 1)
               ResetIntervalsProblem(setProblem(clef.current, levelDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -204,7 +210,7 @@ export default function IntervalsSprint() {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
-          <ScoreButton Score={IntervalsSprintScore} />
+          <ScoreButton Score={IntervalsSprintScore} Total={total}/>
         </View>
       </SafeAreaView>
     </ImageBackground>

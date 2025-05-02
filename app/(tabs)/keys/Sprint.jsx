@@ -70,6 +70,8 @@ export default function KeysSprint() {
 
   const [isCorrect, setIsCorrect] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+
+  const [total, setTotal] = useState(0)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/SprintBackground.jpeg")}
@@ -97,6 +99,7 @@ export default function KeysSprint() {
               } else {
                 setIsCorrect(false)
               }
+              setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -117,6 +120,7 @@ export default function KeysSprint() {
               } else {
                 setIsCorrect(false)
               }
+              setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -137,6 +141,7 @@ export default function KeysSprint() {
               } else {
                 setIsCorrect(false)
               }
+              setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -157,6 +162,7 @@ export default function KeysSprint() {
               } else {
                 setIsCorrect(false)
               }
+              setTotal(prev => prev + 1)
               ResetKeysProblem(setProblem(majorOrMinorDeterminer));
               answerOrder = shuffle(answerOrder);
               correctAnswerSpot = answerOrder.indexOf(1);
@@ -180,7 +186,7 @@ export default function KeysSprint() {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
-          <ScoreButton Score={KeysSprintScore} />
+          <ScoreButton Score={KeysSprintScore} Total={total}/>
         </View>
       </SafeAreaView>
     </ImageBackground>

@@ -102,6 +102,8 @@ export default function TriadsSprint() {
 
   const [isCorrect, setIsCorrect] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+
+  const [total, setTotal] = useState(0)
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/SprintBackground.jpeg")}
@@ -135,6 +137,7 @@ export default function TriadsSprint() {
                   } else {
                     setIsCorrect(false)
                   }
+                  setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetTriadsProblem(newProblem);
                   if (newProblem[1].includes("Major")) {
@@ -163,6 +166,7 @@ export default function TriadsSprint() {
                   } else {
                     setIsCorrect(false)
                   }
+                  setTotal(prev => prev + 1)
                   const newProblem = setProblem(clef.current, levelDeterminer)
                   ResetTriadsProblem(newProblem);
                   if (newProblem[1].includes("Major")) {
@@ -195,6 +199,7 @@ export default function TriadsSprint() {
                   } else {
                     setIsCorrect(false)
                   }
+                  setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -215,6 +220,7 @@ export default function TriadsSprint() {
                   } else {
                     setIsCorrect(false)
                   }
+                  setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -235,6 +241,7 @@ export default function TriadsSprint() {
                   } else {
                     setIsCorrect(false)
                   }
+                  setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -255,6 +262,7 @@ export default function TriadsSprint() {
                   } else {
                     setIsCorrect(false)
                   }
+                  setTotal(prev => prev + 1)
                   ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
                   answerOrder = shuffle(answerOrder);
                   correctAnswerSpot = answerOrder.indexOf(1);
@@ -280,7 +288,7 @@ export default function TriadsSprint() {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 6 }}>
-          <ScoreButton Score={TriadsSprintScore} />
+          <ScoreButton Score={TriadsSprintScore} Total={total}/>
         </View>
       </SafeAreaView>
     </ImageBackground>
