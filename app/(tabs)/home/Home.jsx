@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   useWindowDimensions,
 } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { router, useFocusEffect } from "expo-router";
 import HomePageButtonSection from "../../../components/HomePageButtonSection";
 import Title from "../../../components/Title";
@@ -17,7 +17,12 @@ export default function Home() {
 
   const [clef, setClef] = useState();
   AsyncStorage.getItem('Clef').then((storageClef) => {
-    setClef(storageClef)
+    if (storageClef == null) {
+      setClef("Treble")
+      AsyncStorage.setItem('Clef', "Treble")
+    } else {
+      setClef(storageClef)
+    }
   })
   const [dailyStreak, setDailyStreak] = useState();
   useFocusEffect(
