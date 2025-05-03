@@ -35,19 +35,19 @@ export default function IntervalsHome() {
 
   function manageLevels() {
     setCurrentLevel(levels[currentLevelIndex])
-    if (currentLevelIndex == 0){
+    if (currentLevelIndex == 0) {
       readScore("intervals0").then(
-        (highScore) => { 
+        (highScore) => {
           setIntervalsHighScore(highScore);
         }
       );
-    } else if (currentLevelIndex == 1){
+    } else if (currentLevelIndex == 1) {
       readScore("intervals1").then(
-        (highScore) => { setIntervalsHighScore(highScore);}
+        (highScore) => { setIntervalsHighScore(highScore); }
       );
     } else {
       readScore("intervals2").then(
-        (highScore) => { setIntervalsHighScore(highScore);}
+        (highScore) => { setIntervalsHighScore(highScore); }
       );
     }
   }
@@ -72,26 +72,15 @@ export default function IntervalsHome() {
       blurRadius={4}
     >
       <SafeAreaView style={styles.container}>
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Intervals" />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={styles.Section}>
-          <HomeButton onPress={()=>router.navigate('/intervals/Learn')} text="Learn"/>
-        </View>
-        <View style={styles.Section}>
-          <HomeButton onPress={()=>router.navigate({pathname: '/intervals/Study', params: {levelDeterminer: currentLevelIndex}})} text="Study"/>
-        </View>
-        <View style={styles.Section}>
-          <HomeButton onPress={()=>router.navigate({pathname: '/intervals/Sprint', params: {levelDeterminer: currentLevelIndex}})} text={"Sprint\nPersonal Best: " + IntervalsHighScore}/>
-        </View>
-        <View style={styles.Section}>
-          <HomeButton onPress={()=>{
-            setCurrentLevelIndex((currentLevelIndex + 1) % 3)
-            AsyncStorage.setItem("IntervalsLevel", levels[(currentLevelIndex + 1) % 3])
-          }} text={"Current Level:\n" + currentLevel}/>
-        </View>
-        <View style={{ flex: 39 }} />
+        <Title title="Intervals" />
+        <View style={{ height: 25 }} />
+        <HomeButton onPress={() => router.navigate('/intervals/Learn')} text="Learn" />
+        <HomeButton onPress={() => router.navigate({ pathname: '/intervals/Study', params: { levelDeterminer: currentLevelIndex } })} text="Study" />
+        <HomeButton onPress={() => router.navigate({ pathname: '/intervals/Sprint', params: { levelDeterminer: currentLevelIndex } })} text={"Sprint\nPersonal Best: " + IntervalsHighScore} />
+        <HomeButton onPress={() => {
+          setCurrentLevelIndex((currentLevelIndex + 1) % 3)
+          AsyncStorage.setItem("IntervalsLevel", levels[(currentLevelIndex + 1) % 3])
+        }} text={"Current Level:\n" + currentLevel} />
       </SafeAreaView>
     </ImageBackground>
   );

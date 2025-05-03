@@ -65,26 +65,15 @@ export default function TriadsHome() {
       blurRadius={10}
     >
       <SafeAreaView style={styles.container}>
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Triads" />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={styles.Section}>
-          <HomeButton onPress={() => router.navigate('/triads/Learn')} text="Learn" />
-        </View>
-        <View style={styles.Section}>
-          <HomeButton onPress={() => router.navigate({ pathname: '/triads/Study', params: { levelDeterminer: currentLevelIndex } })} text="Study" />
-        </View>
-        <View style={styles.Section}>
-          <HomeButton onPress={() => router.navigate({ pathname: '/triads/Sprint', params: { levelDeterminer: currentLevelIndex } })} text={"Sprint\nPersonal Best: " + TriadsHighScore} />
-        </View>
-        <View style={styles.Section}>
-          <HomeButton onPress={() => {
-            setCurrentLevelIndex((currentLevelIndex + 1) % 2)
-            AsyncStorage.setItem("TriadsLevel", levels[(currentLevelIndex + 1) % 2])
-          }} text={"Current Level:\n" + currentLevel} />
-        </View>
-        <View style={{ flex: 39 }} />
+        <Title title="Triads" />
+        <View style={{ height: 25 }} />
+        <HomeButton onPress={() => router.navigate('/triads/Learn')} text="Learn" />
+        <HomeButton onPress={() => router.navigate({ pathname: '/triads/Study', params: { levelDeterminer: currentLevelIndex } })} text="Study" />
+        <HomeButton onPress={() => router.navigate({ pathname: '/triads/Sprint', params: { levelDeterminer: currentLevelIndex } })} text={"Sprint\nPersonal Best: " + TriadsHighScore} />
+        <HomeButton onPress={() => {
+          setCurrentLevelIndex((currentLevelIndex + 1) % 2)
+          AsyncStorage.setItem("TriadsLevel", levels[(currentLevelIndex + 1) % 2])
+        }} text={"Current Level:\n" + currentLevel} />
       </SafeAreaView>
     </ImageBackground>
   );

@@ -62,26 +62,15 @@ export default function ScalesHome() {
       blurRadius={8}
     >
       <SafeAreaView style={styles.container}>
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Scales" />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={styles.Section}>
-          <HomeButton onPress={() => router.navigate('/scales/Learn')} text="Learn" />
-        </View>
-        <View style={styles.Section}>
-          <HomeButton onPress={() => router.navigate({ pathname: '/scales/Study', params: { levelDeterminer: currentLevelIndex } })} text="Study" />
-        </View>
-        <View style={styles.Section}>
-          <HomeButton onPress={() => router.navigate({ pathname: '/scales/Sprint', params: { levelDeterminer: currentLevelIndex } })} text={"Sprint\nPersonal Best: " + ScalesHighScore} />
-        </View>
-        <View style={styles.Section}>
-          <HomeButton onPress={() => {
-            setCurrentLevelIndex((currentLevelIndex + 1) % 2)
-            AsyncStorage.setItem("ScalesLevel", levels[(currentLevelIndex + 1) % 2])
-          }} text={"Current Level:\n" + currentLevel} />
-        </View>
-        <View style={{ flex: 39 }} />
+        <Title title="Scales" />
+        <View style={{ height: 25 }} />
+        <HomeButton onPress={() => router.navigate('/scales/Learn')} text="Learn" />
+        <HomeButton onPress={() => router.navigate({ pathname: '/scales/Study', params: { levelDeterminer: currentLevelIndex } })} text="Study" />
+        <HomeButton onPress={() => router.navigate({ pathname: '/scales/Sprint', params: { levelDeterminer: currentLevelIndex } })} text={"Sprint\nPersonal Best: " + ScalesHighScore} />
+        <HomeButton onPress={() => {
+          setCurrentLevelIndex((currentLevelIndex + 1) % 2)
+          AsyncStorage.setItem("ScalesLevel", levels[(currentLevelIndex + 1) % 2])
+        }} text={"Current Level:\n" + currentLevel} />
       </SafeAreaView>
     </ImageBackground>
   );

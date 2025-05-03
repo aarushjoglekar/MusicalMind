@@ -1,15 +1,10 @@
-import { Text, View, StyleSheet, useWindowDimensions } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import React from "react";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
 export default function ScoreButton({ Score, Total }) {
-  const { width, height } = useWindowDimensions();
-
   return (
-    <View style={[styles.ScoreButton, {
-      marginBottom: 2,
-      marginRight: 2
-    }]}>
+    <View style={styles.ScoreButton}>
       <Text style={{ alignSelf: "center", fontFamily: "Verdana", fontSize: RFPercentage(1.7) }}>
         Score: {Score + " / " + Total}
       </Text>
@@ -24,6 +19,8 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     justifyContent: "center",
     alignSelf: "flex-end",
-    padding: 8
+    padding: 8,
+    marginBottom: 4,
+    marginRight: 4
   },
 });

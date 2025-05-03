@@ -1,9 +1,7 @@
-import { Image, StyleSheet, useWindowDimensions } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import React from "react";
 
 export default function CorrectOrWrong({ isCorrect, isVisible }) {
-  const { width, height } = useWindowDimensions();
-
   let correctSource = require("../assets/images/correct.png")
   let incorrectSource = require("../assets/images/incorrect.png")
 

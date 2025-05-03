@@ -59,38 +59,27 @@ export default function KeysHome() {
       blurRadius={4}
     >
       <SafeAreaView style={styles.container}>
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Keys" />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={styles.KeysSection}>
-          <HomeButton
-            onPress={() => router.navigate("/keys/Learn")}
-            text="Learn"
-          />
-        </View>
-        <View style={styles.KeysSection}>
-          <HomeButton
-            onPress={() => router.navigate({ pathname: "/keys/Study", params: { majorOrMinorDeterminer: currentLevelIndex } })}
-            text="Study"
-          />
-        </View>
-        <View style={styles.KeysSection}>
-          <HomeButton
-            onPress={() => router.navigate({ pathname: "/keys/Sprint", params: { majorOrMinorDeterminer: currentLevelIndex } })}
-            text={"Sprint\nPersonal Best: " + KeysHighScore}
-          />
-        </View>
-        <View style={styles.KeysSection}>
-          <HomeButton
-            onPress={() => {
-              setCurrentLevelIndex((currentLevelIndex + 1) % 3)
-              AsyncStorage.setItem("KeysLevel", levels[(currentLevelIndex + 1) % 3])
-            }}
-            text={"Current Level:\n" + currentLevel}
-          />
-        </View>
-        <View style={{ flex: 39 }} />
+        <Title title="Keys" />
+        <View style={{ height: 25 }} />
+        <HomeButton
+          onPress={() => router.navigate("/keys/Learn")}
+          text="Learn"
+        />
+        <HomeButton
+          onPress={() => router.navigate({ pathname: "/keys/Study", params: { majorOrMinorDeterminer: currentLevelIndex } })}
+          text="Study"
+        />
+        <HomeButton
+          onPress={() => router.navigate({ pathname: "/keys/Sprint", params: { majorOrMinorDeterminer: currentLevelIndex } })}
+          text={"Sprint\nPersonal Best: " + KeysHighScore}
+        />
+        <HomeButton
+          onPress={() => {
+            setCurrentLevelIndex((currentLevelIndex + 1) % 3)
+            AsyncStorage.setItem("KeysLevel", levels[(currentLevelIndex + 1) % 3])
+          }}
+          text={"Current Level:\n" + currentLevel}
+        />
       </SafeAreaView>
     </ImageBackground>
   );
@@ -102,7 +91,6 @@ const styles = StyleSheet.create({
   },
 
   KeysSection: {
-    flex: 16,
     justifyContent: "center",
     alignSelf: "center",
   },

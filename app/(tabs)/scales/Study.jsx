@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import {
-  Dimensions,
   Image,
   ImageBackground,
   SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  useWindowDimensions,
   View,
   Modal,
   ScrollView
@@ -39,8 +37,6 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function ScalesStudy() {
-  const { width, height } = useWindowDimensions();
-
   const { levelDeterminer } = useLocalSearchParams()
 
   const [text1, setText1] = useState()
@@ -81,7 +77,7 @@ export default function ScalesStudy() {
   function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
     setIsVisible(true)
-    setTimeout(() => {setIsVisible(false)}, 600)
+    setTimeout(() => { setIsVisible(false) }, 600)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
 
@@ -106,11 +102,11 @@ export default function ScalesStudy() {
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
-      style={{ flex: 1 }}
+      style={styles.container}
       blurRadius={9}
     >
       <SafeAreaView style={styles.container}>
-      <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible}/>
+        <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible} />
         <Modal
           visible={modalVisible}
           animationType="fade"
@@ -144,7 +140,7 @@ export default function ScalesStudy() {
                     </Text>
                   </View>
                 </ScrollView>
-                <View style={{ flex: 0.1, justifyContent: "center" }}>
+                <View style={{ marginVertical: 5, justifyContent: "center" }}>
                   <AntDesign
                     name="caretdown"
                     size={30}
@@ -153,7 +149,7 @@ export default function ScalesStudy() {
                   />
                 </View>
                 <View>
-                  <TouchableOpacity onPressIn={() => setModalVisible(false)} style={[styles.BackButton, { color: "grey", marginBottom: 20, minWidth: width * 0.18, height: height * 0.053 }]}>
+                  <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.BackButton}>
                     <Text style={styles.Text}>
                       Hide
                     </Text>
@@ -163,170 +159,150 @@ export default function ScalesStudy() {
             </BlurView>
           </ImageBackground>
         </Modal>
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Study" />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={{ flex: 35, justifyContent: "center" }}>
-          <Image
-            style={[styles.StudyScalesImage, { width: width, height: width * 97 / 431, resizeMode: "contain" }]}
-            source={imageSource}
-          />
-        </View>
+        <Title title="Study" />
+        <Image
+          style={styles.StudyScalesImage}
+          source={imageSource}
+        />
         {levelDeterminer == 0 ?
-          <>
-            <View style={{ flex: 12 }} />
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (basicCorrectLevelSpot == 1) {
-                    SetScalesStudyScore(ScalesStudyScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  const newProblem = setProblem(clef.current, levelDeterminer)
-                  ResetScalesProblem(newProblem);
-                  if (newProblem[1].includes("Major")) {
-                    setText1(newProblem[1])
-                    setText2(newProblem[2])
-                    setBasicCorrectLevelSpot(1)
-                  } else {
-                    setText1(newProblem[2])
-                    setText2(newProblem[1])
-                    setBasicCorrectLevelSpot(2)
-                  }
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{text1}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (basicCorrectLevelSpot == 2) {
-                    SetScalesStudyScore(ScalesStudyScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  const newProblem = setProblem(clef.current, levelDeterminer)
-                  ResetScalesProblem(newProblem);
-                  if (newProblem[1].includes("Major")) {
-                    setText1(newProblem[1])
-                    setText2(newProblem[2])
-                    setBasicCorrectLevelSpot(1)
-                  } else {
-                    setText1(newProblem[2])
-                    setText2(newProblem[1])
-                    setBasicCorrectLevelSpot(2)
-                  }
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{text2}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={{ flex: 12 }} />
-          </>
+          <View style={{ alignItems: 'center' }}>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (basicCorrectLevelSpot == 1) {
+                  SetScalesStudyScore(ScalesStudyScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                const newProblem = setProblem(clef.current, levelDeterminer)
+                ResetScalesProblem(newProblem);
+                if (newProblem[1].includes("Major")) {
+                  setText1(newProblem[1])
+                  setText2(newProblem[2])
+                  setBasicCorrectLevelSpot(1)
+                } else {
+                  setText1(newProblem[2])
+                  setText2(newProblem[1])
+                  setBasicCorrectLevelSpot(2)
+                }
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{text1}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (basicCorrectLevelSpot == 2) {
+                  SetScalesStudyScore(ScalesStudyScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                const newProblem = setProblem(clef.current, levelDeterminer)
+                ResetScalesProblem(newProblem);
+                if (newProblem[1].includes("Major")) {
+                  setText1(newProblem[1])
+                  setText2(newProblem[2])
+                  setBasicCorrectLevelSpot(1)
+                } else {
+                  setText1(newProblem[2])
+                  setText2(newProblem[1])
+                  setBasicCorrectLevelSpot(2)
+                }
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{text2}</Text>
+            </TouchableOpacity>
+          </View>
           :
-          <>
-            <View style={{ flex: 5 }} />
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 0) {
-                    SetScalesStudyScore(ScalesStudyScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{ScalesProblem[answerOrder[0]]}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 1) {
-                    SetScalesStudyScore(ScalesStudyScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{ScalesProblem[answerOrder[1]]}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 2) {
-                    SetScalesStudyScore(ScalesStudyScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{ScalesProblem[answerOrder[2]]}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 3) {
-                    SetScalesStudyScore(ScalesStudyScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{ScalesProblem[answerOrder[3]]}</Text>
-              </TouchableOpacity>
-            </View>
-          </>
+          <View style={{ alignItems: 'center' }}>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 0) {
+                  SetScalesStudyScore(ScalesStudyScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetScalesProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{ScalesProblem[answerOrder[0]]}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 1) {
+                  SetScalesStudyScore(ScalesStudyScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetScalesProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{ScalesProblem[answerOrder[1]]}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 2) {
+                  SetScalesStudyScore(ScalesStudyScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetScalesProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{ScalesProblem[answerOrder[2]]}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 3) {
+                  SetScalesStudyScore(ScalesStudyScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetScalesProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{ScalesProblem[answerOrder[3]]}</Text>
+            </TouchableOpacity>
+          </View>
         }
         <View
-          style={{ flex: 10, justifyContent: "center", flexDirection: "row" }}
+          style={{ justifyContent: "center", flexDirection: "row" }}
         >
           <TouchableOpacity
             style={styles.BackButton}
@@ -336,7 +312,7 @@ export default function ScalesStudy() {
           >
             <Text style={styles.BackText}>Back</Text>
           </TouchableOpacity>
-          <View style={{ flex: 0.03 }} />
+          <View style={{ width: 6 }} />
           <TouchableOpacity
             style={styles.BackButton}
             onPress={() => {
@@ -345,19 +321,19 @@ export default function ScalesStudy() {
           >
             <Text style={styles.BackText}>Learn</Text>
           </TouchableOpacity>
-          <View style={{ flex: 0.03 }} />
+          <View style={{ width: 6 }} />
           <TouchableOpacity
             style={styles.BackButton}
             onPress={() => {
               setModalVisible(true);
+              setIsNearBottom(100)
             }}
           >
             <Text style={styles.BackText}>Cheat Sheet</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 6 }}>
-          <ScoreButton Score={ScalesStudyScore} Total={total}/>
-        </View>
+        <View style={{ height: 10 }} />
+        <ScoreButton Score={ScalesStudyScore} Total={total} />
       </SafeAreaView>
     </ImageBackground>
   );
@@ -369,10 +345,14 @@ const styles = StyleSheet.create({
   },
 
   Button: {
-    justifyContent: "center",
     backgroundColor: "#edebeb",
     borderRadius: 20,
     borderWidth: 0.5,
+    minWidth: 225,
+    padding: 10,
+    minHeight: 54,
+    justifyContent: 'center',
+    marginBottom: 10
   },
 
   Text: {
@@ -398,6 +378,10 @@ const styles = StyleSheet.create({
   StudyScalesImage: {
     alignSelf: "center",
     borderRadius: 5,
+    flex: 1,
+    resizeMode: 'contain',
+    margin: 20,
+    maxWidth: "100%"
   },
 
   BackButton: {

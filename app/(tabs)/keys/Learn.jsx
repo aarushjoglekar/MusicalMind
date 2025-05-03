@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   ImageBackground,
   SafeAreaView,
   ScrollView,
@@ -12,12 +11,11 @@ import Title from "../../../components/Title";
 import BackButton from "../../../components/BackButton";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { useCallback, useState } from "react";
-import { useVideoPlayer, VideoView } from "expo-video";
+import { useState } from "react";
 import YoutubeIframe from "react-native-youtube-iframe";
 
 export default function KeysLearn() {
-  const {width, height} = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const [isNearBottom, setIsNearBottom] = useState(100);
   const handleScroll = (event) => {
@@ -43,7 +41,7 @@ export default function KeysLearn() {
           onScroll={handleScroll}
         >
           <Title title="Keys" />
-          <View style={{height: 30}}/>
+          <View style={{ height: 30 }} />
           <YoutubeIframe
             height={width * 9 / 16}
             videoId={"_fPeQawIhC8"}
@@ -131,9 +129,7 @@ export default function KeysLearn() {
             style={{ alignSelf: "center", opacity: isNearBottom }}
           />
         </View>
-        <View style={{ flex: 0.03 }}>
-          <BackButton />
-        </View>
+        <BackButton />
       </SafeAreaView>
     </ImageBackground>
   );

@@ -9,7 +9,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  useWindowDimensions,
   View,
 } from "react-native";
 import Title from "../../../components/Title";
@@ -41,8 +40,6 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function IntervalsStudy() {
-  const {width, height} = useWindowDimensions();
-
   const { levelDeterminer } = useLocalSearchParams()
 
   let clef = useRef()
@@ -70,7 +67,7 @@ export default function IntervalsStudy() {
   function disableAnswerBriefly() {
     setIsAnswerEnabled(false)
     setIsVisible(true)
-    setTimeout(() => {setIsVisible(false)}, 600)
+    setTimeout(() => { setIsVisible(false) }, 600)
     setTimeout(() => setIsAnswerEnabled(true), 700)
   }
 
@@ -95,12 +92,12 @@ export default function IntervalsStudy() {
   return (
     <ImageBackground
       source={require("./../../../assets/images/BackgroundImages/StudyBackground.jpeg")}
-      style={{ flex: 1 }}
+      style={styles.container}
       blurRadius={9}
     >
       <SafeAreaView style={styles.container}>
-      <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible}/>
-      <Modal
+        <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible} />
+        <Modal
           visible={modalVisible}
           animationType="fade"
         >
@@ -127,7 +124,7 @@ export default function IntervalsStudy() {
                     </Text>
                   </View>
                 </ScrollView>
-                <View style={{ flex: 0.1, justifyContent: "center" }}>
+                <View style={{ justifyContent: "center", marginVertical: 5 }}>
                   <AntDesign
                     name="caretdown"
                     size={30}
@@ -136,7 +133,7 @@ export default function IntervalsStudy() {
                   />
                 </View>
                 <View>
-                  <TouchableOpacity onPressIn={() => setModalVisible(false)} style={[styles.BackButton, { color: "grey", marginBottom: 20, minWidth: width * 0.18, height: height * 0.053 }]}>
+                  <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.BackButton}>
                     <Text style={styles.Text}>
                       Hide
                     </Text>
@@ -146,21 +143,15 @@ export default function IntervalsStudy() {
             </BlurView>
           </ImageBackground>
         </Modal>
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Study" />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={{ flex: 35, justifyContent: "center" }}>
-          <Image
-            style={[styles.StudyIntervalsImage, {width: width * 0.875, height: width * 0.55, resizeMode: "contain"}]}
-            source={imageSource}
-          />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={styles.StudySection}>
+        <Title title="Study" />
+        <Image
+          style={styles.StudyIntervalsImage}
+          source={imageSource}
+        />
+        <View style={{ alignItems: 'center' }}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={styles.Button}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -177,11 +168,9 @@ export default function IntervalsStudy() {
           >
             <Text style={styles.Text}>{IntervalsProblem[answerOrder[0]]}</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={styles.Button}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -198,11 +187,9 @@ export default function IntervalsStudy() {
           >
             <Text style={styles.Text}>{IntervalsProblem[answerOrder[1]]}</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={styles.Button}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -219,11 +206,9 @@ export default function IntervalsStudy() {
           >
             <Text style={styles.Text}>{IntervalsProblem[answerOrder[2]]}</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, {height: height * 0.064, width: width * 3 / 5}]}
+            style={styles.Button}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -242,7 +227,7 @@ export default function IntervalsStudy() {
           </TouchableOpacity>
         </View>
         <View
-          style={{ flex: 10, justifyContent: "center", flexDirection: "row" }}
+          style={{ justifyContent: "center", flexDirection: "row" }}
         >
           <TouchableOpacity
             style={styles.BackButton}
@@ -252,7 +237,7 @@ export default function IntervalsStudy() {
           >
             <Text style={styles.BackText}>Back</Text>
           </TouchableOpacity>
-          <View style={{ flex: 0.03 }} />
+          <View style={{ width: 6 }} />
           <TouchableOpacity
             style={styles.BackButton}
             onPress={() => {
@@ -261,19 +246,19 @@ export default function IntervalsStudy() {
           >
             <Text style={styles.BackText}>Learn</Text>
           </TouchableOpacity>
-          <View style={{ flex: 0.03 }} />
+          <View style={{ width: 6 }} />
           <TouchableOpacity
             style={styles.BackButton}
             onPress={() => {
               setModalVisible(true);
+              setIsNearBottom(100)
             }}
           >
             <Text style={styles.BackText}>Cheat Sheet</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 6 }}>
-          <ScoreButton Score={IntervalsStudyScore} Total={total}/>
-        </View>
+        <View style={{ height: 10 }} />
+        <ScoreButton Score={IntervalsStudyScore} Total={total} />
       </SafeAreaView>
     </ImageBackground>
   );
@@ -285,10 +270,14 @@ const styles = StyleSheet.create({
   },
 
   Button: {
-    justifyContent: "center",
     backgroundColor: "#edebeb",
     borderRadius: 20,
     borderWidth: 0.5,
+    minWidth: 225,
+    padding: 10,
+    minHeight: 54,
+    justifyContent: 'center',
+    marginBottom: 10
   },
 
   Text: {
@@ -312,8 +301,12 @@ const styles = StyleSheet.create({
   },
 
   StudyIntervalsImage: {
-    alignSelf: 'center',
+    alignSelf: "center",
     borderRadius: 5,
+    flex: 1,
+    resizeMode: 'contain',
+    margin: 20,
+    maxWidth: "100%",
   },
 
   BackButton: {
@@ -322,6 +315,6 @@ const styles = StyleSheet.create({
     borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
-    padding: 12
+    padding: 12,
   },
 });

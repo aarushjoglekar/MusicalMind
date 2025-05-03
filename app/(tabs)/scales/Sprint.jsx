@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  Dimensions,
   Image,
   ImageBackground,
   SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  useWindowDimensions,
   View,
 } from "react-native";
 import ScalesProblemFunction from "./../../../constants/ScalesProblemFunction";
@@ -35,8 +33,6 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function ScalesSprint() {
-  const { width, height } = useWindowDimensions();
-
   const { levelDeterminer } = useLocalSearchParams()
 
   const [text1, setText1] = useState()
@@ -110,185 +106,161 @@ export default function ScalesSprint() {
     >
       <SafeAreaView style={styles.container}>
         <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible} />
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Sprint" />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={{ flex: 35, justifyContent: "center" }}>
-          <Image
-            style={[styles.StudyScalesImage, { width: width, height: width * 97 / 431, resizeMode: "contain" }]}
-            source={imageSource}
-          />
-        </View>
-        <View style={{ flex: 5 }} />
+        <Title title="Sprint" />
+        <Image
+          style={styles.StudyScalesImage}
+          source={imageSource}
+        />
         {levelDeterminer == 0 ?
-          <>
-            <View style={{ flex: 12 }} />
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (basicCorrectLevelSpot == 1) {
-                    SetScalesSprintScore(ScalesSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  const newProblem = setProblem(clef.current, levelDeterminer)
-                  ResetScalesProblem(newProblem);
-                  if (newProblem[1].includes("Major")) {
-                    setText1(newProblem[1])
-                    setText2(newProblem[2])
-                    setBasicCorrectLevelSpot(1)
-                  } else {
-                    setText1(newProblem[2])
-                    setText2(newProblem[1])
-                    setBasicCorrectLevelSpot(2)
-                  }
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{text1}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (basicCorrectLevelSpot == 2) {
-                    SetScalesSprintScore(ScalesSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  const newProblem = setProblem(clef.current, levelDeterminer)
-                  ResetScalesProblem(newProblem);
-                  if (newProblem[1].includes("Major")) {
-                    setText1(newProblem[1])
-                    setText2(newProblem[2])
-                    setBasicCorrectLevelSpot(1)
-                  } else {
-                    setText1(newProblem[2])
-                    setText2(newProblem[1])
-                    setBasicCorrectLevelSpot(2)
-                  }
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{text2}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={{ flex: 12 }} />
-          </>
+          <View style={{ alignItems: 'center' }}>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (basicCorrectLevelSpot == 1) {
+                  SetScalesSprintScore(ScalesSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                const newProblem = setProblem(clef.current, levelDeterminer)
+                ResetScalesProblem(newProblem);
+                if (newProblem[1].includes("Major")) {
+                  setText1(newProblem[1])
+                  setText2(newProblem[2])
+                  setBasicCorrectLevelSpot(1)
+                } else {
+                  setText1(newProblem[2])
+                  setText2(newProblem[1])
+                  setBasicCorrectLevelSpot(2)
+                }
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{text1}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (basicCorrectLevelSpot == 2) {
+                  SetScalesSprintScore(ScalesSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                const newProblem = setProblem(clef.current, levelDeterminer)
+                ResetScalesProblem(newProblem);
+                if (newProblem[1].includes("Major")) {
+                  setText1(newProblem[1])
+                  setText2(newProblem[2])
+                  setBasicCorrectLevelSpot(1)
+                } else {
+                  setText1(newProblem[2])
+                  setText2(newProblem[1])
+                  setBasicCorrectLevelSpot(2)
+                }
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{text2}</Text>
+            </TouchableOpacity>
+          </View>
           :
-          <>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 0) {
-                    SetScalesSprintScore(ScalesSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{ScalesProblem[answerOrder[0]]}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 1) {
-                    SetScalesSprintScore(ScalesSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{ScalesProblem[answerOrder[1]]}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 2) {
-                    SetScalesSprintScore(ScalesSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{ScalesProblem[answerOrder[2]]}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 3) {
-                    SetScalesSprintScore(ScalesSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetScalesProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{ScalesProblem[answerOrder[3]]}</Text>
-              </TouchableOpacity>
-            </View>
-          </>
+          <View style={{ alignItems: 'center' }}>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 0) {
+                  SetScalesSprintScore(ScalesSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetScalesProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{ScalesProblem[answerOrder[0]]}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 1) {
+                  SetScalesSprintScore(ScalesSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetScalesProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{ScalesProblem[answerOrder[1]]}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 2) {
+                  SetScalesSprintScore(ScalesSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetScalesProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{ScalesProblem[answerOrder[2]]}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 3) {
+                  SetScalesSprintScore(ScalesSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetScalesProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{ScalesProblem[answerOrder[3]]}</Text>
+            </TouchableOpacity>
+          </View>
         }
-
-        <View style={{ flex: 10, justifyContent: "center" }}>
-          <TouchableOpacity
-            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
-            onPress={() => {
-              router.navigate({
-                pathname: "/scales/DisplayScore",
-                params: { ScalesSprintScore, levelDeterminer },
-              });
-            }}
-          >
-            <Text style={styles.BackText}>Finish</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{ flex: 6 }}>
-          <ScoreButton Score={ScalesSprintScore} Total={total}/>
-        </View>
+        <TouchableOpacity
+          style={styles.BackButton}
+          onPress={() => {
+            router.navigate({
+              pathname: "/scales/DisplayScore",
+              params: { ScalesSprintScore, levelDeterminer },
+            });
+          }}
+        >
+          <Text style={styles.BackText}>Finish</Text>
+        </TouchableOpacity>
+        <View style={{ height: 10 }} />
+        <ScoreButton Score={ScalesSprintScore} Total={total} />
       </SafeAreaView>
     </ImageBackground>
   );
@@ -300,10 +272,14 @@ const styles = StyleSheet.create({
   },
 
   Button: {
-    justifyContent: "center",
     backgroundColor: "#edebeb",
     borderRadius: 20,
     borderWidth: 0.5,
+    minWidth: 225,
+    padding: 10,
+    minHeight: 54,
+    justifyContent: 'center',
+    marginBottom: 10
   },
 
   Text: {
@@ -327,8 +303,12 @@ const styles = StyleSheet.create({
   },
 
   StudyScalesImage: {
-    alignSelf: 'center',
+    alignSelf: "center",
     borderRadius: 5,
+    flex: 1,
+    resizeMode: 'contain',
+    margin: 20,
+    maxWidth: "100%"
   },
 
   BackButton: {
@@ -337,5 +317,6 @@ const styles = StyleSheet.create({
     borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
+    padding: 12,
   },
 });

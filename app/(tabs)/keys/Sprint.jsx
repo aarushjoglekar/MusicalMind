@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  Dimensions,
   Image,
   ImageBackground,
   SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  useWindowDimensions,
   View,
 } from "react-native";
 import KeysProblemFunction from "./../../../constants/KeysProblemFunction";
@@ -29,8 +27,6 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function KeysSprint() {
-  const { width, height } = useWindowDimensions();
-
   const { majorOrMinorDeterminer } = useLocalSearchParams()
 
   const LatestKeysSprintScoreRef = useRef()
@@ -80,18 +76,12 @@ export default function KeysSprint() {
     >
       <SafeAreaView style={styles.container}>
         <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible} />
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Sprint" />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={{ flex: 35, justifyContent: "center" }}>
-          <Image style={[styles.StudyKeysImage, { height: height * 0.25, width: height * 0.25, resizeMode: "contain" }]} source={imageSource} />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={styles.StudySection}>
+        <Title title="Sprint" />
+        <Image style={styles.StudyKeysImage} source={imageSource} />
+        <View style={{ alignItems: 'center' }}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
+            style={styles.Button}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -108,11 +98,9 @@ export default function KeysSprint() {
           >
             <Text style={styles.Text}>{KeysProblem[answerOrder[0]]}</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
+            style={styles.Button}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -129,11 +117,9 @@ export default function KeysSprint() {
           >
             <Text style={styles.Text}>{KeysProblem[answerOrder[1]]}</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
+            style={styles.Button}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -150,11 +136,9 @@ export default function KeysSprint() {
           >
             <Text style={styles.Text}>{KeysProblem[answerOrder[2]]}</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.StudySection}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
+            style={styles.Button}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -172,22 +156,19 @@ export default function KeysSprint() {
             <Text style={styles.Text}>{KeysProblem[answerOrder[3]]}</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 10, justifyContent: "center" }}>
-          <TouchableOpacity
-            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
-            onPress={() => {
-              router.navigate({
-                pathname: "/keys/DisplayScore",
-                params: { KeysSprintScore, majorOrMinorDeterminer },
-              });
-            }}
-          >
-            <Text style={styles.BackText}>Finish</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{ flex: 6 }}>
-          <ScoreButton Score={KeysSprintScore} Total={total}/>
-        </View>
+        <TouchableOpacity
+          style={styles.BackButton}
+          onPress={() => {
+            router.navigate({
+              pathname: "/keys/DisplayScore",
+              params: { KeysSprintScore, majorOrMinorDeterminer },
+            });
+          }}
+        >
+          <Text style={styles.BackText}>Finish</Text>
+        </TouchableOpacity>
+        <View style={{ height: 10 }} />
+        <ScoreButton Score={KeysSprintScore} Total={total} />
       </SafeAreaView>
     </ImageBackground>
   );
@@ -199,10 +180,14 @@ const styles = StyleSheet.create({
   },
 
   Button: {
-    justifyContent: "center",
     backgroundColor: "#edebeb",
     borderRadius: 20,
     borderWidth: 0.5,
+    minWidth: 225,
+    padding: 10,
+    minHeight: 54,
+    justifyContent: 'center',
+    marginBottom: 10
   },
 
   Text: {
@@ -226,8 +211,12 @@ const styles = StyleSheet.create({
   },
 
   StudyKeysImage: {
-    alignSelf: "center",
+    lignSelf: "center",
     borderRadius: 5,
+    flex: 1,
+    resizeMode: 'contain',
+    margin: 20,
+    maxWidth: "100%"
   },
 
   BackButton: {
@@ -236,5 +225,6 @@ const styles = StyleSheet.create({
     borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
+    padding: 12,
   },
 });

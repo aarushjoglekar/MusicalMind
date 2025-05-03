@@ -195,9 +195,7 @@ export default function ScalesLearn() {
             style={{ alignSelf: "center", opacity: isNearBottom }}
           />
         </View>
-        <View style={{ flex: 0.03 }}>
-          <BackButton />
-        </View>
+        <BackButton />
       </SafeAreaView>
     </ImageBackground>
   );

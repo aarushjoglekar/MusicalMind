@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  Dimensions,
   Image,
   ImageBackground,
   SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  useWindowDimensions,
   View,
 } from "react-native";
 import TriadsProblemFunction from "./../../../constants/TriadsProblemFunction";
@@ -36,8 +34,6 @@ let correctAnswerSpot = answerOrder.indexOf(1);
 
 
 export default function TriadsSprint() {
-  const { width, height } = useWindowDimensions();
-
   const { levelDeterminer } = useLocalSearchParams()
 
   const [text1, setText1] = useState()
@@ -112,184 +108,161 @@ export default function TriadsSprint() {
     >
       <SafeAreaView style={styles.container}>
         <CorrectOrWrong isCorrect={isCorrect} isVisible={isVisible} />
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Sprint" />
-        </View>
-        <View style={{ flex: 5 }} />
-        <View style={{ flex: 35, justifyContent: "center" }}>
-          <Image
-            style={[styles.StudyTriadsImage, { width: width * 0.875, height: width * 0.45 }]}
-            source={imageSource}
-          />
-        </View>
-        <View style={{ flex: 5 }} />
+        <Title title="Sprint" />
+        <Image
+          style={styles.StudyTriadsImage}
+          source={imageSource}
+        />
         {levelDeterminer == 0 ?
-          <>
-            <View style={{ flex: 12 }} />
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (basicCorrectLevelSpot == 1) {
-                    SetTriadsSprintScore(TriadsSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  const newProblem = setProblem(clef.current, levelDeterminer)
-                  ResetTriadsProblem(newProblem);
-                  if (newProblem[1].includes("Major")) {
-                    setText1(newProblem[1])
-                    setText2(newProblem[2])
-                    setBasicCorrectLevelSpot(1)
-                  } else {
-                    setText1(newProblem[2])
-                    setText2(newProblem[1])
-                    setBasicCorrectLevelSpot(2)
-                  }
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{text1}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (basicCorrectLevelSpot == 2) {
-                    SetTriadsSprintScore(TriadsSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  const newProblem = setProblem(clef.current, levelDeterminer)
-                  ResetTriadsProblem(newProblem);
-                  if (newProblem[1].includes("Major")) {
-                    setText1(newProblem[1])
-                    setText2(newProblem[2])
-                    setBasicCorrectLevelSpot(1)
-                  } else {
-                    setText1(newProblem[2])
-                    setText2(newProblem[1])
-                    setBasicCorrectLevelSpot(2)
-                  }
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{text2}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={{ flex: 12 }} />
-          </>
+          <View style={{ alignItems: 'center' }}>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (basicCorrectLevelSpot == 1) {
+                  SetTriadsSprintScore(TriadsSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                const newProblem = setProblem(clef.current, levelDeterminer)
+                ResetTriadsProblem(newProblem);
+                if (newProblem[1].includes("Major")) {
+                  setText1(newProblem[1])
+                  setText2(newProblem[2])
+                  setBasicCorrectLevelSpot(1)
+                } else {
+                  setText1(newProblem[2])
+                  setText2(newProblem[1])
+                  setBasicCorrectLevelSpot(2)
+                }
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{text1}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (basicCorrectLevelSpot == 2) {
+                  SetTriadsSprintScore(TriadsSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                const newProblem = setProblem(clef.current, levelDeterminer)
+                ResetTriadsProblem(newProblem);
+                if (newProblem[1].includes("Major")) {
+                  setText1(newProblem[1])
+                  setText2(newProblem[2])
+                  setBasicCorrectLevelSpot(1)
+                } else {
+                  setText1(newProblem[2])
+                  setText2(newProblem[1])
+                  setBasicCorrectLevelSpot(2)
+                }
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{text2}</Text>
+            </TouchableOpacity>
+          </View>
           :
-          <>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 0) {
-                    SetTriadsSprintScore(TriadsSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{TriadsProblem[answerOrder[0]]}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 1) {
-                    SetTriadsSprintScore(TriadsSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{TriadsProblem[answerOrder[1]]}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 2) {
-                    SetTriadsSprintScore(TriadsSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{TriadsProblem[answerOrder[2]]}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.StudySection}>
-              <TouchableOpacity
-                disabled={!isAnswerEnabled}
-                style={[styles.Button, { height: height * 0.064, width: width * 3 / 5 }]}
-                onPress={() => {
-                  if (correctAnswerSpot == 3) {
-                    SetTriadsSprintScore(TriadsSprintScore + 1);
-                    setIsCorrect(true)
-                  } else {
-                    setIsCorrect(false)
-                  }
-                  setTotal(prev => prev + 1)
-                  ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
-                  answerOrder = shuffle(answerOrder);
-                  correctAnswerSpot = answerOrder.indexOf(1);
-                  disableAnswerBriefly()
-                }}
-              >
-                <Text style={styles.Text}>{TriadsProblem[answerOrder[3]]}</Text>
-              </TouchableOpacity>
-            </View>
-          </>
+          <View style={{ alignItems: 'center' }}>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 0) {
+                  SetTriadsSprintScore(TriadsSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{TriadsProblem[answerOrder[0]]}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 1) {
+                  SetTriadsSprintScore(TriadsSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{TriadsProblem[answerOrder[1]]}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 2) {
+                  SetTriadsSprintScore(TriadsSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{TriadsProblem[answerOrder[2]]}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={!isAnswerEnabled}
+              style={styles.Button}
+              onPress={() => {
+                if (correctAnswerSpot == 3) {
+                  SetTriadsSprintScore(TriadsSprintScore + 1);
+                  setIsCorrect(true)
+                } else {
+                  setIsCorrect(false)
+                }
+                setTotal(prev => prev + 1)
+                ResetTriadsProblem(setProblem(clef.current, levelDeterminer));
+                answerOrder = shuffle(answerOrder);
+                correctAnswerSpot = answerOrder.indexOf(1);
+                disableAnswerBriefly()
+              }}
+            >
+              <Text style={styles.Text}>{TriadsProblem[answerOrder[3]]}</Text>
+            </TouchableOpacity>
+          </View>
         }
-        <View style={{ flex: 10, justifyContent: "center" }}>
-          <TouchableOpacity
-            style={[styles.BackButton, { minWidth: width * 0.18, height: height * 0.053 }]}
-            onPress={() => {
-              router.navigate({
-                pathname: "/triads/DisplayScore",
-                params: { TriadsSprintScore, levelDeterminer },
-              });
-            }}
-          >
-            <Text style={styles.BackText}>Finish</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{ flex: 6 }}>
-          <ScoreButton Score={TriadsSprintScore} Total={total}/>
-        </View>
+        <TouchableOpacity
+          style={styles.BackButton}
+          onPress={() => {
+            router.navigate({
+              pathname: "/triads/DisplayScore",
+              params: { TriadsSprintScore, levelDeterminer },
+            });
+          }}
+        >
+          <Text style={styles.BackText}>Finish</Text>
+        </TouchableOpacity>
+        <View style={{ height: 10 }} />
+        <ScoreButton Score={TriadsSprintScore} Total={total} />
       </SafeAreaView>
     </ImageBackground>
   );
@@ -301,11 +274,14 @@ const styles = StyleSheet.create({
   },
 
   Button: {
-    justifyContent: "center",
     backgroundColor: "#edebeb",
-    width: 240,
     borderRadius: 20,
     borderWidth: 0.5,
+    minWidth: 225,
+    padding: 10,
+    minHeight: 54,
+    justifyContent: 'center',
+    marginBottom: 10
   },
 
   Text: {
@@ -329,8 +305,12 @@ const styles = StyleSheet.create({
   },
 
   StudyTriadsImage: {
-    alignSelf: 'center',
+    lignSelf: "center",
     borderRadius: 5,
+    flex: 1,
+    resizeMode: 'contain',
+    margin: 20,
+    maxWidth: "100%",
   },
 
   BackButton: {
@@ -339,5 +319,6 @@ const styles = StyleSheet.create({
     borderRadius: RFPercentage(2.2),
     borderWidth: 0.5,
     alignSelf: "center",
+    padding: 12,
   },
 });

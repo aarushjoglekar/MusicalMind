@@ -5,16 +5,12 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ImageBackground,
-  Dimensions,
-  useWindowDimensions,
 } from "react-native";
 import React from "react";
 import Title from "./Title";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
 export default function DisplayScore({ scoreValue, onPress }) {
-  const {width, height} = useWindowDimensions();
-
   return (
     <ImageBackground
       source={require("./../assets/images/BackgroundImages/DisplayScoreBackground.jpeg")}
@@ -22,26 +18,18 @@ export default function DisplayScore({ scoreValue, onPress }) {
       blurRadius={6}
     >
       <SafeAreaView style={styles.container}>
-        <View style={{ flex: 3 }} />
-        <View style={{ flex: 1.5 }}>
-          <Title title="You Scored" />
-        </View>
-        <View style={{ flex: 5 }}>
-          <Text style={styles.YouScoredNumber}>{scoreValue}</Text>
-        </View>
-        <View style={{ flex: 6 }} />
-        <View style={{ flex: 1 }}>
+        <View style={styles.innerContainer}>
+          <View style={styles.centerContent}>
+            <Title title="You Scored" />
+            <Text style={styles.YouScoredNumber}>{scoreValue}</Text>
+          </View>
           <TouchableOpacity
-            style={[styles.BackButton, {
-              width: width * 0.18,
-              height: height * 0.053
-            }]}
+            style={styles.BackButton}
             onPress={onPress}
           >
             <Text style={styles.Text}>Back</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 0.5 }} />
       </SafeAreaView>
     </ImageBackground>
   );
@@ -50,21 +38,24 @@ export default function DisplayScore({ scoreValue, onPress }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center'
   },
 
   Text: {
     color: "#000",
     textAlign: "center",
     fontFamily: "Verdana",
-    fontSize: RFPercentage(2),
+    fontSize: RFPercentage(1.8),
   },
 
   BackButton: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    borderRadius: RFPercentage(2.2),
+    borderRadius: 20,
     borderWidth: 0.5,
     alignSelf: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 12,
   },
 
   YouScoredNumber: {
@@ -72,5 +63,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 200,
     fontFamily: "PTSerif",
+  },
+
+  innerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingVertical: 40,
+  },
+  
+  centerContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

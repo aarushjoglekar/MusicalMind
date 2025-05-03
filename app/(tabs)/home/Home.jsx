@@ -3,18 +3,15 @@ import {
   ImageBackground,
   StyleSheet,
   SafeAreaView,
-  useWindowDimensions,
 } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { router, useFocusEffect } from "expo-router";
-import HomePageButtonSection from "../../../components/HomePageButtonSection";
 import Title from "../../../components/Title";
 import readDailyStreak from "../../../storageServices/readDailyStreak";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import HomeButton from "../../../components/HomeButton";
 
 export default function Home() {
-  const { width, height } = useWindowDimensions();
-
   const [clef, setClef] = useState();
   AsyncStorage.getItem('Clef').then((storageClef) => {
     if (storageClef == null) {
@@ -41,44 +38,39 @@ export default function Home() {
       blurRadius={6}
     >
       <SafeAreaView style={styles.container}>
-        <View style={{ flex: 10, justifyContent: "flex-end" }}>
-          <Title title="Theory4Musicians" />
+        <Title title="Theory4Musicians" />
+        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+          <HomeButton
+            disabled={true}
+            text={`Daily Streak: ${dailyStreak}`}
+          />
+          <HomeButton
+            onPress={() => router.push("../../(onboarding)/home")}
+            text="Tutorial"
+          />
+          <HomeButton
+            onPress={() => router.navigate("/home/LearnToReadMusic")}
+            text="Reading Music"
+          />
+          <HomeButton
+            onPress={() => router.navigate("/home/ResetScores")}
+            text="Reset Scores"
+          />
+          <HomeButton
+            onPress={() => {
+              let otherClef;
+              if (clef == "Treble") {
+                otherClef = "Bass"
+              } else {
+                otherClef = "Treble"
+              }
+              AsyncStorage.setItem("Clef", otherClef)
+              setClef(otherClef)
+            }}
+            text={"Toggle Clef\nCurrent Clef: " + clef}
+          />
         </View>
-        <View style={{ flex: 20 }} />
-        <HomePageButtonSection
-          disabled={true}
-          text={`Daily Streak: ${dailyStreak}`}
-        />
-        <View style={{ height: 40 }} />
-        <HomePageButtonSection
-          onPress={() => router.push("../../(onboarding)/home")}
-          text="Tutorial"
-        />
-        <View style={{ height: 40 }} />
-        <HomePageButtonSection
-          onPress={() => router.navigate("/home/LearnToReadMusic")}
-          text="Reading Music"
-        />
-        <View style={{ height: 40 }} />
-        <HomePageButtonSection
-          onPress={() => router.navigate("/home/ResetScores")}
-          text="Reset Scores"
-        />
-        <View style={{ height: 40 }} />
-        <HomePageButtonSection
-          onPress={() => {
-            let otherClef;
-            if (clef == "Treble") {
-              otherClef = "Bass"
-            } else {
-              otherClef = "Treble"
-            }
-            AsyncStorage.setItem("Clef", otherClef)
-            setClef(otherClef)
-          }}
-          text={"Toggle Clef\nCurrent Clef: " + clef}
-        />
-        <View style={{ height: height * 0.1 }} />
+        <View style={{height:80}}/>
       </SafeAreaView>
     </ImageBackground>
   );
