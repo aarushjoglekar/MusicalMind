@@ -11,7 +11,7 @@
     "ios": {
       "supportsTablet": true,
       "requireFullScreen": true,
-      "bundleIdentifier": "com.musicmind",
+      "bundleIdentifier": "com.musicmindmusictheory",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -35,14 +35,11 @@
         "origin": false
       },
       "eas": {
-        "projectId": "c18b93b9-da30-43c5-af52-a8fcc849aa05"
+        "projectId": "18f23b17-a0cd-46c2-a2e3-2b9cbaf033ff"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/c18b93b9-da30-43c5-af52-a8fcc849aa05"
     }
   }
 }
