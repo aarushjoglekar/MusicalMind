@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Theory4Musicians",
-    "slug": "Theory4Musicians",
+    "name": "MusicMind",
+    "slug": "MusicMind",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -11,7 +11,7 @@
     "ios": {
       "supportsTablet": true,
       "requireFullScreen": true,
-      "bundleIdentifier": "com.theory4musicians",
+      "bundleIdentifier": "com.musicmind",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }

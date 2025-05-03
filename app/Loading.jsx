@@ -35,7 +35,7 @@ export default function Loading() {
           });
         } else {
           updateDailyStreak(0).then(() => {
-            router.navigate('/(onboarding)/home');
+            router.navigate({pathname: '/Onboarding', params: {isFirstTime: "true"}});
             AsyncStorage.setItem("ViewedOnboarding", "true")
           })
         }

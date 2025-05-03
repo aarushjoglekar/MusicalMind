@@ -33,19 +33,19 @@ export default function Home() {
   )
   return (
     <ImageBackground
-      source={require("./../../../assets/images//BackgroundImages/Theory4MusiciansBackground.jpg")}
+      source={require("./../../../assets/images//BackgroundImages/MusicMind.jpg")}
       style={styles.container}
       blurRadius={6}
     >
       <SafeAreaView style={styles.container}>
-        <Title title="Theory4Musicians" />
+        <Title title="MusicMind" />
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <HomeButton
             disabled={true}
             text={`Daily Streak: ${dailyStreak}`}
           />
           <HomeButton
-            onPress={() => router.push("../../(onboarding)/home")}
+            onPress={() => router.navigate({pathname: "../../Onboarding", params: {isFirstTime: "false"}})}
             text="Tutorial"
           />
           <HomeButton
