@@ -14,12 +14,13 @@ const styles = StyleSheet.create({
   Button: {
     justifyContent: "center",
     backgroundColor: "#edebeb",
-    borderRadius: RFPercentage(2.2),
+    borderRadius: 15,
     borderWidth: 0.5,
     marginVertical: 17,
     alignSelf: 'center',
-    minWidth: 200,
-    minHeight: 56
+    minWidth: "52%",
+    minHeight: 60,
+    padding: 2
   },
 
   Text: {

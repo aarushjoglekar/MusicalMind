@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
 
   StudyKeysImage: {
-    lignSelf: "center",
+    alignSelf: "center",
     borderRadius: 5,
     flex: 1,
     resizeMode: 'contain',
