@@ -380,8 +380,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flex: 1,
     resizeMode: 'contain',
-    margin: 20,
-    maxWidth: "100%"
+    marginVertical: 20,
+    width: "100%",
+    height: "100%"
   },
 
   BackButton: {
