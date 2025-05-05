@@ -376,5 +376,6 @@ const styles = StyleSheet.create({
     fontFamily: "Verdana",
     fontSize: RFPercentage(1.6),
     lineHeight: RFPercentage(1.6) * 1.5,
+    textAlign: 'justify'
   },
 });

@@ -39,7 +39,7 @@ export default function IntervalsLearn() {
           <Text style={styles.Subtitle}>{"\n"}What are Intervals</Text>
           <Text style={styles.LearnText}>
             {"\t"}Intervals are the distance between two notes. It is helpful to
-            be aware of intervals as they can help you understand the
+            be aware of intervals because they can help you understand the
             relationship between two notes in music. They can also help you play
             music by ear. This is because when you try to play a song, you won't
             be thinking about each and every note, but rather the intervals
@@ -214,5 +214,6 @@ const styles = StyleSheet.create({
     fontFamily: "Verdana",
     fontSize: RFPercentage(1.6),
     lineHeight: RFPercentage(1.6) * 1.5,
+    textAlign: 'justify'
   },
 });
