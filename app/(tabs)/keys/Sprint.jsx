@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import KeysProblemFunction from "./../../../constants/KeysProblemFunction";
@@ -27,6 +28,8 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function KeysSprint() {
+  const {width, height} = useWindowDimensions()
+
   const { majorOrMinorDeterminer } = useLocalSearchParams()
 
   const LatestKeysSprintScoreRef = useRef()
@@ -81,7 +84,7 @@ export default function KeysSprint() {
         <View style={{ alignItems: 'center' }}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -100,7 +103,7 @@ export default function KeysSprint() {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -119,7 +122,7 @@ export default function KeysSprint() {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -138,7 +141,7 @@ export default function KeysSprint() {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetKeysSprintScore(KeysSprintScore + 1);
@@ -185,9 +188,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     minWidth: 225,
     padding: 10,
-    minHeight: 54,
     justifyContent: 'center',
-    marginBottom: 10
   },
 
   Text: {

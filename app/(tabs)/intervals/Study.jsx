@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import Title from "../../../components/Title";
@@ -40,6 +41,8 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function IntervalsStudy() {
+  const {width, height} = useWindowDimensions()
+
   const { levelDeterminer } = useLocalSearchParams()
 
   let clef = useRef()
@@ -151,7 +154,7 @@ export default function IntervalsStudy() {
         <View style={{ alignItems: 'center' }}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -170,7 +173,7 @@ export default function IntervalsStudy() {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -189,7 +192,7 @@ export default function IntervalsStudy() {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -208,7 +211,7 @@ export default function IntervalsStudy() {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetIntervalsStudyScore(IntervalsStudyScore + 1);
@@ -275,9 +278,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     minWidth: 225,
     padding: 10,
-    minHeight: 54,
     justifyContent: 'center',
-    marginBottom: 10
   },
 
   Text: {

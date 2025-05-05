@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import Title from "../../../components/Title";
@@ -31,6 +32,8 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function KeysStudy() {
+  const {width, height} = useWindowDimensions()
+
   const { majorOrMinorDeterminer } = useLocalSearchParams()
 
   const [isAnswerEnabled, setIsAnswerEnabled] = useState(true)
@@ -124,7 +127,7 @@ export default function KeysStudy() {
         <View style={{ alignItems: 'center' }}>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}], {minHeight: height * 0.06, minWidth: width* 0.55}]}
             onPress={() => {
               if (correctAnswerSpot == 0) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -143,7 +146,7 @@ export default function KeysStudy() {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 1) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -162,7 +165,7 @@ export default function KeysStudy() {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 2) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -181,7 +184,7 @@ export default function KeysStudy() {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!isAnswerEnabled}
-            style={styles.Button}
+            style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
             onPress={() => {
               if (correctAnswerSpot == 3) {
                 SetKeysStudyScore(KeysStudyScore + 1);
@@ -249,9 +252,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     minWidth: 225,
     padding: 10,
-    minHeight: 54,
     justifyContent: 'center',
-    marginBottom: 10
   },
 
   Text: {

@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import ScalesProblemFunction from "./../../../constants/ScalesProblemFunction";
@@ -33,6 +34,8 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function ScalesSprint() {
+  const {width, height} = useWindowDimensions()
+
   const { levelDeterminer } = useLocalSearchParams()
 
   const [text1, setText1] = useState()
@@ -115,7 +118,7 @@ export default function ScalesSprint() {
           <View style={{ alignItems: 'center' }}>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (basicCorrectLevelSpot == 1) {
                   SetScalesSprintScore(ScalesSprintScore + 1);
@@ -142,7 +145,7 @@ export default function ScalesSprint() {
             </TouchableOpacity>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (basicCorrectLevelSpot == 2) {
                   SetScalesSprintScore(ScalesSprintScore + 1);
@@ -172,7 +175,7 @@ export default function ScalesSprint() {
           <View style={{ alignItems: 'center' }}>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (correctAnswerSpot == 0) {
                   SetScalesSprintScore(ScalesSprintScore + 1);
@@ -191,7 +194,7 @@ export default function ScalesSprint() {
             </TouchableOpacity>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (correctAnswerSpot == 1) {
                   SetScalesSprintScore(ScalesSprintScore + 1);
@@ -210,7 +213,7 @@ export default function ScalesSprint() {
             </TouchableOpacity>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (correctAnswerSpot == 2) {
                   SetScalesSprintScore(ScalesSprintScore + 1);
@@ -229,7 +232,7 @@ export default function ScalesSprint() {
             </TouchableOpacity>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (correctAnswerSpot == 3) {
                   SetScalesSprintScore(ScalesSprintScore + 1);
@@ -277,9 +280,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     minWidth: 225,
     padding: 10,
-    minHeight: 54,
     justifyContent: 'center',
-    marginBottom: 10
   },
 
   Text: {

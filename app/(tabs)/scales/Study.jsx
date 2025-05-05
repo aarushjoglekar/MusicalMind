@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   View,
   Modal,
-  ScrollView
+  ScrollView,
+  useWindowDimensions
 } from "react-native";
 import Title from "../../../components/Title";
 import { ScalesProblems } from "../../../constants/ScalesProblems";
@@ -37,6 +38,8 @@ answerOrder = shuffle(answerOrder);
 let correctAnswerSpot = answerOrder.indexOf(1);
 
 export default function ScalesStudy() {
+  const {width, height} = useWindowDimensions()
+
   const { levelDeterminer } = useLocalSearchParams()
 
   const [text1, setText1] = useState()
@@ -168,7 +171,7 @@ export default function ScalesStudy() {
           <View style={{ alignItems: 'center' }}>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (basicCorrectLevelSpot == 1) {
                   SetScalesStudyScore(ScalesStudyScore + 1);
@@ -195,7 +198,7 @@ export default function ScalesStudy() {
             </TouchableOpacity>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (basicCorrectLevelSpot == 2) {
                   SetScalesStudyScore(ScalesStudyScore + 1);
@@ -225,7 +228,7 @@ export default function ScalesStudy() {
           <View style={{ alignItems: 'center' }}>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (correctAnswerSpot == 0) {
                   SetScalesStudyScore(ScalesStudyScore + 1);
@@ -244,7 +247,7 @@ export default function ScalesStudy() {
             </TouchableOpacity>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (correctAnswerSpot == 1) {
                   SetScalesStudyScore(ScalesStudyScore + 1);
@@ -263,7 +266,7 @@ export default function ScalesStudy() {
             </TouchableOpacity>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (correctAnswerSpot == 2) {
                   SetScalesStudyScore(ScalesStudyScore + 1);
@@ -282,7 +285,7 @@ export default function ScalesStudy() {
             </TouchableOpacity>
             <TouchableOpacity
               disabled={!isAnswerEnabled}
-              style={styles.Button}
+              style={[styles.Button, {minHeight: height * 0.06, minWidth: width* 0.55, marginBottom: height * 0.01}]}
               onPress={() => {
                 if (correctAnswerSpot == 3) {
                   SetScalesStudyScore(ScalesStudyScore + 1);
@@ -350,9 +353,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     minWidth: 225,
     padding: 10,
-    minHeight: 54,
     justifyContent: 'center',
-    marginBottom: 10
   },
 
   Text: {
