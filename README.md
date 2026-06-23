@@ -17,8 +17,18 @@ MusicMind is a mobile app designed to help aspiring musicians improve their skil
 - JavaScript
 
 ### Installation
-Currently, MusicMind is still in development. To test our most recent version, download the Expo Go app (in the App Store or the Google Play Store) and use the link below: <br/>
-<a href="https://expo.dev/preview/update?message=Initial%20Version&updateRuntimeVersion=1.0.0&createdAt=2024-12-07T18%3A59%3A23.280Z&slug=exp&projectId=fbfaca8d-81c9-48e1-b829-ea61b8d49d5f&group=ebd231eb-9826-4da3-8a06-b857c67d5a11">Demo</a>
+MusicalMind is currently not available on the App Store. Instead, clone this repository and run:
+
+npx expo start
+
+Open with the XCode iPhone simulator (on mac only) or the Android Simulator
+
+### App Images
+| | | |
+|---|---|---|
+| <img src="./demo/demo1.png" width="220"> | <img src="./demo/demo2.png" width="220"> | <img src="./demo/demo3.png" width="220"> |
+| <img src="./demo/demo4.png" width="220"> | <img src="./demo/demo5.png" width="220"> | <img src="./demo/demo6.png" width="220"> |
+| <img src="./demo/demo7.png" width="220"> | <img src="./demo/demo8.png" width="220">| <img src="./demo/demo9.png" width="220"> | | |
 
 ### Project Start Date:
 March 13, 2024
