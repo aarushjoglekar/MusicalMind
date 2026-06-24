@@ -17,9 +17,14 @@ MusicMind is a mobile app designed to help aspiring musicians improve their skil
 - JavaScript
 
 ### Installation
-MusicalMind is currently not available on the App Store. Instead, clone this repository and run:
+Install MusicalMind on the iOS App Store
 
+OR
+
+Clone this repository and run:
+```bash
 npx expo start
+```
 
 Open with the XCode iPhone simulator (on mac only) or the Android Simulator
 
