@@ -1,13 +1,13 @@
 # MusicMind: Educational Music Theory App
 
 ### Description
-MusicMind is a mobile app designed to help aspiring musicians improve their skills. The app covers the four essential concepts of music theory: Keys, Scales, Triads, and Intervals. To learn a topic, users can first read a detailed explanation of the purpose, how to identify, and examples of the subject (learn). Users then have access to flashcards where they can practice (study) before tuning their abilities in speed flashcard rounds (sprint).
+MusicMind is a mobile app designed to help aspiring musicians improve their skills. The app covers the four essential concepts of music theory: Keys, Scales, Triads, and Intervals. To learn a topic, users can first read or watch a detailed explanation of the purpose, how to identify, and examples of the subject (learn). Users then have access to flashcards where they can practice (study) before tuning their abilities in speed flashcard rounds (sprint).
 
 <b>Key Features:</b>
 - Learn to read music
-- Learn
-- Study
-- Sprint
+- Learn (text + videos)
+- Study (flashcards)
+- Sprint (timed tests)
 - Personal High Scores
 - Daily Streaks
 
@@ -17,16 +17,15 @@ MusicMind is a mobile app designed to help aspiring musicians improve their skil
 - JavaScript
 
 ### Installation
-Install MusicalMind on the iOS App Store
+#### App Store
+Install MusicalMind on the [iOS App Store](https://apps.apple.com/us/app/musicalmind/id6745420780)
 
-OR
-
-Clone this repository and run:
-```bash
-npx expo start
-```
-
-Open with the XCode iPhone simulator (on mac only) or the Android Simulator
+#### Running Locally
+<ol>
+  <li>Clone this repository</li>
+  <li>Run: npx expo start</li>
+  <li>Open with the XCode iPhone simulator (mac only) or an Android Simulator</li>
+</ol>
 
 ### App Images
 | | | |
